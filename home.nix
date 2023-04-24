@@ -10,7 +10,6 @@
       vimAlias = true;
 
       withNodeJs = true;
-      extraConfig = "mouse=";
     };
 
     helix = {
