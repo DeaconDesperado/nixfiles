@@ -10,6 +10,7 @@
       vimAlias = true;
 
       withNodeJs = true;
+      extraConfig = "mouse=";
     };
 
     helix = {
@@ -96,6 +97,9 @@
       ignores = [ ".java_version" ".metals" "metals.sbt" ".bloop" ".idea" ".DS_Store" ];
 
       delta.enable = true;
+      delta.options = {
+      	side-by-side = true;
+      };
     };
 
     tmux = {
