@@ -153,7 +153,7 @@
       autocd = true;
       enableCompletion = true;
       enableSyntaxHighlighting = true;
-      enableAutosuggestions = true;
+      enableAutosuggestions = false;
       history.extended = true;
       shellAliases = {
         cat = "bat";
@@ -188,6 +188,9 @@
     };
 
     fzf.enable = true;
+    fzf.historyWidgetOptions = [
+      "--reverse"
+    ];
 
     alacritty.enable = true;
 
