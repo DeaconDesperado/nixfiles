@@ -7,3 +7,9 @@ My [Nix](https://nixos.org/download.html) / [nix-darwin](https://github.com/LnL7
 ```sh
 darwin-rebuild switch --flake .
 ```
+
+Not covered in install:
+
+* Docker Desktop
+* JDKs + JREs
+* Idea
