@@ -176,6 +176,15 @@
           src = lib.cleanSource ./config/p10k;
           file = "p10k.zsh";
         }
+        {
+          name = "zsh-pyenv";
+          src = pkgs.fetchFromGitHub {
+            owner = "mattberther";
+            repo = "zsh-pyenv";
+            rev = "56a3081dbe345a635b12095914b234cb11a350a0";
+            sha256 = "1ksa1bbhnlmrk9n7jnq85s2vpc50qm8g5jqgqzixvjdjyw9y1n2n";
+          };
+        }
       ];
       initExtra = ''
         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
