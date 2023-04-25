@@ -10,6 +10,11 @@
       vimAlias = true;
 
       withNodeJs = true;
+      extraConfig = ''
+        set ts=4
+        set sw=4
+        set et
+      '';
     };
 
     helix = {
@@ -97,7 +102,7 @@
 
       delta.enable = true;
       delta.options = {
-      	side-by-side = true;
+        side-by-side = true;
       };
     };
 
@@ -166,7 +171,7 @@
           src = pkgs.zsh-powerlevel10k;
           file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
         }
-	{
+        {
           name = "powerlevel10k-config";
           src = lib.cleanSource ./config/p10k;
           file = "p10k.zsh";
@@ -276,6 +281,7 @@
       maven
       metals
       minikube
+      moreutils
       mosh
       nixfmt
       nixpkgs-fmt
@@ -295,7 +301,6 @@
       nodejs-16_x
       operator-sdk
       pandoc
-      parallel
       protobuf
       (python3.withPackages
         (ps: with ps; with python3Packages; [
