@@ -11,10 +11,17 @@
 
       withNodeJs = true;
       extraConfig = ''
+        set nobackup
         set ts=2
         set sw=2
         set et
+        colorscheme kanagawa-wave
       '';
+      plugins = [
+        {
+          plugin = pkgs.vimPlugins.kanagawa-nvim;
+        }
+      ];
     };
 
     helix = {
@@ -90,6 +97,7 @@
       };
 
       extraConfig = {
+        core.editor = "vim";
         color.ui = true;
         branch.autosetuprebase = "always";
         pull.rebase = true;
