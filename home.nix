@@ -20,6 +20,7 @@
       extraLuaConfig = ''
         require("mason").setup()
         require("mason-lspconfig").setup{ ensure_installed = {"lua_ls", "rust_analyzer"}}
+        require("lspconfig").rust_analyzer.setup {}
       '';
       plugins = with pkgs.vimPlugins; [
         kanagawa-nvim
@@ -276,6 +277,7 @@
       avro-tools
       bazel_5
       bazel-buildtools
+      cargo-generate
       coreutils
       curl
       delta
