@@ -17,10 +17,15 @@
         set et
         colorscheme kanagawa-wave
       '';
-      plugins = [
-        {
-          plugin = pkgs.vimPlugins.kanagawa-nvim;
-        }
+      extraLuaConfig = ''
+        require("mason").setup()
+        require("mason-lspconfig").setup{ ensure_installed = {"lua_ls", "rust_analyzer"}}
+      '';
+      plugins = with pkgs.vimPlugins; [
+        kanagawa-nvim
+        mason-nvim
+        mason-lspconfig-nvim
+        nvim-lspconfig
       ];
     };
 
@@ -111,6 +116,7 @@
       delta.enable = true;
       delta.options = {
         side-by-side = true;
+        syntax-theme = "Nord"; 
       };
     };
 
@@ -199,6 +205,10 @@
         export LSP_USE_PLISTS=true
         export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=bold,underline"
         export PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin
+        export FZF_DEFAULT_OPTS=" \
+        --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+        --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+        --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
       '';
     };
 
@@ -206,7 +216,7 @@
 
     bat = {
       enable = true;
-      config.theme = "ansi";
+      config.theme = "Nord";
     };
 
     fzf.enable = true;
