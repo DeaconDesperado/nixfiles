@@ -16,6 +16,7 @@ Not covered in install:
 * JDKs + JREs (manually managed)
 * Idea
 * Vendor internal tools (homebrew'ed)
+* qmk ([bug in nix pkg](https://discourse.nixos.org/t/what-is-the-difference-between-aarch64-apple-darwin-and-aarch64-darwin-and-why-are-they-incompatible/27568))
 
 Misc: 
 

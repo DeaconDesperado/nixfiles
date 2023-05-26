@@ -146,7 +146,7 @@
         hub.host = "ghe.spotify.net";
       };
 
-      ignores = [ ".java_version" ".metals" "metals.sbt" ".bloop" ".idea" ".DS_Store" ];
+      ignores = [ ".java_version" ".metals" "metals.sbt" ".bloop" ".idea" ".DS_Store" ".envrc" "shell.nix" ];
 
       delta.enable = true;
       delta.options = {
@@ -265,11 +265,6 @@
       enable = true;
     };
 
-    java = {
-      enable = true;
-      package = pkgs.jdk;
-    };
-
     direnv.enable = true;
     direnv.nix-direnv.enable = true;
 
@@ -309,6 +304,7 @@
       colima
       act
       avro-tools
+      pqrs
       bazel_5
       bazel-buildtools
       cargo-generate
@@ -330,11 +326,11 @@
       (google-cloud-sdk.withExtraComponents
         ([ google-cloud-sdk.components.gke-gcloud-auth-plugin ]))
       gopls
-      jdk
       gradle
       graphviz-nox
       imagemagick
       jq
+      keymapviz
       kind
       kubebuilder
       kubectx
@@ -387,6 +383,7 @@
       wget
       yarn2nix
       yq-go
+      zsh-completions
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
