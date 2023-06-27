@@ -16,7 +16,6 @@
 
   outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
     let
-
       inherit (darwin.lib) darwinSystem;
       inherit (inputs.nixpkgs-unstable.lib)
         attrValues makeOverridable optionalAttrs singleton;
@@ -57,6 +56,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.mgthesecond = import ./home.nix;
+              users.users.mgthesecond.home = "/Users/mgthesecond";
             }
           ];
         };

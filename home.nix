@@ -17,10 +17,10 @@
         set et
         colorscheme kanagawa-wave
       '';
-      extraLuaConfig = ''
-
-      '';
       plugins = with pkgs.vimPlugins; [
+        nvchad
+        nvchad-ui
+        nvchad-extensions
         kanagawa-nvim
         { 
           plugin = mason-nvim;
