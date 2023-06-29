@@ -3,6 +3,18 @@
 {
   home.stateVersion = "22.11";
 
+  home.file = {
+    bqj = {
+      executable = true;
+      source = lib.cleanSource ./scripts/bqj; 
+      target = "./scripts/bqj";
+    };
+  };
+
+  home.sessionPath = [
+    "$HOME/scripts"
+  ];
+
   programs = {
     neovim = {
       enable = true;
