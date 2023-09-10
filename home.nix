@@ -32,7 +32,6 @@
       plugins = with pkgs.vimPlugins; [
         nvchad
         nvchad-ui
-        nvchad-extensions
         kanagawa-nvim
         { 
           plugin = mason-nvim;
@@ -76,43 +75,45 @@
         };
         editor.file-picker = { hidden = false; };
       };
-      languages = [
-        { name = "sql"; }
-        { name = "latex"; }
-        { name = "html"; }
-        { name = "bash"; }
-        { name = "toml"; }
-        { name = "nix"; }
-        { name = "markdown"; }
-        { name = "yaml"; }
-        { name = "dockerfile"; }
-        {
-          name = "json";
-          formatter = {
-            command = "prettier";
-            args = [ "--parser" "json" ];
-          };
-        }
-        { name = "go"; }
-        { name = "java"; }
-        {
-          name = "scala";
-          scope = "source.scala";
-          roots = [ "build.sbt" "pom.xml" ];
-          file-types = [ "scala" "sbt" ];
-          comment-token = "//";
-          indent = {
-            tab-width = 2;
-            unit = "  ";
-          };
-          language-server = { command = "metals"; };
-          config = { metals.ammoniteJvmProperties = [ "-Xmx1G" ]; };
-        }
-        { name = "rust"; }
-        { name = "python"; }
-        { name = "javascript"; }
-        { name = "typescript"; }
-      ];
+      languages = { 
+        language = [
+          { name = "sql"; }
+          { name = "latex"; }
+          { name = "html"; }
+          { name = "bash"; }
+          { name = "toml"; }
+          { name = "nix"; }
+          { name = "markdown"; }
+          { name = "yaml"; }
+          { name = "dockerfile"; }
+          {
+            name = "json";
+            formatter = {
+              command = "prettier";
+              args = [ "--parser" "json" ];
+            };
+          }
+          { name = "go"; }
+          { name = "java"; }
+          {
+            name = "scala";
+            scope = "source.scala";
+            roots = [ "build.sbt" "pom.xml" ];
+            file-types = [ "scala" "sbt" ];
+            comment-token = "//";
+            indent = {
+              tab-width = 2;
+              unit = "  ";
+            };
+            language-server = { command = "metals"; };
+            config = { metals.ammoniteJvmProperties = [ "-Xmx1G" ]; };
+          }
+          { name = "rust"; }
+          { name = "python"; }
+          { name = "javascript"; }
+          { name = "typescript"; }
+        ];
+      };
     };
 
     htop.enable = true;
@@ -265,7 +266,7 @@
       extraPackages = tpkgs: { inherit (tpkgs) scheme-full; };
     };
 
-    exa = {
+    eza = {
       enable = true;
       enableAliases = true;
     };
