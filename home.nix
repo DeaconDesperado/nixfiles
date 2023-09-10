@@ -199,7 +199,7 @@
       enable = true;
       autocd = true;
       enableCompletion = true;
-      enableSyntaxHighlighting = true;
+      syntaxHighlighting = { enable = true; };
       enableAutosuggestions = false;
       history.extended = true;
       shellAliases = {
