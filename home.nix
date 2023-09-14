@@ -1,6 +1,16 @@
 { config, pkgs, lib, ... }:
 
-{
+let vim-thrift = pkgs.vimUtils.buildVimPlugin {
+  name = "vim-thrift";
+  src = pkgs.fetchFromGitHub {
+    owner = "solarnz";
+    repo = "thrift.vim";
+    rev = "f627aace1e583aed42f12d2a48b40fc18449a145";
+    sha256 = "JccjaGkxZyuWBs7rVzGUxNQ6tTpHUhg7vNtSK2o3EwI=";
+  };
+};
+
+in {
   home.stateVersion = "22.11";
 
   home.file = {
@@ -52,6 +62,7 @@
           type = "lua";
           config = builtins.readFile(./config/rust-tools/rust-tools.lua);
         }
+        vim-thrift
       ];
     };
 
@@ -272,6 +283,15 @@
     };
 
     zoxide.enable = true;
+
+    sbt = {
+      enable = true;
+      repositories = [
+        { artifactory = "https://artifactory.spotify.net/artifactory/repo"; }
+        "local"
+        "maven-central"
+      ];
+    };
   };
 
   home.packages = with pkgs;
@@ -364,7 +384,6 @@
         ]))
       ripgrep
       rustup
-      sbt
       scala
       scala-cli
       scalafmt
