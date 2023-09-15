@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
 
+
+
 let vim-thrift = pkgs.vimUtils.buildVimPlugin {
   name = "vim-thrift";
   src = pkgs.fetchFromGitHub {
@@ -30,18 +32,24 @@ in {
       enable = true;
       viAlias = true;
       vimAlias = true;
+      coc = {
+        enable = true;
+        pluginConfig = builtins.readFile(./config/coc/coc-settings.viml);
+        settings = {
+          "suggest.maxCompleteItemCount" = 8;
+        };
+      };
 
       withNodeJs = true;
       extraConfig = ''
         set nobackup
+        set nowritebackup
         set ts=2
         set sw=2
         set et
         colorscheme kanagawa-wave
       '';
       plugins = with pkgs.vimPlugins; [
-        nvchad
-        nvchad-ui
         kanagawa-nvim
         { 
           plugin = mason-nvim;
@@ -63,6 +71,16 @@ in {
           config = builtins.readFile(./config/rust-tools/rust-tools.lua);
         }
         vim-thrift
+        nvim-web-devicons
+        {
+          plugin = trouble-nvim;
+          type = "lua";
+          config = builtins.readFile(./config/trouble/trouble.lua);
+        }
+        {
+          plugin = rust-vim;
+          config = builtins.readFile(./config/rust/rust-lang.viml);
+        }
       ];
     };
 
