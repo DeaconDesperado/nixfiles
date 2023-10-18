@@ -19,6 +19,11 @@ in {
       source = lib.cleanSource ./scripts/bqj; 
       target = "./scripts/bqj";
     };
+    
+    "java.lua" = {
+      source = lib.cleanSource ./config/lsp/jdtls.lua; 
+      target = ".config/nvim/after/ftplugin/java.lua";
+    };
   };
 
   home.sessionPath = [
@@ -72,6 +77,11 @@ in {
           plugin = rust-tools-nvim;
           type = "lua";
           config = builtins.readFile(./config/rust-tools/rust-tools.lua);
+        }
+        {
+          plugin = nvim-jdtls;
+          type = "lua";
+          config = builtins.readFile(./config/lsp/jdtls.lua);
         }
         vim-thrift
         {

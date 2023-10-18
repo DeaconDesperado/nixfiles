@@ -1,5 +1,5 @@
 require("mason").setup()
-require("mason-lspconfig").setup{ ensure_installed = {"lua_ls", "rust_analyzer"}}
+require("mason-lspconfig").setup{ ensure_installed = {"lua_ls", "rust_analyzer", "jdtls"}}
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
