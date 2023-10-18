@@ -45,6 +45,8 @@ in {
 
       withNodeJs = true;
       extraConfig = ''
+        filetype on
+        filetype plugin on
         set nobackup
         set nowritebackup
         set ts=2
@@ -101,11 +103,17 @@ in {
         }
         cmp-path
         cmp-buffer
-        lualine-nvim
+        cmp-vsnip
+        vim-vsnip
         {
-          plugin = lualine-lsp-progress;
+          plugin = lualine-nvim;
           type = "lua";
-          config = builtins.readFile(./config/lsp/lsp-progress.lua);
+          config = builtins.readFile(./config/lsp/lualine.lua);
+        }
+        {
+          plugin = fidget-nvim;
+          type = "lua";
+          config = builtins.readFile(./config/lsp/fidget.lua);
         }
       ];
     };
