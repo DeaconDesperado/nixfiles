@@ -23,6 +23,7 @@ in {
 
   home.sessionPath = [
     "$HOME/scripts"
+    "$HOME/bin"
   ];
 
   programs = {
