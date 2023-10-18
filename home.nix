@@ -24,6 +24,7 @@ in {
   home.sessionPath = [
     "$HOME/scripts"
     "$HOME/bin"
+    "$HOME/.cargo/bin"
   ];
 
   programs = {
