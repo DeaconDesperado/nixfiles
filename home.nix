@@ -1,7 +1,5 @@
 { config, pkgs, lib, ... }:
 
-
-
 let vim-thrift = pkgs.vimUtils.buildVimPlugin {
   name = "vim-thrift";
   src = pkgs.fetchFromGitHub {
@@ -33,12 +31,15 @@ in {
       viAlias = true;
       vimAlias = true;
       coc = {
-        enable = true;
-        pluginConfig = builtins.readFile(./config/coc/coc-settings.viml);
-        settings = {
-          "suggest.maxCompleteItemCount" = 8;
-        };
+        enable = false;
       };
+      #coc = {
+      #  enable = true;
+      #  pluginConfig = builtins.readFile(./config/coc/coc-settings.viml);
+      #  settings = {
+      #    "suggest.maxCompleteItemCount" = 8;
+      #  };
+      #};
 
       withNodeJs = true;
       extraConfig = ''
@@ -48,6 +49,7 @@ in {
         set sw=2
         set et
         colorscheme kanagawa-wave
+        set number
       '';
       plugins = with pkgs.vimPlugins; [
         kanagawa-nvim
@@ -58,10 +60,7 @@ in {
         {
           plugin = nvim-lspconfig;
           type = "lua";
-          config = ''
-          require("mason").setup()
-          require("mason-lspconfig").setup{ ensure_installed = {"lua_ls", "rust_analyzer"}}
-          '';
+          config = builtins.readFile(./config/lsp/lsp.lua);
         }
         plenary-nvim
         nvim-dap
@@ -71,6 +70,17 @@ in {
           config = builtins.readFile(./config/rust-tools/rust-tools.lua);
         }
         vim-thrift
+        {
+          plugin = nvim-treesitter;
+          type = "lua";
+          config = builtins.readFile(./config/treesitter/treesitter.lua);
+        }
+        nvim-treesitter-parsers.rust
+        nvim-treesitter-parsers.java
+        nvim-treesitter-parsers.javascript
+        nvim-treesitter-parsers.lua
+        nvim-treesitter-parsers.yaml
+        nvim-treesitter-parsers.json
         nvim-web-devicons
         {
           plugin = trouble-nvim;
@@ -80,6 +90,20 @@ in {
         {
           plugin = rust-vim;
           config = builtins.readFile(./config/rust/rust-lang.viml);
+        }
+        nvim-cmp
+        {
+          plugin = cmp-nvim-lsp;
+          type = "lua";
+          config = builtins.readFile(./config/lsp/completions.lua);
+        }
+        cmp-path
+        cmp-buffer
+        lualine-nvim
+        {
+          plugin = lualine-lsp-progress;
+          type = "lua";
+          config = builtins.readFile(./config/lsp/lsp-progress.lua);
         }
       ];
     };

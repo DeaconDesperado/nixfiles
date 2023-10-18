@@ -3,10 +3,22 @@ local rt = require("rust-tools")
 rt.setup({
   tools = {
     inlay_hints = {
-      only_current_line = true,
+      only_current_line = false,
     },
   },
   server = {
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          cfgs = {
+            ci = "", 
+          },
+        },
+        procMacro = {
+          enable = true,
+        }
+      },
+    },
     on_attach = function(_, bufnr)
       -- Hover actions
       vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
