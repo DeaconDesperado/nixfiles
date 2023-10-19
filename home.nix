@@ -24,6 +24,11 @@ in {
       source = lib.cleanSource ./config/lsp/jdtls.lua; 
       target = ".config/nvim/after/ftplugin/java.lua";
     };
+
+    "googlestyle.xml" = {
+      source = lib.cleanSource ./config/codestyle/googlestyle.xml; 
+      target = ".config/codestyle/googlestyle.xml";
+    };
   };
 
   home.sessionPath = [
