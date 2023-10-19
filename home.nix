@@ -78,11 +78,7 @@ in {
           type = "lua";
           config = builtins.readFile(./config/rust-tools/rust-tools.lua);
         }
-        {
-          plugin = nvim-jdtls;
-          type = "lua";
-          config = builtins.readFile(./config/lsp/jdtls.lua);
-        }
+        nvim-jdtls
         vim-thrift
         {
           plugin = nvim-treesitter;
@@ -132,6 +128,7 @@ in {
           type = "lua";
           config = builtins.readFile(./config/lsp/fidget.lua);
         }
+        nvim-ts-autotag
       ];
     };
 
@@ -421,6 +418,7 @@ in {
       kubernetes-helm
       kustomize
       leiningen
+      lua
       maven
       metals
       minikube
