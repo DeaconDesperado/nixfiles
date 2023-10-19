@@ -1,4 +1,16 @@
 require('telescope').setup {
+  pickers = {
+    find_files = {
+      mappings = {
+        i = {
+          ["<CR>"] = "select_tab"
+        },
+        n = {
+          ["<CR>"] = "select_tab"
+        }
+      }
+    }
+  },
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
