@@ -116,6 +116,13 @@ in {
         cmp-vsnip
         vim-vsnip
         {
+          plugin = telescope-nvim;
+          type = "lua";
+          config = builtins.readFile(./config/neovim/telescope.lua);
+        }
+        telescope-fzf-native-nvim
+        telescope-ui-select-nvim
+        {
           plugin = lualine-nvim;
           type = "lua";
           config = builtins.readFile(./config/lsp/lualine.lua);
@@ -391,6 +398,7 @@ in {
       ditaa
       duf
       html-tidy
+      fd
       gdb
       gettext
       gh
