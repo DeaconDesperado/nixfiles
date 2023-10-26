@@ -17,6 +17,9 @@ require('telescope').setup {
       override_generic_sorter = true,  -- override the generic sorter
       override_file_sorter = true,     -- override the file sorter
       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    },
+    file_browser = {
+      hijack_netrw = true,
     }
   }
 }
@@ -24,7 +27,7 @@ require('telescope').setup {
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fb', ":Telescope file_browser<CR>", { noremap = true })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>ft', builtin.treesitter, {})
 vim.keymap.set('n', '<leader>flr', builtin.lsp_references, {})
@@ -33,3 +36,4 @@ vim.keymap.set('n', '<leader>fli', builtin.lsp_implementations, {})
 
 require('telescope').load_extension('fzf')
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension("file_browser")

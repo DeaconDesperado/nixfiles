@@ -123,6 +123,7 @@ in {
         }
         telescope-fzf-native-nvim
         telescope-ui-select-nvim
+        telescope-file-browser-nvim
         {
           plugin = lualine-nvim;
           type = "lua";
