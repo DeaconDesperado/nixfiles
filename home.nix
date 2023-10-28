@@ -371,6 +371,7 @@ in {
       fx
       krew
       marksman
+      awscli2
       emacs
       httpie
       obsidian
