@@ -29,6 +29,11 @@ in {
       source = lib.cleanSource ./config/codestyle/googlestyle.xml; 
       target = ".config/codestyle/googlestyle.xml";
     };
+
+    "alacritty.yml" = {
+      source = lib.cleanSource ./config/alacritty/alacritty.yml;
+      target = ".config/alacritty/alacritty.yml";
+    };
   };
 
   home.sessionPath = [
@@ -62,6 +67,7 @@ in {
         set ts=2
         set sw=2
         set et
+        set termguicolors
         colorscheme kanagawa-wave
         set number
       '';
@@ -233,23 +239,13 @@ in {
 
     tmux = {
       enable = true;
-      terminal = "xterm-256color";
+      terminal = "tmux-256color";
       baseIndex = 1;
       keyMode = "vi";
       shortcut = "s";
       plugins = with pkgs.tmuxPlugins; [
         sensible
         yank
-        {
-          plugin = dracula;
-          extraConfig = ''
-            set -g @dracula-plugins "cpu-usage ram-usage"
-            set -g @dracula-show-battery false
-            set -g @dracula-show-powerline true
-            set -g @dracula-refresh-rate 10
-            # set -g @dracula-show-left-icon window
-          '';
-        }
       ];
 
       extraConfig = ''
@@ -335,7 +331,9 @@ in {
       "--reverse"
     ];
 
-    alacritty.enable = true;
+    alacritty = {
+      enable = true;
+    };
 
     vscode = {
       enable = true;
@@ -372,11 +370,10 @@ in {
       krew
       marksman
       awscli2
-      emacs
+      cloud-sql-proxy
       httpie
       obsidian
       d2
-      cloud-sql-proxy
       k9s
       pluto
       nodePackages.dockerfile-language-server-nodejs
@@ -398,7 +395,6 @@ in {
       curl
       delta
       deno
-      discord
       ditaa
       duf
       html-tidy

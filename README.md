@@ -17,7 +17,6 @@ Not covered in install:
 * Idea
 * Vendor internal tools (homebrew'ed)
 * qmk ([bug in nix pkg](https://discourse.nixos.org/t/what-is-the-difference-between-aarch64-apple-darwin-and-aarch64-darwin-and-why-are-they-incompatible/27568))
-
-Misc: 
+* Discord
 
 * python environments via [zsh-pyenv](https://github.com/mattberther/zsh-pyenv) 
