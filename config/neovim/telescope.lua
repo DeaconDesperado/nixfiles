@@ -1,14 +1,26 @@
+
+local open_in_new_tab = {
+  i = {
+    ["<CR>"] = "select_tab"
+  },
+  n = {
+    ["<CR>"] = "select_tab"
+  }
+}
+
 require('telescope').setup {
   pickers = {
     find_files = {
-      mappings = {
-        i = {
-          ["<CR>"] = "select_tab"
-        },
-        n = {
-          ["<CR>"] = "select_tab"
-        }
-      }
+      mappings = open_in_new_tab
+    },
+    live_grep = {
+      mappings = open_in_new_tab
+    },
+    treesitter = {
+      mappings = open_in_new_tab
+    },
+    file_browser = {
+      mappings = open_in_new_tab
     }
   },
   extensions = {

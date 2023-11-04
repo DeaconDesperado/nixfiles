@@ -1,5 +1,12 @@
+shell:
+  program: "zsh"
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+
 window:
-  opacity: 0.92
+  opacity: 0.98
 
 env:
   TERM: xterm-256color
