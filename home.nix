@@ -104,6 +104,7 @@ in {
         nvim-treesitter-parsers.lua
         nvim-treesitter-parsers.yaml
         nvim-treesitter-parsers.json
+        nvim-treesitter-parsers.kotlin
         nvim-treesitter-parsers.scala
         nvim-web-devicons
         {
@@ -414,6 +415,7 @@ in {
       jq
       keymapviz
       kind
+      kotlin-language-server
       kubebuilder
       kubectx
       kubernetes

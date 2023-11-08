@@ -1,7 +1,17 @@
 require("mason").setup()
-require("mason-lspconfig").setup{ ensure_installed = {"lua_ls", "rust_analyzer", "jdtls", "pyright"}}
+require("mason-lspconfig").setup{ ensure_installed = {
+  "lua_ls", 
+  "rust_analyzer", 
+  "jdtls", 
+  "pyright",
+  "kotlin_language_server"
+  }
+}
 
 require("lspconfig").pyright.setup {}
+require('lspconfig').kotlin_language_server.setup{
+  filetypes = {"kotlin", "kt"}
+}
 
 -- LSP mappings
 vim.keymap.set("n", "gD",  vim.lsp.buf.definition)
