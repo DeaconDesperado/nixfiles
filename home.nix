@@ -75,6 +75,11 @@ in {
           config = builtins.readFile(./config/lsp/lsp.lua);
         }
         plenary-nvim
+        {
+          plugin = fidget-nvim;
+          type = "lua";
+          config = builtins.readFile(./config/lsp/fidget.lua);
+        }
         nvim-dap
         {
           plugin = rust-tools-nvim;
@@ -82,6 +87,11 @@ in {
           config = builtins.readFile(./config/rust-tools/rust-tools.lua);
         }
         nvim-jdtls
+        {
+          plugin = nvim-metals;
+          type = "lua";
+          config = builtins.readFile(./config/lsp/metals.lua);
+        }
         vim-thrift
         {
           plugin = nvim-treesitter;
@@ -94,6 +104,7 @@ in {
         nvim-treesitter-parsers.lua
         nvim-treesitter-parsers.yaml
         nvim-treesitter-parsers.json
+        nvim-treesitter-parsers.scala
         nvim-web-devicons
         {
           plugin = trouble-nvim;
@@ -126,11 +137,6 @@ in {
           plugin = lualine-nvim;
           type = "lua";
           config = builtins.readFile(./config/lsp/lualine.lua);
-        }
-        {
-          plugin = fidget-nvim;
-          type = "lua";
-          config = builtins.readFile(./config/lsp/fidget.lua);
         }
         nvim-ts-autotag
       ];
@@ -384,6 +390,7 @@ in {
       bazel-buildtools
       cargo-generate
       coreutils
+      coursier
       curl
       delta
       deno
