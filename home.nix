@@ -50,14 +50,6 @@ in {
       coc = {
         enable = false;
       };
-      #coc = {
-      #  enable = true;
-      #  pluginConfig = builtins.readFile(./config/coc/coc-settings.viml);
-      #  settings = {
-      #    "suggest.maxCompleteItemCount" = 8;
-      #  };
-      #};
-
       withNodeJs = true;
       extraConfig = ''
         filetype on
@@ -466,6 +458,7 @@ in {
       wget
       yarn2nix
       yq-go
+      zellij
       zsh-completions
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
