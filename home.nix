@@ -24,6 +24,11 @@ in {
       source = lib.cleanSource ./config/zellij/config.kdl;
       target = ".config/zellij/config.kdl";
     };
+
+    "layouts" = {
+      source = lib.cleanSource ./config/zellij/layouts;
+      target = ".config/zellij/layouts";
+    };
     
     "java.lua" = {
       source = lib.cleanSource ./config/lsp/jdtls.lua; 
