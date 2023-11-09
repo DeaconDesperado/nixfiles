@@ -19,6 +19,11 @@ in {
       source = lib.cleanSource ./scripts/bqj; 
       target = "./scripts/bqj";
     };
+
+    "config.kdl" = {
+      source = lib.cleanSource ./config/zellij/config.kdl;
+      target = ".config/zellij/config.kdl";
+    };
     
     "java.lua" = {
       source = lib.cleanSource ./config/lsp/jdtls.lua; 
@@ -55,6 +60,7 @@ in {
         filetype on
         filetype plugin on
         set nobackup
+        set noswapfile
         set nowritebackup
         set ts=2
         set sw=2
