@@ -19,6 +19,10 @@ themes {
 }
 
 keybinds {
+  normal {
+     bind "Ctrl [" "PageUp" { GoToPreviousTab; SwitchToMode "normal";}
+     bind "Ctrl ]" "PageDown" { GoToNextTab; SwitchToMode "normal";}
+  }
   pane {
     bind "h" "Left" { MoveFocus "Left"; SwitchToMode "normal"; }
     bind "l" "Right" { MoveFocus "Right"; SwitchToMode "normal"; }
