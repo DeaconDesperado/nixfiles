@@ -242,8 +242,28 @@ in {
 
       delta.enable = true;
       delta.options = {
+        kanagawa = {
+          file-style                    = "cyan ul";
+          file-decoration-style         = "blue ul";
+          minus-style                   = "black red";
+          minus-emph-style              = "ul black brightred";
+          minus-empty-line-marker-style = "black red";
+          line-numbers-minus-style      = "brightred black";
+          zero-style                    = "blue";
+          plus-style                    = "black green";
+          plus-emph-style               = "ul black brightgreen";
+          line-numbers-plus-style       = "brightgreen black";
+          whitespace-error-style        = "auto auto";
+          blame-code-style              = "auto auto";
+          true-color                    = "auto";
+          file-modified-label           = "changed";
+          hyperlinks                    = "true";
+          keep-plus-minus-markers       = "true";
+          diff-stat-align-width         = "10";
+          syntax-theme                  = "Nord";
+        };
+        features = "kanagawa";
         side-by-side = true;
-        syntax-theme = "Nord"; 
       };
     };
 
