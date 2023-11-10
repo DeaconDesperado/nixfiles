@@ -7,6 +7,8 @@ shell:
 
 window:
   opacity: 0.98
+  decorations: 'buttonless'
+  startup_mode: 'SimpleFullScreen'
   option_as_alt: 'OnlyLeft'
 
 env:
