@@ -402,7 +402,6 @@ in {
       awscli2
       cloud-sql-proxy
       httpie
-      obsidian
       d2
       k9s
       pluto
