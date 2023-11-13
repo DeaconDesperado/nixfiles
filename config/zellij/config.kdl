@@ -23,6 +23,7 @@ keybinds {
      bind "PageUp" { FocusPreviousPane; }
      bind "PageDown" { FocusNextPane; }
      bind "Home" { GoToNextTab; }
+     bind "End" { GoToPreviousTab; }
   }
   pane {
     bind "h" "Left" { MoveFocus "Left"; SwitchToMode "normal"; }
