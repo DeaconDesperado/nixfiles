@@ -151,6 +151,11 @@ in {
           config = builtins.readFile(./config/lsp/lualine.lua);
         }
         nvim-ts-autotag
+        {
+          plugin = nvim-colorizer-lua;
+          type = "lua";
+          config = builtins.readFile(./config/neovim/colorizer.lua);
+        }
       ];
     };
 
