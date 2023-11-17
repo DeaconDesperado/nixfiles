@@ -117,6 +117,7 @@ in {
         nvim-treesitter-parsers.json
         nvim-treesitter-parsers.kotlin
         nvim-treesitter-parsers.scala
+        nvim-ts-autotag
         nvim-web-devicons
         {
           plugin = trouble-nvim;
@@ -142,15 +143,16 @@ in {
           type = "lua";
           config = builtins.readFile(./config/neovim/telescope.lua);
         }
+        vim-bookmarks
         telescope-fzf-native-nvim
         telescope-ui-select-nvim
         telescope-file-browser-nvim
+        telescope-vim-bookmarks-nvim
         {
           plugin = lualine-nvim;
           type = "lua";
           config = builtins.readFile(./config/lsp/lualine.lua);
         }
-        nvim-ts-autotag
         {
           plugin = nvim-colorizer-lua;
           type = "lua";
