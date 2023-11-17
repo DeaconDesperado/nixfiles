@@ -15,7 +15,7 @@ require('lspconfig').kotlin_language_server.setup{
 }
 
 -- LSP mappings
-vim.keymap.set("n", "gD",  vim.lsp.buf.definition)
+vim.keymap.set("n", "gd",  "<C-W><C-]><C-W>T")
 vim.keymap.set("n", "K",  vim.lsp.buf.hover)
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
 vim.keymap.set("n", "gr", vim.lsp.buf.references)
