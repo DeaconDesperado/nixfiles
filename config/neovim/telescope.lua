@@ -1,16 +1,53 @@
+local actions = require("telescope.actions")
 
 local open_in_new_tab = {
   i = {
-    ["<CR>"] = "select_tab"
+    ["<CR>"] = "select_tab_drop",
   },
   n = {
-    ["<CR>"] = "select_tab"
+    ["<CR>"] = "select_tab_drop",
+  }
+}
+
+local zellij_remap = {
+  i = {
+    ["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist, 
+    ["<M-t>"] = "select_tab_drop",
+  },
+  n = {
+    ["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist, 
+    ["<M-t>"] = "select_tab_drop",
   }
 }
 
 require('telescope').setup {
   defaults = {
-    mappings = open_in_new_tab,
+    mappings = zellij_remap,
+  },
+  pickers = {
+    lsp_references = {
+			jump_type = "never",
+			show_line = false,
+      mappings = open_in_new_tab,
+		},
+		lsp_implementations = {
+			jump_type = "never",
+			reuse_win = true,
+			show_line = false,
+      mappings = open_in_new_tab,
+		},
+		lsp_definitions = {
+			jump_type = "never",
+			reuse_win = true,
+			show_line = false,
+      mappings = open_in_new_tab,
+		},    
+    find_files = {
+      mappings = open_in_new_tab,
+    },
+    live_grep = {
+      mappings = open_in_new_tab,
+    },
   },
   extensions = {
     fzf = {
@@ -21,7 +58,7 @@ require('telescope').setup {
     },
     file_browser = {
       hijack_netrw = true,
-    }
+    },
   }
 }
 
@@ -40,3 +77,16 @@ require('telescope').load_extension('fzf')
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("vim_bookmarks")
+
+vim.keymap.set('n', '<leader>j', ':cn<CR>')
+vim.keymap.set('n', '<leader>k', ':cp<CR>')
+
+require('telescope').extensions.vim_bookmarks.all = {    
+  attach_mappings = function(_, map)
+    map('n', '<CR>', function(prompt_bufnr)
+      actions.select_tab_drop(prompt_bufnr)
+    end);
+    return false;
+  end
+}
+
