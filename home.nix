@@ -53,6 +53,9 @@ in {
   ];
 
   programs = {
+    home-manager = {
+      enable = true;
+    };
     neovim = {
       enable = true;
       viAlias = true;
@@ -407,7 +410,7 @@ in {
       krew
       marksman
       awscli2
-      cloud-sql-proxy
+      google-cloud-sql-proxy
       httpie
       d2
       k9s
