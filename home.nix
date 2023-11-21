@@ -11,7 +11,7 @@ let vim-thrift = pkgs.vimUtils.buildVimPlugin {
 };
 
 in {
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   home.file = {
     bqj = {
