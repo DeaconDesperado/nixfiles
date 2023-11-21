@@ -81,6 +81,7 @@ require("telescope").load_extension("vim_bookmarks")
 vim.keymap.set('n', '<leader>j', ':cn<CR>')
 vim.keymap.set('n', '<leader>k', ':cp<CR>')
 
+-- TODO: this doesn't actually reassign default, figure out why
 require('telescope').extensions.vim_bookmarks.all = {    
   attach_mappings = function(_, map)
     map('n', '<CR>', function(prompt_bufnr)
