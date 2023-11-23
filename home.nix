@@ -415,7 +415,6 @@ in {
       d2
       k9s
       pluto
-      nodePackages.dockerfile-language-server-nodejs
       ltex-ls
       languagetool
       rnix-lsp
@@ -427,14 +426,11 @@ in {
       act
       avro-tools
       pqrs
-      bazel_5
-      bazel-buildtools
       cargo-generate
       coreutils
       coursier
       curl
       delta
-      deno
       ditaa
       duf
       html-tidy
@@ -470,19 +466,7 @@ in {
       mosh
       nixfmt
       nixpkgs-fmt
-      nodePackages.generator-code
-      nodePackages.mermaid-cli
-      nodePackages.prettier
-      nodePackages.sql-formatter
-      nodePackages.typescript
-      nodePackages.typescript-language-server
-      nodePackages.yaml-language-server
-      nodePackages.vscode-json-languageserver
-      nodePackages.yarn
-      nodePackages.yo
       nodePackages.pyright
-      nodePackages_latest.bash-language-server
-      nodePackages_latest.markdownlint-cli
       nodejs_20
       operator-sdk
       pandoc
