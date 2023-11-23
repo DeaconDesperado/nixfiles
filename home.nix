@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, outputs, ... }:
 
 let vim-thrift = pkgs.vimUtils.buildVimPlugin {
   name = "vim-thrift";
@@ -11,6 +11,8 @@ let vim-thrift = pkgs.vimUtils.buildVimPlugin {
 };
 
 in {
+
+  nixpkgs.overlays = [outputs.pkgs-unstable];
   home.stateVersion = "23.05";
 
   home.file = {
@@ -409,7 +411,7 @@ in {
       fx
       krew
       marksman
-      awscli2
+      unstable.awscli2
       google-cloud-sql-proxy
       httpie
       d2
