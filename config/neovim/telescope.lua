@@ -23,6 +23,10 @@ local zellij_remap = {
 require('telescope').setup {
   defaults = {
     mappings = zellij_remap,
+    file_ignore_patterns = {
+      "target/",
+      "project/target/",
+    }
   },
   pickers = {
     lsp_references = {

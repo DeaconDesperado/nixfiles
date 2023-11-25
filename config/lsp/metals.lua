@@ -1,5 +1,8 @@
 vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
---[[
+
+-- buffer diagnostics only
+vim.keymap.set("n", "<leader>d", vim.diagnostic.setloclist)
+
 vim.keymap.set("n", "<leader>ws", function()
   require("metals").hover_worksheet()
 end)
@@ -16,9 +19,6 @@ end)
 vim.keymap.set("n", "<leader>aw", function()
   vim.diagnostic.setqflist({ severity = "W" })
 end)
-
--- buffer diagnostics only
-vim.keymap.set("n", "<leader>d", vim.diagnostic.setloclist)
 
 vim.keymap.set("n", "[c", function()
   vim.diagnostic.goto_prev({ wrap = false })
@@ -57,7 +57,6 @@ end)
 vim.keymap.set("n", "<leader>dl", function()
   require("dap").run_last()
 end)
-]]--
 
 -- completion related settings
 -- This is similiar to what I use
