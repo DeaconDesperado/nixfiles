@@ -46,6 +46,7 @@
     cascadia-code
     fira-code
     jetbrains-mono
+    intel-one-mono
   ];
 
   # Add ability to used TouchID for sudo authentication
