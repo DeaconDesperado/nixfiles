@@ -82,8 +82,8 @@ require("telescope").load_extension("ui-select")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("vim_bookmarks")
 
-vim.keymap.set('n', '<leader>j', ':cn<CR>')
-vim.keymap.set('n', '<leader>k', ':cp<CR>')
+vim.keymap.set('n', '<leader>ej', ':cn<CR>')
+vim.keymap.set('n', '<leader>ek', ':cp<CR>')
 
 -- TODO: this doesn't actually reassign default, figure out why
 require('telescope').extensions.vim_bookmarks.all = {    
