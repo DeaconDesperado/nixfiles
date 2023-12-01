@@ -9,6 +9,9 @@ rt.setup({
   server = {
     settings = {
       ["rust-analyzer"] = {
+        check = {
+          targets = {"aarch64-apple-darwin"},
+        },
         cargo = {
           cfgs = {
             ci = "", 

@@ -81,9 +81,7 @@ in {
       '';
       plugins = with pkgs.vimPlugins; [
         kanagawa-nvim
-        { 
-          plugin = mason-nvim;
-        }
+        mason-nvim
         mason-lspconfig-nvim
         {
           plugin = nvim-lspconfig;
@@ -162,6 +160,11 @@ in {
           plugin = nvim-colorizer-lua;
           type = "lua";
           config = builtins.readFile(./config/neovim/colorizer.lua);
+        }
+        {
+          plugin = nvim-spectre;
+          type = "lua";
+          config = builtins.readFile(./config/neovim/spectre.lua);
         }
       ];
     };
