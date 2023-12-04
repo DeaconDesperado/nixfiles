@@ -166,6 +166,11 @@ in {
           type = "lua";
           config = builtins.readFile(./config/neovim/spectre.lua);
         }
+        {
+          plugin = todo-comments-nvim;
+          type = "lua";
+          config = builtins.readFile(./config/neovim/todo-comments.lua);
+        }
       ];
     };
 
