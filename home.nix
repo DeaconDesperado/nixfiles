@@ -457,6 +457,7 @@ in {
       gopls
       gradle
       graphviz-nox
+      grpcurl
       imagemagick
       jq
       keymapviz
