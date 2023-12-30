@@ -87,6 +87,7 @@ local config = {
           "io.micrometer.shaded.*",
           "java.awt.*",
           "jdk.*", "sun.*",
+          "*.scaladsl.*"
         },
       },
       -- Specify any options for organizing imports

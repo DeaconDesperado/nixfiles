@@ -421,6 +421,7 @@ in {
       marksman
       unstable.awscli2
       google-cloud-sql-proxy
+      bazel
       httpie
       d2
       k9s
@@ -453,7 +454,10 @@ in {
       gnused
       go
       (google-cloud-sdk.withExtraComponents
-        ([ google-cloud-sdk.components.gke-gcloud-auth-plugin ]))
+        ([ 
+          google-cloud-sdk.components.gke-gcloud-auth-plugin 
+          google-cloud-sdk.components.pubsub-emulator
+        ]))
       gopls
       gradle
       graphviz-nox
@@ -500,6 +504,7 @@ in {
       trino-cli
       watch
       wget
+      yarn
       yarn2nix
       yq-go
       zellij
