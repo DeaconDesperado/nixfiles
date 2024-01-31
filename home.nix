@@ -13,7 +13,7 @@ let vim-thrift = pkgs.vimUtils.buildVimPlugin {
 in {
 
   nixpkgs.overlays = [outputs.pkgs-unstable];
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
   home.file = {
     bqj = {
