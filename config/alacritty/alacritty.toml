@@ -80,6 +80,11 @@ action = "ToggleSimpleFullscreen"
 key = "F"
 mods = "Command|Alt"
 
+[[keyboard.bindings]]
+chars = "alacritty msg create-window -e zsh \r"
+key = "N"
+mods = "Command" 
+
 [shell]
 args = ["-l", "-c", "zellij attach --index 0 || zellij"]
 program = "zsh"
