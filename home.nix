@@ -42,9 +42,9 @@ in {
       target = ".config/codestyle/googlestyle.xml";
     };
 
-    "alacritty.yml" = {
-      source = lib.cleanSource ./config/alacritty/alacritty.yml;
-      target = ".config/alacritty/alacritty.yml";
+    "alacritty.toml" = {
+      source = lib.cleanSource ./config/alacritty/alacritty.toml;
+      target = ".config/alacritty/alacritty.toml";
     };
   };
 
@@ -120,6 +120,7 @@ in {
         nvim-treesitter-parsers.json
         nvim-treesitter-parsers.kotlin
         nvim-treesitter-parsers.scala
+        nvim-treesitter-parsers.python
         nvim-ts-autotag
         nvim-web-devicons
         {
