@@ -16,6 +16,12 @@ in {
   home.stateVersion = "23.11";
 
   home.file = {
+    print_colors = {
+      executable = true;
+      source = lib.cleanSource ./scripts/print_colors; 
+      target = "./scripts/print_colors";
+    };
+    
     bqj = {
       executable = true;
       source = lib.cleanSource ./scripts/bqj; 
