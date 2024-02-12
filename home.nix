@@ -158,6 +158,7 @@ in {
         telescope-ui-select-nvim
         telescope-file-browser-nvim
         telescope-vim-bookmarks-nvim
+        nvim-navic
         {
           plugin = lualine-nvim;
           type = "lua";
