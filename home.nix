@@ -424,36 +424,38 @@ in {
 
   home.packages = with pkgs;
     [
-      fx
-      krew
-      marksman
+      # AWS
       unstable.awscli2
+      # GCP
       google-cloud-sql-proxy
-      bazel
-      httpie
-      d2
-      k9s
-      pluto
-      ltex-ls
-      languagetool
-      rnix-lsp
-      jdt-language-server
-      texlab
-      editorconfig-checker
-      hugo
-      colima
+      (google-cloud-sdk.withExtraComponents
+        ([ 
+          google-cloud-sdk.components.gke-gcloud-auth-plugin 
+          google-cloud-sdk.components.pubsub-emulator
+        ]))
+      # Python
+      (python3.withPackages
+        (ps: with ps; with python3Packages; [
+          pip
+          readline
+          sqlparse
+          python-lsp-server
+        ]))
       act
       avro-tools
-      pqrs
+      bazel
       cargo-generate
+      colima
       coreutils
       coursier
       curl
+      d2
       delta
       ditaa
       duf
-      html-tidy
+      editorconfig-checker
       fd
+      fx
       gdb
       gettext
       gh
@@ -461,27 +463,31 @@ in {
       gnupg
       gnused
       go
-      (google-cloud-sdk.withExtraComponents
-        ([ 
-          google-cloud-sdk.components.gke-gcloud-auth-plugin 
-          google-cloud-sdk.components.pubsub-emulator
-        ]))
       gopls
       gradle
       graphviz-nox
       grpcurl
+      html-tidy
+      httpie
+      hugo
       imagemagick
+      jdt-language-server
       jq
+      k9s
       keymapviz
       kind
       kotlin-language-server
+      krew
       kubebuilder
       kubectx
       kubernetes
       kubernetes-helm
       kustomize
+      languagetool
       leiningen
+      ltex-ls
       lua
+      marksman
       maven
       metals
       minikube
@@ -493,21 +499,18 @@ in {
       nodejs_20
       operator-sdk
       pandoc
+      pluto
+      pqrs
       protobuf
-      (python3.withPackages
-        (ps: with ps; with python3Packages; [
-          pip
-          readline
-          sqlparse
-          python-lsp-server
-        ]))
       ripgrep
+      rnix-lsp
       rustup
       scala
       scala-cli
       scalafmt
       shellcheck
       silver-searcher
+      texlab
       tldr
       trino-cli
       watch
