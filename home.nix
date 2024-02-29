@@ -445,6 +445,7 @@ in {
       avro-tools
       bazel
       cargo-generate
+      cmake
       colima
       coreutils
       coursier
