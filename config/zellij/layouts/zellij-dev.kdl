@@ -1,0 +1,22 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+        cwd "~/projects/foss/zellij/"
+    }
+    pane split_direction="horizontal" {
+      pane size="78%" {
+        cwd "~/projects/foss/zellij/"
+      }
+      pane split_direction="vertical" size="22%" {
+        pane size="70%" {
+          cwd "~/projects/foss/zellij/"
+        }
+        pane size="30%" {
+          cwd "~/projects/foss/zellij/"
+        }
+      }
+    }
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+}
