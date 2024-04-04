@@ -1,14 +1,15 @@
-local rt = require("rust-tools")
-
-rt.setup({
-  tools = {
-    inlay_hints = {
-      only_current_line = false,
-    },
-  },
+vim.g.rustaceanvim = {
   server = {
-    settings = {
+    default_settings = {
       ["rust-analyzer"] = {
+        inlayHints = {
+          parameterHints = {
+            enable = false,
+          },
+          typeHints = {
+            enable = false;
+          }
+        },
         check = {
           targets = {"aarch64-apple-darwin"},
         },
@@ -23,11 +24,15 @@ rt.setup({
       },
     },
     on_attach = function(_, bufnr)
+      vim.lsp.inlay_hint.enable(bufnr, true)
       -- Hover actions
-      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      vim.keymap.set("n", "<Leader>rr", rt.runnables.runnables, { buffer = bufnr })
+      vim.keymap.set("n", "<C-space>", function()
+        vim.cmd.RustLsp { 'hover', 'actions' } end, opts)
+      vim.keymap.set("n", "<Leader>rr", function()
+        vim.cmd.RustLsp('runnables') end, opts)
       -- Code action groups
-      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+      vim.keymap.set("n", "<Leader>a", function()
+        vim.cmd.RustLsp('codeAction') end, opts)
     end,
   },
-})
+}

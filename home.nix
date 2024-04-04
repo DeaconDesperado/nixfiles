@@ -12,7 +12,10 @@ let vim-thrift = pkgs.vimUtils.buildVimPlugin {
 
 in {
 
-  nixpkgs.overlays = [outputs.pkgs-unstable];
+  nixpkgs.overlays = [
+    outputs.pkgs-unstable 
+    outputs.neovim-nightly.overlay
+  ];
   home.stateVersion = "23.11";
 
   home.file = {
@@ -65,6 +68,7 @@ in {
       enable = true;
     };
     neovim = {
+      package = pkgs.neovim-nightly;
       enable = true;
       viAlias = true;
       vimAlias = true;
@@ -102,7 +106,7 @@ in {
         }
         nvim-dap
         {
-          plugin = rust-tools-nvim;
+          plugin = rustaceanvim;
           type = "lua";
           config = builtins.readFile(./config/rust-tools/rust-tools.lua);
         }

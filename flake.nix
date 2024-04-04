@@ -11,6 +11,7 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
@@ -64,6 +65,10 @@
       # Overlays --------------------------------------------------------------- {{{
 
       overlays = {
+       
+
+        neovim-nightly = inputs.neovim-nightly-overlay.overlay;
+
         # Overlays to add various packages into package set
         pkgs-unstable = final: prev: {
           unstable = import inputs.nixpkgs-unstable {

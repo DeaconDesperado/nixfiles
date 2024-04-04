@@ -1,11 +1,17 @@
 require("mason").setup()
-require("mason-lspconfig").setup{ ensure_installed = {
+
+local mason_lspconfig = require("mason-lspconfig")
+
+mason_lspconfig.setup{ ensure_installed = {
   "lua_ls", 
-  "rust_analyzer", 
   "jdtls", 
   "pyright",
   "kotlin_language_server"
   }
+}
+
+mason_lspconfig.setup_handlers {
+  ['rust_analyzer'] = function() end, 
 }
 
 require("lspconfig").pyright.setup {}
