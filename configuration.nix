@@ -41,7 +41,7 @@
     recursive
     nerdfonts
     iosevka-bin
-    (iosevka-bin.override { variant = "ss09"; })
+    (iosevka-bin.override { variant = "SS09"; })
     font-awesome
     cascadia-code
     fira-code

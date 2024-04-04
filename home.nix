@@ -341,7 +341,7 @@ in {
       autocd = true;
       enableCompletion = true;
       syntaxHighlighting = { enable = true; };
-      enableAutosuggestions = false;
+      autosuggestion = { enable = false; };
       history.extended = true;
       shellAliases = {
         cat = "bat";
@@ -411,7 +411,6 @@ in {
 
     eza = {
       enable = true;
-      enableAliases = true;
     };
 
     zoxide.enable = true;
@@ -498,7 +497,7 @@ in {
       minikube
       moreutils
       mosh
-      nixfmt
+      nixfmt-classic
       nixpkgs-fmt
       nodePackages.pyright
       nodejs_20
@@ -508,7 +507,6 @@ in {
       pqrs
       protobuf
       ripgrep
-      rnix-lsp
       rustup
       scala
       scala-cli
