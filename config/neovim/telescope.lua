@@ -26,6 +26,7 @@ require('telescope').setup {
     file_ignore_patterns = {
       "target/",
       "project/target/",
+      ".git/",
     }
   },
   pickers = {
@@ -48,6 +49,7 @@ require('telescope').setup {
 		},    
     find_files = {
       mappings = open_in_new_tab,
+      hidden = true,
     },
     live_grep = {
       mappings = open_in_new_tab,

@@ -47,6 +47,7 @@
     fira-code
     jetbrains-mono
     intel-one-mono
+    nanum-gothic-coding
   ];
 
   # Add ability to used TouchID for sudo authentication
