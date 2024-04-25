@@ -446,7 +446,7 @@ in {
         ]))
       act
       avro-tools
-      bazel
+      bazelisk
       cargo-generate
       cmake
       colima
