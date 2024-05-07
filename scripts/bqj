@@ -5,7 +5,7 @@ state=$2
 url_template="https://console.cloud.google.com/bigquery?project=${project}&j=bq:EU:\(.jobReference.jobId)&page=queryresults"
 
 bq --format=json --project_id=$project ls -j -a -n 2000| \
-  jq ".[] | select(.status.state == \"$state\") | { 
+  jq "include \"bytes\"; .[] | select(.status.state == \"$state\") | { 
         id: .id, 
         error: (try (.status.errorResult.message) catch null),
         project: \"$project\",
@@ -16,8 +16,6 @@ bq --format=json --project_id=$project ls -j -a -n 2000| \
         elapsedMinutes:  (try (.statistics.query.timeline | last | .elapsedMs | tonumber / 1000 / 60) catch null),
         startTime: (try ((.statistics.startTime | tonumber) / 1000 | todate) catch null),
         endTime: (try ((.statistics.endTime | tonumber) / 1000 | todate) catch null),
-        totalShuffle: (try (.statistics.query.queryPlan| map(.shuffleOutputBytes | tonumber)|add)  catch null)
+        totalShuffle: (try (.statistics.query.queryPlan| map(.shuffleOutputBytes | tonumber)|add)  catch 0),
+        totalShuffleIec: (try (.statistics.query.queryPlan| map(.shuffleOutputBytes | tonumber)|add|bytes)  catch 0)
       }"
-
-
-

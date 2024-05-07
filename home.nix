@@ -31,6 +31,12 @@ in {
       target = "./scripts/bqj";
     };
 
+    "bytes.jq" = {
+      executable = true;
+      source = lib.cleanSource ./scripts/bytes.jq; 
+      target = "./.jq/bytes.jq";
+    };
+
     "config.kdl" = {
       source = lib.cleanSource ./config/zellij/config.kdl;
       target = ".config/zellij/config.kdl";
