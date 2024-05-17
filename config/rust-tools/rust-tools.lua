@@ -24,7 +24,7 @@ vim.g.rustaceanvim = {
       },
     },
     on_attach = function(_, bufnr)
-      vim.lsp.inlay_hint.enable(bufnr, true)
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
       -- Hover actions
       vim.keymap.set("n", "<C-space>", function()
         vim.cmd.RustLsp { 'hover', 'actions' } end, opts)
