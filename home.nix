@@ -75,6 +75,7 @@ in {
     };
     neovim = {
       package = pkgs.neovim-nightly;
+      defaultEditor = true;
       enable = true;
       viAlias = true;
       vimAlias = true;
