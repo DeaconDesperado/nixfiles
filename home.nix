@@ -524,6 +524,7 @@ in {
       tldr
       trino-cli
       watch
+      watchexec
       wget
       yarn
       yarn2nix
