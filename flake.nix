@@ -67,7 +67,7 @@
       overlays = {
        
 
-        neovim-nightly = inputs.neovim-nightly-overlay.overlay;
+        neovim-nightly = inputs.neovim-nightly-overlay.overlays.default;
 
         # Overlays to add various packages into package set
         pkgs-unstable = final: prev: {
