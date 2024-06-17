@@ -13,10 +13,12 @@ local zellij_remap = {
   i = {
     ["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist, 
     ["<M-t>"] = "select_tab_drop",
+    ["<C-Q>"] = false,
   },
   n = {
     ["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist, 
     ["<M-t>"] = "select_tab_drop",
+    ["<C-Q>"] = false,
   }
 }
 
