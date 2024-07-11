@@ -475,6 +475,7 @@ in {
       go
       gopls
       gradle
+      graphqurl
       graphviz-nox
       grpcurl
       html-tidy
