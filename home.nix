@@ -10,6 +10,16 @@ let vim-thrift = pkgs.vimUtils.buildVimPlugin {
   };
 };
 
+lazydev-nvim = pkgs.vimUtils.buildVimPlugin {
+  name = "lazydev-nvim";
+  src = pkgs.fetchFromGitHub {
+    owner = "folke";
+    repo = "lazydev.nvim";
+    rev = "v1.7.0";
+    hash = "sha256-th/wfvKGsEpkKau0DUhUpFc4WMMhSDZ/ISEHxH0IQ48=";
+  };
+};
+
 in {
 
   nixpkgs.overlays = [
@@ -188,6 +198,11 @@ in {
           plugin = todo-comments-nvim;
           type = "lua";
           config = builtins.readFile(./config/neovim/todo-comments.lua);
+        }
+        {
+          plugin = lazydev-nvim;
+          type = "lua";
+          config = builtins.readFile(./config/neovim/lazydev-nvim.lua);
         }
       ];
     };

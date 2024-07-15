@@ -20,6 +20,10 @@ require('lspconfig').kotlin_language_server.setup{
   filetypes = {"kotlin", "kt"}
 }
 
+require("lspconfig").lua_ls.setup {
+  filetypes = {"lua"}
+}
+
 -- LSP mappings
 vim.keymap.set("n", "gd",  "<C-W><C-]><C-W>T")
 vim.keymap.set("n", "K",  vim.lsp.buf.hover)
