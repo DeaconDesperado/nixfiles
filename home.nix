@@ -16,7 +16,7 @@ in {
     outputs.pkgs-unstable 
     outputs.neovim-nightly.overlay
   ];
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   home.file = {
     print_colors = {
@@ -460,6 +460,7 @@ in {
       coursier
       curl
       d2
+      dbt
       delta
       ditaa
       duf
@@ -506,7 +507,8 @@ in {
       mosh
       nixfmt-classic
       nixpkgs-fmt
-      nodePackages.pyright
+      nurl
+      pyright
       nodejs_20
       operator-sdk
       pandoc
