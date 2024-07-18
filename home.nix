@@ -62,6 +62,11 @@ in {
       target = ".config/nvim/after/ftplugin/java.lua";
     };
 
+    "lua.lua" = {
+      source = lib.cleanSource ./config/neovim/ftplugin/lua.lua;
+      target = ".config/nvim/after/ftplugin/lua.lua";
+    };
+
     "googlestyle.xml" = {
       source = lib.cleanSource ./config/codestyle/googlestyle.xml; 
       target = ".config/codestyle/googlestyle.xml";
@@ -104,6 +109,7 @@ in {
         set termguicolors
         colorscheme kanagawa-wave
         set number
+        :set rtp+=~/projects/foss/mgii/nvim-dipath
       '';
       plugins = with pkgs.vimPlugins; [
         kanagawa-nvim

@@ -1,27 +1,34 @@
 require("mason").setup()
 
 local mason_lspconfig = require("mason-lspconfig")
+local lspconfig = require("lspconfig")
 
 mason_lspconfig.setup{ ensure_installed = {
-  "lua_ls", 
-  "jdtls", 
+  "lua_ls",
+  "jdtls",
   "pyright",
-  "kotlin_language_server"
+  "kotlin_language_server",
+  "graphql"
   }
 }
 
 mason_lspconfig.setup_handlers {
-  ['rust_analyzer'] = function() end, 
+  ['rust_analyzer'] = function() end,
 }
 
-require("lspconfig").pyright.setup {}
+lspconfig.pyright.setup {}
 
-require('lspconfig').kotlin_language_server.setup{
+lspconfig.kotlin_language_server.setup{
   filetypes = {"kotlin", "kt"}
 }
 
-require("lspconfig").lua_ls.setup {
+lspconfig.lua_ls.setup {
   filetypes = {"lua"}
+}
+
+lspconfig.graphql.setup {
+  filetypes = {"graphql", "graphqls"},
+  root_dir = lspconfig.util.root_pattern(".graphqlconfig", ".graphqlrc"),
 }
 
 -- LSP mappings

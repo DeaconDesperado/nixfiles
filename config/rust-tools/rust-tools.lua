@@ -15,7 +15,7 @@ vim.g.rustaceanvim = {
         },
         cargo = {
           cfgs = {
-            ci = "", 
+            ci = "",
           },
         },
         procMacro = {
