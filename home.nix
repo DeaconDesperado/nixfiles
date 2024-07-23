@@ -144,6 +144,11 @@ in {
           type = "lua";
           config = builtins.readFile(./config/treesitter/treesitter.lua);
         }
+        {
+          plugin = typescript-tools-nvim;
+          type = "lua";
+          config = builtins.readFile(./config/lsp/typescript.lua);
+        }
         nvim-treesitter-parsers.rust
         nvim-treesitter-parsers.java
         nvim-treesitter-parsers.javascript
