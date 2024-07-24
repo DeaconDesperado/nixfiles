@@ -539,6 +539,7 @@ in {
       operator-sdk
       pandoc
       pluto
+      postgresql_16
       pqrs
       protobuf
       ripgrep
