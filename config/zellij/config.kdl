@@ -34,5 +34,7 @@ keybinds {
   tab {
     bind "h" "Left" "Up" "k" "[" { GoToPreviousTab; SwitchToMode "normal"; }
     bind "l" "Right" "Down" "j" "]" { GoToNextTab; SwitchToMode "normal"; }
+    bind "Home" { "MoveTab" "Right"; }
+    bind "End" { "MoveTab" "Left"; }
   }
 }
