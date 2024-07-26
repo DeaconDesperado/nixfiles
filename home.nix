@@ -380,6 +380,7 @@ in {
         cat = "bat";
         git = "hub";
         k = "kubectl";
+        bazel = "bazelisk";
       };
       plugins = [
         {
