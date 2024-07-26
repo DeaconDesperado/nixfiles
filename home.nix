@@ -301,6 +301,7 @@ in {
         init.defaultBranch = "main";
         push.default = "tracking";
         hub.host = "ghe.spotify.net";
+        lfs.lockverify = false;
       };
 
       ignores = [ ".java_version" ".metals" "metals.sbt" ".bloop" ".idea" ".DS_Store" ".envrc" "shell.nix" ];
