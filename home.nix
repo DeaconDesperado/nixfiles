@@ -283,6 +283,7 @@ in {
 
     git = {
       enable = true;
+      lfs.enable = true;
       userName = "mgthesecond";
       userEmail = "mgthesecond@spotify.com";
 
