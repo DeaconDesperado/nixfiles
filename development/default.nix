@@ -3,7 +3,7 @@ with lib;
 let cfg = config.development;
 in {
 
-  imports = [ ./jvm.nix ./vim ];
+  imports = [ ./jvm.nix ./gcloud.nix ./qmk.nix ./vim ];
 
   options.development = {
     enable = mkEnableOption "Enable development environment";

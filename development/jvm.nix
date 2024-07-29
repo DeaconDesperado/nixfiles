@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, outputs, ... }:
+{ inputs, lib, config, pkgs, ... }:
 with lib;
 let cfg = config.development.jvm;
 in {
@@ -6,8 +6,9 @@ in {
   options.development.jvm = {
     enable = mkEnableOption "Enable JVM development";
     mavenRepositories = mkOption {
-      type = listOf
-        (either (enum [ "local" "maven-central" "maven-local" ]) (attrsOf str));
+      type = types.listOf
+        (types.either (types.enum [ "local" "maven-central" "maven-local" ])
+          (types.attrsOf types.str));
       default = [ "local" "maven-central" ];
     };
   };

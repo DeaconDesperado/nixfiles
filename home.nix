@@ -1,6 +1,12 @@
 { config, pkgs, lib, outputs, ... }:
-let
-  config.development = {
+/* let
+   in
+*/
+{
+
+  imports = [ ./development ];
+
+  development = {
     enable = true;
     userName = "mgthesecond";
     userEmail = "mgthesecond@spotify.com";
@@ -18,9 +24,6 @@ let
       ];
     };
   };
-in {
-
-  imports = [ ./development ];
 
   home.stateVersion = "24.05";
 

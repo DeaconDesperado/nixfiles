@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 let cfg = config.development.gcloud;
 in {
   options = { development.gcloud.enable = lib.mkEnableOption "Enable Module"; };
