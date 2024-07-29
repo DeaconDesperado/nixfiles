@@ -1,31 +1,9 @@
-{ config, pkgs, lib, outputs, ... }:
-
-let vim-thrift = pkgs.vimUtils.buildVimPlugin {
-  name = "vim-thrift";
-  src = pkgs.fetchFromGitHub {
-    owner = "solarnz";
-    repo = "thrift.vim";
-    rev = "f627aace1e583aed42f12d2a48b40fc18449a145";
-    sha256 = "JccjaGkxZyuWBs7rVzGUxNQ6tTpHUhg7vNtSK2o3EwI=";
-  };
-};
-
-lazydev-nvim = pkgs.vimUtils.buildVimPlugin {
-  name = "lazydev-nvim";
-  src = pkgs.fetchFromGitHub {
-    owner = "folke";
-    repo = "lazydev.nvim";
-    rev = "v1.7.0";
-    hash = "sha256-th/wfvKGsEpkKau0DUhUpFc4WMMhSDZ/ISEHxH0IQ48=";
-  };
-};
-
-in {
-
-  nixpkgs.overlays = [
-    outputs.pkgs-unstable 
-    outputs.neovim-nightly.overlay
+{ config, pkgs, lib, outputs, ... }: {
+  
+  imports = [
+    ./vim
   ];
+
   home.stateVersion = "24.05";
 
   home.file = {
@@ -57,15 +35,6 @@ in {
       target = ".config/zellij/layouts";
     };
     
-    "java.lua" = {
-      source = lib.cleanSource ./config/lsp/jdtls.lua; 
-      target = ".config/nvim/after/ftplugin/java.lua";
-    };
-
-    "lua.lua" = {
-      source = lib.cleanSource ./config/neovim/ftplugin/lua.lua;
-      target = ".config/nvim/after/ftplugin/lua.lua";
-    };
 
     "googlestyle.xml" = {
       source = lib.cleanSource ./config/codestyle/googlestyle.xml; 
@@ -87,196 +56,6 @@ in {
   programs = {
     home-manager = {
       enable = true;
-    };
-    neovim = {
-      defaultEditor = true;
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-      coc = {
-        enable = false;
-      };
-      withNodeJs = true;
-      extraConfig = ''
-        filetype on
-        filetype plugin on
-        set nobackup
-        set noswapfile
-        set nowritebackup
-        set ts=2
-        set sw=2
-        set et
-        set termguicolors
-        colorscheme kanagawa-wave
-        set number
-        :set rtp+=~/projects/foss/mgii/nvim-dipath
-      '';
-      plugins = with pkgs.vimPlugins; [
-        kanagawa-nvim
-        mason-nvim
-        mason-lspconfig-nvim
-        {
-          plugin = nvim-lspconfig;
-          type = "lua";
-          config = builtins.readFile(./config/lsp/lsp.lua);
-        }
-        plenary-nvim
-        {
-          plugin = fidget-nvim;
-          type = "lua";
-          config = builtins.readFile(./config/lsp/fidget.lua);
-        }
-        nvim-dap
-        {
-          plugin = rustaceanvim;
-          type = "lua";
-          config = builtins.readFile(./config/rust-tools/rust-tools.lua);
-        }
-        nvim-jdtls
-        {
-          plugin = nvim-metals;
-          type = "lua";
-          config = builtins.readFile(./config/lsp/metals.lua);
-        }
-        vim-thrift
-        {
-          plugin = nvim-treesitter;
-          type = "lua";
-          config = builtins.readFile(./config/treesitter/treesitter.lua);
-        }
-        {
-          plugin = typescript-tools-nvim;
-          type = "lua";
-          config = builtins.readFile(./config/lsp/typescript.lua);
-        }
-        nvim-treesitter-parsers.rust
-        nvim-treesitter-parsers.java
-        nvim-treesitter-parsers.javascript
-        nvim-treesitter-parsers.lua
-        nvim-treesitter-parsers.yaml
-        nvim-treesitter-parsers.json
-        nvim-treesitter-parsers.kotlin
-        nvim-treesitter-parsers.scala
-        nvim-treesitter-parsers.python
-        nvim-ts-autotag
-        nvim-web-devicons
-        {
-          plugin = trouble-nvim;
-          type = "lua";
-          config = builtins.readFile(./config/trouble/trouble.lua);
-        }
-        {
-          plugin = rust-vim;
-          config = builtins.readFile(./config/rust/rust-lang.viml);
-        }
-        nvim-cmp
-        {
-          plugin = cmp-nvim-lsp;
-          type = "lua";
-          config = builtins.readFile(./config/lsp/completions.lua);
-        }
-        cmp-path
-        cmp-buffer
-        cmp-vsnip
-        vim-vsnip
-        {
-          plugin = telescope-nvim;
-          type = "lua";
-          config = builtins.readFile(./config/neovim/telescope.lua);
-        }
-        vim-bookmarks
-        telescope-fzf-native-nvim
-        telescope-ui-select-nvim
-        telescope-file-browser-nvim
-        telescope-vim-bookmarks-nvim
-        nvim-navic
-        {
-          plugin = lualine-nvim;
-          type = "lua";
-          config = builtins.readFile(./config/lsp/lualine.lua);
-        }
-        {
-          plugin = nvim-colorizer-lua;
-          type = "lua";
-          config = builtins.readFile(./config/neovim/colorizer.lua);
-        }
-        {
-          plugin = nvim-spectre;
-          type = "lua";
-          config = builtins.readFile(./config/neovim/spectre.lua);
-        }
-        {
-          plugin = todo-comments-nvim;
-          type = "lua";
-          config = builtins.readFile(./config/neovim/todo-comments.lua);
-        }
-        {
-          plugin = lazydev-nvim;
-          type = "lua";
-          config = builtins.readFile(./config/neovim/lazydev-nvim.lua);
-        }
-      ];
-    };
-
-    helix = {
-      enable = true;
-      settings = {
-        theme = "rose_pine";
-        editor = {
-          line-number = "relative";
-          mouse = true;
-          lsp.display-messages = true;
-          cursorline = true;
-          indent-guides.render = true;
-          color-modes = true;
-        };
-        keys.normal = { space.space = "file_picker"; };
-        editor.cursor-shape = {
-          insert = "bar";
-          normal = "block";
-          select = "underline";
-        };
-        editor.file-picker = { hidden = false; };
-      };
-      languages = { 
-        language = [
-          { name = "sql"; }
-          { name = "latex"; }
-          { name = "html"; }
-          { name = "bash"; }
-          { name = "toml"; }
-          { name = "nix"; }
-          { name = "markdown"; }
-          { name = "yaml"; }
-          { name = "dockerfile"; }
-          {
-            name = "json";
-            formatter = {
-              command = "prettier";
-              args = [ "--parser" "json" ];
-            };
-          }
-          { name = "go"; }
-          { name = "java"; }
-          {
-            name = "scala";
-            scope = "source.scala";
-            roots = [ "build.sbt" "pom.xml" ];
-            file-types = [ "scala" "sbt" ];
-            comment-token = "//";
-            indent = {
-              tab-width = 2;
-              unit = "  ";
-            };
-            language-server = { command = "metals"; };
-            config = { metals.ammoniteJvmProperties = [ "-Xmx1G" ]; };
-          }
-          { name = "rust"; }
-          { name = "python"; }
-          { name = "javascript"; }
-          { name = "typescript"; }
-        ];
-      };
     };
 
     htop.enable = true;
@@ -331,43 +110,6 @@ in {
         features = "kanagawa";
         side-by-side = true;
       };
-    };
-
-    tmux = {
-      enable = true;
-      terminal = "tmux-256color";
-      baseIndex = 1;
-      keyMode = "vi";
-      shortcut = "s";
-      plugins = with pkgs.tmuxPlugins; [
-        sensible
-        yank
-      ];
-
-      extraConfig = ''
-        set -ga terminal-overrides ",xterm-256color*:Tc"
-        set -g mouse on
-
-        # act like vim
-        bind-key h select-pane -L
-        bind-key j select-pane -D
-        bind-key k select-pane -U
-        bind-key l select-pane -R
-        bind-key -r C-h select-window -t :-
-        bind-key -r C-l select-window -t :+
-
-        # set -g prefix2 C-s
-        # renumber windows sequentially after closing any of them
-        set -g renumber-windows on
-
-        # prefix -> back-one-character
-        bind-key C-b send-prefix
-        # prefix-2 -> forward-incremental-history-search
-        bind-key C-s send-prefix -2
-
-        # don't suspend-client
-        unbind-key C-z
-      '';
     };
 
     zsh = {

@@ -40,8 +40,6 @@
       };
     in
     {
-      # My `nix-darwin` configs
-
       darwinConfigurations = rec {
         XW6K07YF0K = darwinSystem {
           system = "aarch64-darwin";
