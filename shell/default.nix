@@ -1,4 +1,4 @@
-{inputs, lib, config, pkgs, outputs, ...} : 
+{ inputs, lib, config, pkgs, outputs, ... }:
 
 {
 
@@ -18,9 +18,7 @@
     };
   };
 
-  programs.alacritty = {
-    enable = true;
-  };
+  programs.alacritty = { enable = true; };
 
   programs.htop.enable = true;
 
@@ -93,35 +91,43 @@
       lfs.lockverify = false;
     };
 
-    ignores = [ ".java_version" ".metals" "metals.sbt" ".bloop" ".idea" ".DS_Store" ".envrc" "shell.nix" ];
+    ignores = [
+      ".java_version"
+      ".metals"
+      "metals.sbt"
+      ".bloop"
+      ".idea"
+      ".DS_Store"
+      ".envrc"
+      "shell.nix"
+    ];
 
     delta.enable = true;
     delta.options = {
       kanagawa = {
-        file-style                    = "cyan ul";
-        file-decoration-style         = "blue ul";
-        minus-style                   = "black red";
-        minus-emph-style              = "ul black brightred";
+        file-style = "cyan ul";
+        file-decoration-style = "blue ul";
+        minus-style = "black red";
+        minus-emph-style = "ul black brightred";
         minus-empty-line-marker-style = "black red";
-        line-numbers-minus-style      = "brightred black";
-        zero-style                    = "blue";
-        plus-style                    = "black green";
-        plus-emph-style               = "ul black brightgreen";
-        line-numbers-plus-style       = "brightgreen black";
-        whitespace-error-style        = "auto auto";
-        blame-code-style              = "auto auto";
-        true-color                    = "auto";
-        file-modified-label           = "changed";
-        hyperlinks                    = "true";
-        keep-plus-minus-markers       = "true";
-        diff-stat-align-width         = "10";
-        syntax-theme                  = "Nord";
+        line-numbers-minus-style = "brightred black";
+        zero-style = "blue";
+        plus-style = "black green";
+        plus-emph-style = "ul black brightgreen";
+        line-numbers-plus-style = "brightgreen black";
+        whitespace-error-style = "auto auto";
+        blame-code-style = "auto auto";
+        true-color = "auto";
+        file-modified-label = "changed";
+        hyperlinks = "true";
+        keep-plus-minus-markers = "true";
+        diff-stat-align-width = "10";
+        syntax-theme = "Nord";
       };
       features = "kanagawa";
       side-by-side = true;
     };
   };
-
 
   programs.broot.enable = true;
 
@@ -130,11 +136,9 @@
     config.theme = "Nord";
   };
 
-  programs.fzf = { 
+  programs.fzf = {
     enable = true;
-    historyWidgetOptions = [
-      "--reverse"
-    ];
+    historyWidgetOptions = [ "--reverse" ];
   };
 
   programs.direnv = {
@@ -153,9 +157,5 @@
     enableZshIntegration = true;
   };
 
-  home.packages = with pkgs;
-    [
-      zsh-completions
-      zellij
-    ];
+  home.packages = with pkgs; [ zsh-completions zellij ];
 }

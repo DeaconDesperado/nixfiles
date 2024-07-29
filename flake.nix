@@ -32,14 +32,11 @@
         overlays = attrValues self.overlays ++ singleton (
           # Sub in x86 version of packages that don't build on Apple Silicon yet
           final: prev:
-            (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-              inherit (final.pkgs-x86)
-                nix-index niv purescript bazel;
-            })
-        );
+          (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
+            inherit (final.pkgs-x86) nix-index niv purescript bazel;
+          }));
       };
-    in
-    {
+    in {
       darwinConfigurations = rec {
         XW6K07YF0K = darwinSystem {
           system = "aarch64-darwin";
@@ -63,7 +60,6 @@
       # Overlays --------------------------------------------------------------- {{{
 
       overlays = {
-       
 
         neovim-nightly = inputs.neovim-nightly-overlay.overlays.default;
 

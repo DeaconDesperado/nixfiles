@@ -1,50 +1,39 @@
 { config, pkgs, lib, outputs, ... }: {
-  
-  imports = [
-    ./vim
-    ./shell
-  ];
+
+  imports = [ ./vim ./shell ];
 
   home.stateVersion = "24.05";
 
   home.file = {
     print_colors = {
       executable = true;
-      source = lib.cleanSource ./scripts/print_colors; 
+      source = lib.cleanSource ./scripts/print_colors;
       target = "./scripts/print_colors";
     };
-    
+
     bqj = {
       executable = true;
-      source = lib.cleanSource ./scripts/bqj; 
+      source = lib.cleanSource ./scripts/bqj;
       target = "./scripts/bqj";
     };
 
     "bytes.jq" = {
       executable = true;
-      source = lib.cleanSource ./scripts/bytes.jq; 
+      source = lib.cleanSource ./scripts/bytes.jq;
       target = "./.jq/bytes.jq";
     };
     "googlestyle.xml" = {
-      source = lib.cleanSource ./config/codestyle/googlestyle.xml; 
+      source = lib.cleanSource ./config/codestyle/googlestyle.xml;
       target = ".config/codestyle/googlestyle.xml";
     };
   };
 
-  home.sessionPath = [
-    "$HOME/scripts"
-    "$HOME/bin"
-    "$HOME/.cargo/bin"
-  ];
+  home.sessionPath = [ "$HOME/scripts" "$HOME/bin" "$HOME/.cargo/bin" ];
 
   programs = {
-    home-manager = {
-      enable = true;
-    };
+    home-manager = { enable = true; };
 
-    vscode = {
-      enable = true;
-    };
+    vscode = { enable = true; };
 
     texlive = {
       enable = true;
@@ -67,14 +56,14 @@
       unstable.awscli2
       # GCP
       google-cloud-sql-proxy
-      (google-cloud-sdk.withExtraComponents
-        ([ 
-          google-cloud-sdk.components.gke-gcloud-auth-plugin 
-          google-cloud-sdk.components.pubsub-emulator
-        ]))
+      (google-cloud-sdk.withExtraComponents ([
+        google-cloud-sdk.components.gke-gcloud-auth-plugin
+        google-cloud-sdk.components.pubsub-emulator
+      ]))
       # Python
-      (python3.withPackages
-        (ps: with ps; with python3Packages; [
+      (python3.withPackages (ps:
+        with ps;
+        with python3Packages; [
           pip
           readline
           sqlparse

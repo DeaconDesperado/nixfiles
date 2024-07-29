@@ -1,39 +1,35 @@
-{inputs, lib, config, pkgs, outputs, ...} : 
+{ inputs, lib, config, pkgs, outputs, ... }:
 
-let vim-thrift = pkgs.vimUtils.buildVimPlugin {
-  name = "vim-thrift";
-  src = pkgs.fetchFromGitHub {
-    owner = "solarnz";
-    repo = "thrift.vim";
-    rev = "f627aace1e583aed42f12d2a48b40fc18449a145";
-    sha256 = "JccjaGkxZyuWBs7rVzGUxNQ6tTpHUhg7vNtSK2o3EwI=";
+let
+  vim-thrift = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-thrift";
+    src = pkgs.fetchFromGitHub {
+      owner = "solarnz";
+      repo = "thrift.vim";
+      rev = "f627aace1e583aed42f12d2a48b40fc18449a145";
+      sha256 = "JccjaGkxZyuWBs7rVzGUxNQ6tTpHUhg7vNtSK2o3EwI=";
+    };
   };
-};
 
-lazydev-nvim = pkgs.vimUtils.buildVimPlugin {
-  name = "lazydev-nvim";
-  src = pkgs.fetchFromGitHub {
-    owner = "folke";
-    repo = "lazydev.nvim";
-    rev = "v1.7.0";
-    hash = "sha256-th/wfvKGsEpkKau0DUhUpFc4WMMhSDZ/ISEHxH0IQ48=";
+  lazydev-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "lazydev-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "folke";
+      repo = "lazydev.nvim";
+      rev = "v1.7.0";
+      hash = "sha256-th/wfvKGsEpkKau0DUhUpFc4WMMhSDZ/ISEHxH0IQ48=";
+    };
   };
-};
 
 in {
-  nixpkgs.overlays = [
-    outputs.pkgs-unstable 
-    outputs.neovim-nightly.overlay
-  ];
+  nixpkgs.overlays = [ outputs.pkgs-unstable outputs.neovim-nightly.overlay ];
 
   programs.neovim = {
     defaultEditor = true;
     enable = true;
     viAlias = true;
     vimAlias = true;
-    coc = {
-      enable = false;
-    };
+    coc = { enable = false; };
     withNodeJs = true;
     extraConfig = ''
       filetype on
@@ -56,36 +52,36 @@ in {
       {
         plugin = nvim-lspconfig;
         type = "lua";
-        config = builtins.readFile(./config/lsp/lsp.lua);
+        config = builtins.readFile (./config/lsp/lsp.lua);
       }
       plenary-nvim
       {
         plugin = fidget-nvim;
         type = "lua";
-        config = builtins.readFile(./config/lsp/fidget.lua);
+        config = builtins.readFile (./config/lsp/fidget.lua);
       }
       nvim-dap
       {
         plugin = rustaceanvim;
         type = "lua";
-        config = builtins.readFile(./config/rust-tools/rust-tools.lua);
+        config = builtins.readFile (./config/rust-tools/rust-tools.lua);
       }
       nvim-jdtls
       {
         plugin = nvim-metals;
         type = "lua";
-        config = builtins.readFile(./config/lsp/metals.lua);
+        config = builtins.readFile (./config/lsp/metals.lua);
       }
       vim-thrift
       {
         plugin = nvim-treesitter;
         type = "lua";
-        config = builtins.readFile(./config/treesitter/treesitter.lua);
+        config = builtins.readFile (./config/treesitter/treesitter.lua);
       }
       {
         plugin = typescript-tools-nvim;
         type = "lua";
-        config = builtins.readFile(./config/lsp/typescript.lua);
+        config = builtins.readFile (./config/lsp/typescript.lua);
       }
       nvim-treesitter-parsers.rust
       nvim-treesitter-parsers.java
@@ -101,17 +97,17 @@ in {
       {
         plugin = trouble-nvim;
         type = "lua";
-        config = builtins.readFile(./config/trouble/trouble.lua);
+        config = builtins.readFile (./config/trouble/trouble.lua);
       }
       {
         plugin = rust-vim;
-        config = builtins.readFile(./config/rust/rust-lang.viml);
+        config = builtins.readFile (./config/rust/rust-lang.viml);
       }
       nvim-cmp
       {
         plugin = cmp-nvim-lsp;
         type = "lua";
-        config = builtins.readFile(./config/lsp/completions.lua);
+        config = builtins.readFile (./config/lsp/completions.lua);
       }
       cmp-path
       cmp-buffer
@@ -120,7 +116,7 @@ in {
       {
         plugin = telescope-nvim;
         type = "lua";
-        config = builtins.readFile(./config/neovim/telescope.lua);
+        config = builtins.readFile (./config/neovim/telescope.lua);
       }
       vim-bookmarks
       telescope-fzf-native-nvim
@@ -131,34 +127,34 @@ in {
       {
         plugin = lualine-nvim;
         type = "lua";
-        config = builtins.readFile(./config/lsp/lualine.lua);
+        config = builtins.readFile (./config/lsp/lualine.lua);
       }
       {
         plugin = nvim-colorizer-lua;
         type = "lua";
-        config = builtins.readFile(./config/neovim/colorizer.lua);
+        config = builtins.readFile (./config/neovim/colorizer.lua);
       }
       {
         plugin = nvim-spectre;
         type = "lua";
-        config = builtins.readFile(./config/neovim/spectre.lua);
+        config = builtins.readFile (./config/neovim/spectre.lua);
       }
       {
         plugin = todo-comments-nvim;
         type = "lua";
-        config = builtins.readFile(./config/neovim/todo-comments.lua);
+        config = builtins.readFile (./config/neovim/todo-comments.lua);
       }
       {
         plugin = lazydev-nvim;
         type = "lua";
-        config = builtins.readFile(./config/neovim/lazydev-nvim.lua);
+        config = builtins.readFile (./config/neovim/lazydev-nvim.lua);
       }
     ];
   };
 
   home.file = {
     "java.lua" = {
-      source = lib.cleanSource ./config/lsp/jdtls.lua; 
+      source = lib.cleanSource ./config/lsp/jdtls.lua;
       target = ".config/nvim/after/ftplugin/java.lua";
     };
 
