@@ -32,7 +32,7 @@ in {
     ];
 
     neovim-lsps.mason-servers = ''
-      jdtls
+      "jdtls"
     '';
 
     home.file = {

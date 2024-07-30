@@ -66,7 +66,8 @@ in {
           plugin = mason-nvim;
           type = "lua";
           config = ''
-            local require("mason").setup()
+            
+            require("mason").setup()
           '';
         }
         {
@@ -74,13 +75,13 @@ in {
           type = "lua";
           config = ''
             local mason_lspconfig = require("mason-lspconfig")
-            mason_lspconfig.setup{ ensure_installed = {
+            mason_lspconfig.setup{ ensure_installed = { 
                 ${cfg.mason-servers}
               }
             }
             mason_lspconfig.setup_handlers {
               ${cfg.mason-setups}
-              ,['rust_analyzer'] = function() end,
+              ['rust_analyzer'] = function() end,
             }
           '';
         }
@@ -92,6 +93,7 @@ in {
               (srvName: setup: ''
                 lspconfig.${srvName}.setup {
                    ${setup} 
+                }
               '') (cfg.lsp-setups)));
           in ''
             local lspconfig = require("lspconfig")

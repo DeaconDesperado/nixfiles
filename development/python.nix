@@ -10,7 +10,7 @@ in {
   config = mkIf cfg.enable {
 
     neovim-lsps.mason-servers = ''
-      pyright
+      "pyright",
       '';
     neovim-lsps.lsp-setups = { pyright = ""; };
 
