@@ -23,7 +23,6 @@ in {
       coursier
       gradle
       jdt-language-server
-      jdt-language-server
       leiningen
       maven
       metals
