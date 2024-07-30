@@ -9,10 +9,9 @@ in {
 
   config = mkIf cfg.enable {
 
-    neovim-lsps.mason-servers = ''
-      "pyright",
-      '';
-    neovim-lsps.lsp-setups = { pyright = ""; };
+    neovim-lsps.lsp-setups = {
+      pyright = builtins.readFile (./config/neovim/lsp/pyright.lua);
+    };
 
     programs.neovim.plugins = with pkgs.vimPlugins;
       [ nvim-treesitter-parsers.python ];

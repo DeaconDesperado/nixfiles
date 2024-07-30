@@ -19,6 +19,18 @@ in {
       repositories = cfg.mavenRepositories;
     };
 
+    programs.neovim.plugins = with pkgs.vimPlugins; [
+      nvim-treesitter-parsers.java
+      nvim-treesitter-parsers.kotlin
+      nvim-treesitter-parsers.scala
+      nvim-jdtls
+      {
+        plugin = nvim-metals;
+        type = "lua";
+        config = builtins.readFile (./config/neovim/lsp/metals.lua);
+      }
+    ];
+
     home.packages = with pkgs; [
       coursier
       gradle
@@ -31,9 +43,8 @@ in {
       scalafmt
     ];
 
-    neovim-lsps.mason-servers = ''
-      "jdtls"
-    '';
+    # Configured via ftplugin below
+    neovim.lsp-setups = { jdtls = null; };
 
     home.file = {
       "java.lua" = {

@@ -26,18 +26,16 @@ let
 in {
 
   options.neovim-lsps = {
-    mason-servers = mkOption { type = types.lines; };
-
-    mason-setups = mkOption { 
-      type = types.lines; 
-      default = '''';
-    };
-
-    lsp-setups = mkOption { type = types.attrsOf types.lines; };
+    lsp-setups = mkOption { type = types.attrsOf types.nullOr types.lines; };
   };
 
   config = {
     nixpkgs.overlays = [ outputs.pkgs-unstable outputs.neovim-nightly.overlay ];
+
+    # Enable Lua by default for neovim plugin development
+    neovim-lsps.lsp-setups = {
+      lua_ls = builtins.readFile (./config/neovim/lsp/lua_ls.lua);
+    };
 
     programs.neovim = {
       defaultEditor = true;
@@ -66,21 +64,25 @@ in {
           plugin = mason-nvim;
           type = "lua";
           config = ''
-            
+
             require("mason").setup()
           '';
         }
         {
           plugin = mason-lspconfig-nvim;
           type = "lua";
-          config = ''
+          config = let
+            lspServerNames = lib.foldl' (a: b:
+              a + b + ''
+                ,
+              '') "" (attrKeys cfg.lsp-setups);
+          in ''
             local mason_lspconfig = require("mason-lspconfig")
             mason_lspconfig.setup{ ensure_installed = { 
-                ${cfg.mason-servers}
+                ${lspServerNames}
               }
             }
             mason_lspconfig.setup_handlers {
-              ${cfg.mason-setups}
               ['rust_analyzer'] = function() end,
             }
           '';
@@ -89,14 +91,9 @@ in {
           plugin = nvim-lspconfig;
           type = "lua";
           config = let
-            lspSetups = lib.foldl' (a: b: a + b) "" (attrValues (mapAttrs
-              (srvName: setup: ''
-                lspconfig.${srvName}.setup {
-                   ${setup} 
-                }
-              '') (cfg.lsp-setups)));
+            lspSetups =
+              lib.foldl' (a: b: a + b + "\n") "" (attrValues cfg.lsp-setups);
           in ''
-            local lspconfig = require("lspconfig")
 
             ${lspSetups}
 
@@ -121,18 +118,6 @@ in {
           config = builtins.readFile (./config/neovim/lsp/fidget.lua);
         }
         nvim-dap
-        {
-          plugin = rustaceanvim;
-          type = "lua";
-          config =
-            builtins.readFile (./config/neovim/rust-tools/rust-tools.lua);
-        }
-        nvim-jdtls
-        {
-          plugin = nvim-metals;
-          type = "lua";
-          config = builtins.readFile (./config/neovim/lsp/metals.lua);
-        }
         vim-thrift
         {
           plugin = nvim-treesitter;
@@ -145,24 +130,16 @@ in {
           type = "lua";
           config = builtins.readFile (./config/neovim/lsp/typescript.lua);
         }
-        nvim-treesitter-parsers.rust
-        nvim-treesitter-parsers.java
         nvim-treesitter-parsers.javascript
         nvim-treesitter-parsers.lua
         nvim-treesitter-parsers.yaml
         nvim-treesitter-parsers.json
-        nvim-treesitter-parsers.kotlin
-        nvim-treesitter-parsers.scala
         nvim-ts-autotag
         nvim-web-devicons
         {
           plugin = trouble-nvim;
           type = "lua";
           config = builtins.readFile (./config/neovim/trouble/trouble.lua);
-        }
-        {
-          plugin = rust-vim;
-          config = builtins.readFile (./config/neovim/rust/rust-lang.viml);
         }
         nvim-cmp
         {

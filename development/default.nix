@@ -3,7 +3,8 @@ with lib;
 let cfg = config.development;
 in {
 
-  imports = [ ./vim.nix ./jvm.nix ./gcloud.nix ./qmk.nix ./python.nix ];
+  imports =
+    [ ./vim.nix ./jvm.nix ./gcloud.nix ./qmk.nix ./python.nix ./graphql.nix ];
 
   options.development = {
     enable = mkEnableOption "Enable development environment";
@@ -195,7 +196,6 @@ in {
       act
       avro-tools
       bazelisk
-      cargo-generate
       cmake
       colima
       coreutils
@@ -243,7 +243,6 @@ in {
       pqrs
       protobuf
       ripgrep
-      rustup
       shellcheck
       silver-searcher
       texlab
