@@ -1,0 +1,43 @@
+{ inputs, lib, config, pkgs, ... }:
+with lib;
+let cfg = config.development.python;
+in {
+
+  options.development.python = {
+    enable = mkEnableOption "Enable Python development";
+  };
+
+  config = mkIf cfg.enable {
+
+    neovim-lsps.mason-servers = ''
+      pyright
+      '';
+    neovim-lsps.lsp-setups = { pyright = ""; };
+
+    programs.neovim.plugins = with pkgs.vimPlugins;
+      [ nvim-treesitter-parsers.python ];
+
+    programs.zsh.plugins = [{
+      name = "zsh-pyenv";
+      src = pkgs.fetchFromGitHub {
+        owner = "mattberther";
+        repo = "zsh-pyenv";
+        rev = "56a3081dbe345a635b12095914b234cb11a350a0";
+        sha256 = "1ksa1bbhnlmrk9n7jnq85s2vpc50qm8g5jqgqzixvjdjyw9y1n2n";
+      };
+    }];
+
+    home.packages = with pkgs; [
+      (python3.withPackages (ps:
+        with ps;
+        with python3Packages; [
+          pip
+          readline
+          sqlparse
+          python-lsp-server
+        ]))
+      pyright
+    ];
+  };
+
+}

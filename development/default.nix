@@ -3,7 +3,7 @@ with lib;
 let cfg = config.development;
 in {
 
-  imports = [ ./jvm.nix ./gcloud.nix ./qmk.nix ./vim ];
+  imports = [ ./vim.nix ./jvm.nix ./gcloud.nix ./qmk.nix ./python.nix ];
 
   options.development = {
     enable = mkEnableOption "Enable development environment";
@@ -88,15 +88,6 @@ in {
           name = "powerlevel10k-config";
           src = cleanSource ./config/p10k;
           file = "p10k.zsh";
-        }
-        {
-          name = "zsh-pyenv";
-          src = pkgs.fetchFromGitHub {
-            owner = "mattberther";
-            repo = "zsh-pyenv";
-            rev = "56a3081dbe345a635b12095914b234cb11a350a0";
-            sha256 = "1ksa1bbhnlmrk9n7jnq85s2vpc50qm8g5jqgqzixvjdjyw9y1n2n";
-          };
         }
       ];
       initExtra = ''
@@ -251,7 +242,6 @@ in {
       postgresql_16
       pqrs
       protobuf
-      pyright
       ripgrep
       rustup
       shellcheck

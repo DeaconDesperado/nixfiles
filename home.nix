@@ -1,7 +1,5 @@
 { config, pkgs, lib, outputs, ... }:
-/* let
-   in
-*/
+
 {
 
   imports = [ ./development ];
@@ -14,6 +12,7 @@
 
     gcloud.enable = true;
     qmk.enable = true;
+    python.enable = true;
 
     jvm = {
       enable = true;
@@ -44,15 +43,6 @@
     [
       # AWS
       unstable.awscli2
-      # Python
-      (python3.withPackages (ps:
-        with ps;
-        with python3Packages; [
-          pip
-          readline
-          sqlparse
-          python-lsp-server
-        ]))
       dbt
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods

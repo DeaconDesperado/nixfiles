@@ -30,6 +30,17 @@ in {
       scala-cli
       scalafmt
     ];
+
+    neovim-lsps.mason-servers = ''
+      jdtls
+    '';
+
+    home.file = {
+      "java.lua" = {
+        source = lib.cleanSource ./config/neovim/lsp/jdtls.lua;
+        target = ".config/nvim/after/ftplugin/java.lua";
+      };
+    };
   };
 
 }
