@@ -12,7 +12,7 @@ in {
     home.packages = with pkgs; [ graphqurl ];
 
     # Configured via ftplugin below
-    neovim.lsp-setups = {
+    neovim-lsps.lsp-setups = {
       graphql = builtins.readFile (./config/neovim/lsp/graphql.lua);
     };
   };

@@ -44,7 +44,7 @@ in {
     ];
 
     # Configured via ftplugin below
-    neovim.lsp-setups = { jdtls = null; };
+    neovim-lsps.lsp-setups = { jdtls = ''''; };
 
     home.file = {
       "java.lua" = {

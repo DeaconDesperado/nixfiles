@@ -4,7 +4,7 @@ let cfg = config.development;
 in {
 
   imports =
-    [ ./vim.nix ./jvm.nix ./gcloud.nix ./qmk.nix ./python.nix ./graphql.nix ];
+    [ ./vim.nix ./rust.nix ./jvm.nix ./gcloud.nix ./qmk.nix ./python.nix ./graphql.nix ];
 
   options.development = {
     enable = mkEnableOption "Enable development environment";

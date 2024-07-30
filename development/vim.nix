@@ -26,7 +26,7 @@ let
 in {
 
   options.neovim-lsps = {
-    lsp-setups = mkOption { type = types.attrsOf types.nullOr types.lines; };
+    lsp-setups = mkOption { type = types.attrsOf types.lines; };
   };
 
   config = {
@@ -75,7 +75,7 @@ in {
             lspServerNames = lib.foldl' (a: b:
               a + b + ''
                 ,
-              '') "" (attrKeys cfg.lsp-setups);
+              '') "" (attrNames cfg.lsp-setups);
           in ''
             local mason_lspconfig = require("mason-lspconfig")
             mason_lspconfig.setup{ ensure_installed = { 

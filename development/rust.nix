@@ -2,7 +2,7 @@
 let cfg = config.development.qmk;
 in {
   options = {
-    development.qmk.enable = lib.mkEnableOption "Enable Rust development";
+    development.rust.enable = lib.mkEnableOption "Enable Rust development";
   };
 
   config = lib.mkIf cfg.enable {

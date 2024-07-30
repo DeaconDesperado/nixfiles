@@ -4,26 +4,6 @@
 
   imports = [ ./development ];
 
-  development = {
-    enable = true;
-    userName = "mgthesecond";
-    userEmail = "mgthesecond@spotify.com";
-    hubHost = "ghe.spotify.net";
-
-    gcloud.enable = true;
-    qmk.enable = true;
-    python.enable = true;
-
-    jvm = {
-      enable = true;
-      mavenRepositories = [
-        { artifactory = "https://artifactory.spotify.net/artifactory/repo"; }
-        "local"
-        "maven-central"
-      ];
-    };
-  };
-
   home.stateVersion = "24.05";
 
   home.sessionPath = [ "$HOME/scripts" "$HOME/bin" "$HOME/.cargo/bin" ];
@@ -36,6 +16,28 @@
     texlive = {
       enable = true;
       extraPackages = tpkgs: { inherit (tpkgs) scheme-full; };
+    };
+  };
+
+  development = {
+    enable = true;
+    userName = "mgthesecond";
+    userEmail = "mgthesecond@spotify.com";
+    hubHost = "ghe.spotify.net";
+
+    rust.enable = true;
+    gcloud.enable = true;
+    qmk.enable = true;
+    python.enable = true;
+    graphql.enable = true;
+
+    jvm = {
+      enable = true;
+      mavenRepositories = [
+        { artifactory = "https://artifactory.spotify.net/artifactory/repo"; }
+        "local"
+        "maven-central"
+      ];
     };
   };
 
