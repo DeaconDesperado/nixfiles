@@ -1,0 +1,3 @@
+map <leader>rn <Action>(RenameElement) 
+map <leader>flr <Action>(FindUsages) 
+map gi <Action>(GotoImplementation)

@@ -44,12 +44,17 @@ in {
     ];
 
     # Configured via ftplugin below
-    neovim-lsps.lsp-setups = { jdtls = ''''; };
+    neovim-lsps.lsp-setups = { jdtls = ""; };
 
     home.file = {
       "java.lua" = {
         source = lib.cleanSource ./config/neovim/lsp/jdtls.lua;
         target = ".config/nvim/after/ftplugin/java.lua";
+      };
+
+      ".ideavimrc" = {
+        source = lib.cleanSource ./config/neovim/ideavimrc;
+        target = ".ideavimrc";
       };
     };
   };

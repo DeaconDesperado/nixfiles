@@ -3,8 +3,15 @@ with lib;
 let cfg = config.development;
 in {
 
-  imports =
-    [ ./vim.nix ./rust.nix ./jvm.nix ./gcloud.nix ./qmk.nix ./python.nix ./graphql.nix ];
+  imports = [
+    ./vim.nix
+    ./rust.nix
+    ./jvm.nix
+    ./gcloud.nix
+    ./qmk.nix
+    ./python.nix
+    ./graphql.nix
+  ];
 
   options.development = {
     enable = mkEnableOption "Enable development environment";
