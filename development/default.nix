@@ -1,6 +1,16 @@
 { inputs, lib, config, pkgs, outputs, ... }:
 with lib;
-let cfg = config.development;
+let
+
+  cfg = config.development;
+
+  eldritch_repo = pkgs.fetchFromGitHub {
+    owner = "eldritch-theme";
+    repo = "btop";
+    rev = "8d1546e8ff629e993dea56f626990b672f3ddf65";
+    hash = "sha256-9cN85fmK2wjRrEpQn5tHw3h+q5ur/eBgtDBgYoY2Tgk=";
+  };
+
 in {
 
   imports = [
@@ -32,6 +42,11 @@ in {
   config = mkIf cfg.enable {
 
     home.file = {
+      eldritch_theme_btop = {
+        source = "${eldritch_repo}/eldritch.theme";
+        target = "./.config/btop/themes/eldritch.theme";
+      };
+
       print_colors = {
         executable = true;
         source = lib.cleanSource ./scripts/print_colors;
@@ -71,7 +86,10 @@ in {
 
     programs.alacritty = { enable = true; };
 
-    programs.htop.enable = true;
+    programs.btop = {
+      enable = true;
+      settings = { color_theme = "eldritch"; };
+    };
 
     programs.zsh = {
       enable = true;
@@ -85,6 +103,7 @@ in {
         git = "hub";
         k = "kubectl";
         bazel = "bazelisk";
+        top = "btop";
       };
       plugins = [
         {

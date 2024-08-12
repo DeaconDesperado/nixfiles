@@ -21,6 +21,16 @@ let
     };
   };
 
+  eldritch-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "eldritch-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "eldritch-theme";
+      repo = "eldritch.nvim";
+      rev = "48788ef2f7be7e86b0a57ef87f1a96bc18e24b8b";
+      hash = "sha256-ShjgOkzE4h5zLsM9kSXePXgZossgwV2HW4Axq5y9cP4=";
+    };
+  };
+
   cfg = config.neovim-lsps;
 
 in {
@@ -60,6 +70,7 @@ in {
       '';
       plugins = with pkgs.vimPlugins; [
         kanagawa-nvim
+        eldritch-nvim
         {
           plugin = mason-nvim;
           type = "lua";
