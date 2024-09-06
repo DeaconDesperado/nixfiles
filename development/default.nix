@@ -231,7 +231,6 @@ in {
       duf
       fd
       fx
-      gdb
       gettext
       gh
       gitAndTools.hub
