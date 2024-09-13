@@ -147,6 +147,14 @@ in {
         branch.autosetuprebase = "always";
         pull.rebase = true;
         init.defaultBranch = "main";
+        merge.tool = "diffview";
+        mergetool = {
+          prompt = false;
+          keepBackup = false;
+          diffview = {
+            cmd = "nvim -n -c DiffviewOpen";
+          };
+        };
         push.default = "tracking";
         hub.host = cfg.hubHost;
         lfs.lockverify = false;

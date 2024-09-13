@@ -16,8 +16,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "folke";
       repo = "lazydev.nvim";
-      rev = "v1.7.0";
-      hash = "sha256-th/wfvKGsEpkKau0DUhUpFc4WMMhSDZ/ISEHxH0IQ48=";
+      rev = "v1.8.0";
+      hash = "sha256-D5gP2rVPYoWc8hslTrH7Z90cE7XEu+tfkD6FZzY/iPk=";
     };
   };
 
@@ -173,6 +173,11 @@ in {
         telescope-file-browser-nvim
         telescope-vim-bookmarks-nvim
         nvim-navic
+        {
+          plugin = diffview-nvim;
+          type = "lua";
+          config = builtins.readFile (./config/neovim/neovim/diffview.lua);
+        }
         {
           plugin = lualine-nvim;
           type = "lua";
