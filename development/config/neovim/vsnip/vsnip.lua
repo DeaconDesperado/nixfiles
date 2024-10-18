@@ -6,5 +6,5 @@ local function jump(direction, alias, key)
   end
 end
 
-vim.keymap.set('v', '<Tab>', function () jump(1, "vsnip-jump-next", "<Tab>") end)
-vim.keymap.set('v', '<S-Tab>', function () jump(1, "vsnip-jump-prev", "<S-Tab>") end)
+vim.keymap.set({'i', 'v'}, '<Tab>', function () jump(1, "vsnip-jump-next", "<Tab>") end)
+vim.keymap.set({'i', 'v'}, '<S-Tab>', function () jump(1, "vsnip-jump-prev", "<S-Tab>") end)
