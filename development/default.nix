@@ -151,9 +151,7 @@ in {
         mergetool = {
           prompt = false;
           keepBackup = false;
-          diffview = {
-            cmd = "nvim -n -c DiffviewOpen";
-          };
+          diffview = { cmd = "nvim -n -c DiffviewOpen"; };
         };
         push.default = "tracking";
         hub.host = cfg.hubHost;

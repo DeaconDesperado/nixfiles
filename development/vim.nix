@@ -31,6 +31,16 @@ let
     };
   };
 
+  render-markdown-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "render-markdown-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "MeanderingProgrammer";
+      repo = "render-markdown.nvim";
+      rev = "v7.4.0";
+      hash = "sha256-K2YbO4vIjVgYrWF4MVxqiaTmONF1ZvMXxZVIW/UYwRo=";
+    };
+  };
+
   cfg = config.neovim-lsps;
 
 in {
@@ -145,6 +155,7 @@ in {
         nvim-treesitter-parsers.lua
         nvim-treesitter-parsers.yaml
         nvim-treesitter-parsers.json
+        nvim-treesitter-parsers.markdown
         nvim-ts-autotag
         nvim-web-devicons
         {
@@ -161,7 +172,11 @@ in {
         cmp-path
         cmp-buffer
         cmp-vsnip
-        vim-vsnip
+        {
+          plugin = vim-vsnip;
+          type = "lua";
+          config = builtins.readFile (./config/neovim/vsnip/vsnip.lua);
+        }
         {
           plugin = telescope-nvim;
           type = "lua";
@@ -203,6 +218,12 @@ in {
           type = "lua";
           config = builtins.readFile (./config/neovim/neovim/lazydev-nvim.lua);
         }
+        {
+          plugin = render-markdown-nvim;
+          type = "lua";
+          config =
+            builtins.readFile (./config/neovim/neovim/render-markdown.lua);
+        }
       ];
     };
 
@@ -210,6 +231,11 @@ in {
       "lua.lua" = {
         source = lib.cleanSource ./config/neovim/neovim/ftplugin/lua.lua;
         target = ".config/nvim/after/ftplugin/lua.lua";
+      };
+
+      "markdown.json" = {
+        source = lib.cleanSource ./config/neovim/snippets/markdown.json;
+        target = ".vsnip/markdown.json";
       };
     };
   };

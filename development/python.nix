@@ -34,6 +34,7 @@ in {
           readline
           sqlparse
           python-lsp-server
+          pylatexenc
         ]))
       pyright
     ];

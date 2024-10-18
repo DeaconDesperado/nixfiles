@@ -36,7 +36,6 @@ cmp.setup({
     ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
@@ -49,7 +48,7 @@ cmp.setup({
     { name = 'nvim_lsp_signature_help'},            -- display function signatures with current parameter emphasized
     { name = 'nvim_lua', keyword_length = 2},       -- complete neovim's Lua runtime API such vim.lsp.*
     { name = 'buffer', keyword_length = 2, group_index = 2 },        -- source current buffer
-    { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip
+    { name = 'vsnip' },         -- nvim-cmp source for vim-vsnip
     { name = 'calc'},                               -- source for math calculation
     { name = 'lazyvim', group_index = 1},
   },
@@ -58,7 +57,7 @@ cmp.setup({
       documentation = cmp.config.window.bordered(),
   },
   formatting = {
-      expandable_indicator = false,
+      expandable_indicator = true,
       fields = {'menu', 'abbr', 'kind'},
       format = function(entry, item)
           local menu_icon ={
