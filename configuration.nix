@@ -9,6 +9,8 @@
     trusted-public-keys =
       [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
   };
+
+  ids.gids.nixbld = 30000; 
   nix.configureBuildUsers = true;
 
   # Enable experimental nix command and flakes
@@ -36,7 +38,7 @@
   # Fonts
   fonts.packages = with pkgs; [
     recursive
-    nerdfonts
+    nerd-fonts.mononoki
     iosevka-bin
     (iosevka-bin.override { variant = "SS09"; })
     font-awesome
@@ -50,4 +52,5 @@
   # Add ability to used TouchID for sudo authentication
   security.pam.enableSudoTouchIdAuth = true;
 
+  system.stateVersion = 5;
 }

@@ -163,19 +163,10 @@ in {
           type = "lua";
           config = builtins.readFile (./config/neovim/trouble/trouble.lua);
         }
-        nvim-cmp
         {
-          plugin = cmp-nvim-lsp;
+          plugin = blink-cmp;
           type = "lua";
-          config = builtins.readFile (./config/neovim/lsp/completions.lua);
-        }
-        cmp-path
-        cmp-buffer
-        cmp-vsnip
-        {
-          plugin = vim-vsnip;
-          type = "lua";
-          config = builtins.readFile (./config/neovim/vsnip/vsnip.lua);
+          config = builtins.readFile(./config/neovim/lsp/completions.lua);
         }
         {
           plugin = telescope-nvim;
