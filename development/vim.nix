@@ -226,7 +226,7 @@ in {
 
       "markdown.json" = {
         source = lib.cleanSource ./config/neovim/snippets/markdown.json;
-        target = ".vsnip/markdown.json";
+        target = ".config/nvim/snippets/markdown.json";
       };
     };
   };
