@@ -11,16 +11,6 @@ let
     };
   };
 
-  lazydev-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "lazydev-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "folke";
-      repo = "lazydev.nvim";
-      rev = "v1.8.0";
-      hash = "sha256-D5gP2rVPYoWc8hslTrH7Z90cE7XEu+tfkD6FZzY/iPk=";
-    };
-  };
-
   eldritch-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "eldritch-nvim";
     src = pkgs.fetchFromGitHub {

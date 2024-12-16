@@ -5,5 +5,6 @@ require('typescript-tools').setup {
         enable = true,
         filetypes = { "javascriptreact", "typescriptreact" },
     }
-  }
+  },
+  capabilities = require('blink.cmp').get_lsp_capabilities(),
 }

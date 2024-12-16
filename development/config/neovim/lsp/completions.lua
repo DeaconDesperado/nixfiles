@@ -1,9 +1,16 @@
 vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
 
-
 require('blink-cmp').setup({
   sources = {
-    cmdline = {}
+    cmdline = {},
+    completion = {
+      enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
+    },
+    providers = {
+      -- dont show LuaLS require statements when lazydev has items
+      lsp = { fallback_for = { "lazydev" } },
+      lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+    },
   },
   appearance = {
     use_nvim_cmp_as_default = true,
