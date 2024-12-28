@@ -12,9 +12,11 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 
   outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
+
     let
       inherit (darwin.lib) darwinSystem;
       inherit (inputs.nixpkgs-unstable.lib)
@@ -51,9 +53,11 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.mgthesecond = import ./home.nix;
+              home-manager.extraSpecialArgs = { inherit inputs; };
               users.users.mgthesecond.home = "/Users/mgthesecond";
             }
           ];
+          specialArgs = { inherit inputs; };
         };
       };
 
@@ -80,6 +84,7 @@
               inherit (nixpkgsConfig) config;
             };
           };
+
       };
 
     };

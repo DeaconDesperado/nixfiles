@@ -1,4 +1,4 @@
-{ config, pkgs, lib, outputs, ... }:
+{ inputs, config, pkgs, lib, outputs, ... }:
 
 {
 
@@ -45,6 +45,7 @@
     [
       # AWS
       unstable.awscli2
+      inputs.ghostty.packages.aarch64-darwin.default
       dbt
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
