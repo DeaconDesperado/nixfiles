@@ -85,7 +85,7 @@ chars = "alacritty msg create-window -e zsh \r"
 key = "N"
 mods = "Command" 
 
-[shell]
+[terminal.shell]
 args = ["-l", "-c", "zellij attach --index 0 || zellij"]
 program = "zsh"
 
@@ -94,3 +94,5 @@ decorations = "buttonless"
 opacity = 0.98
 option_as_alt = "OnlyLeft"
 startup_mode = "SimpleFullScreen"
+
+[terminal]
