@@ -156,7 +156,7 @@ in {
         {
           plugin = blink-cmp;
           type = "lua";
-          config = builtins.readFile(./config/neovim/lsp/completions.lua);
+          config = builtins.readFile (./config/neovim/lsp/completions.lua);
         }
         {
           plugin = telescope-nvim;

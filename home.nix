@@ -50,9 +50,17 @@
       # https://github.com/ghostty-org/ghostty/discussions/2824
       #inputs.ghostty.packages.aarch64-darwin.default
       dbt
+      viu
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
     ];
+
+  #home.file = {
+  #  "ghostty" = {
+  #    source = lib.cleanSource ./development/config/ghostty/config;
+  #    target = ".config/ghostty/config";
+  #  };
+  #};
 
 }

@@ -1,0 +1,13 @@
+background-opacity = 0.98
+theme = kanagawa wave
+font-family = "Mononoki Nerd Font" 
+font-style = "Regular"
+font-style-bold = "Bold"
+font-size = 14.0
+font-synthetic-style = false
+initial-command = "zsh -l -c zellij attach --index 0 || zellij"
+window-decoration = false
+macos-non-native-fullscreen = true
+fullscreen = true
+
+keybind = cmd+alt+f=toggle_fullscreen
