@@ -19,6 +19,10 @@ themes {
 }
 
 keybinds {
+  shared_except "locked" {
+    unbind "Alt f"
+    bind "Alt w" { ToggleFloatingPanes; }
+  }
   normal {
      bind "PageUp" { FocusPreviousPane; }
      bind "PageDown" { FocusNextPane; }

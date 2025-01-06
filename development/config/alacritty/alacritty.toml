@@ -34,9 +34,6 @@ foreground = "0xdcd7ba"
 background = "0x2d4f67"
 foreground = "0xc8c093"
 
-[env]
-TERM = "xterm-256color"
-
 [font]
 size = 14.0
 
@@ -44,26 +41,14 @@ size = 14.0
 family = "Mononoki Nerd Font"
 
 [[keyboard.bindings]]
-chars = "\u001Bb"
+chars = "\u001bb"
 key = "Left"
 mods = "Alt"
 
 [[keyboard.bindings]]
-chars = "\u001Bf"
+chars = "\u001bf"
 key = "Right"
 mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001BOH"
-key = "Left"
-mode = "AppCursor"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u001BOF"
-key = "Right"
-mode = "AppCursor"
-mods = "Command"
 
 [[keyboard.bindings]]
 chars = "\u0015"
