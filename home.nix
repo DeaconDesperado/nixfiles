@@ -30,6 +30,7 @@
     qmk.enable = true;
     python.enable = true;
     graphql.enable = true;
+    copilot.enable = true;
 
     jvm = {
       enable = true;

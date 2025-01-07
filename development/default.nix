@@ -21,6 +21,7 @@ in {
     ./qmk.nix
     ./python.nix
     ./graphql.nix
+    ./copilot.nix
   ];
 
   options.development = {
@@ -69,6 +70,7 @@ in {
         source = lib.cleanSource ./config/codestyle/googlestyle.xml;
         target = ".config/codestyle/googlestyle.xml";
       };
+
       "config.kdl" = {
         source = cleanSource ./config/zellij/config.kdl;
         target = ".config/zellij/config.kdl";
@@ -78,6 +80,7 @@ in {
         source = cleanSource ./config/zellij/layouts;
         target = ".config/zellij/layouts";
       };
+
       "alacritty.toml" = {
         source = cleanSource ./config/alacritty/alacritty.toml;
         target = ".config/alacritty/alacritty.toml";
