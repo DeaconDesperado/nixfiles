@@ -21,6 +21,7 @@ themes {
 keybinds {
   shared_except "locked" {
     unbind "Alt f"
+    unbind "Alt l"
     bind "Alt w" { ToggleFloatingPanes; }
   }
   normal {
