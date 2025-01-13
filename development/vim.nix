@@ -31,6 +31,16 @@ let
     };
   };
 
+  colortils-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "colortils-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "max397574";
+      repo = "colortils.nvim";
+      rev = "v1.2.0";
+      hash = "sha256-GaAgkNmzKTJaKBlLY/fP2Z1ZyBhfyGRkPiwjUj8Rkg4=";
+    };
+  };
+
   cfg = config.neovim-lsps;
 
 in {
@@ -178,6 +188,11 @@ in {
           plugin = lualine-nvim;
           type = "lua";
           config = builtins.readFile (./config/neovim/lsp/lualine.lua);
+        }
+        {
+          plugin = colortils-nvim;
+          type = "lua";
+          config = builtins.readFile (./config/neovim/colortils/colortils.lua);
         }
         {
           plugin = nvim-colorizer-lua;
