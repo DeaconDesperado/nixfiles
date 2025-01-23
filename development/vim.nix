@@ -34,10 +34,10 @@ let
   colortils-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "colortils-nvim";
     src = pkgs.fetchFromGitHub {
-      owner = "max397574";
+      owner = "DeaconDesperado";
       repo = "colortils.nvim";
-      rev = "v1.2.0";
-      hash = "sha256-GaAgkNmzKTJaKBlLY/fP2Z1ZyBhfyGRkPiwjUj8Rkg4=";
+      rev = "fb106df442a44854f8c15832256b750108bf7089";
+      hash = "sha256-OBUcfIjT2PS5YRmNLr5kTT8yOoD/pCXL9NZFhkdRx+I=";
     };
   };
 
@@ -60,6 +60,7 @@ in {
     programs.neovim = {
       defaultEditor = true;
       enable = true;
+      package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
       viAlias = true;
       vimAlias = true;
       coc = { enable = false; };
