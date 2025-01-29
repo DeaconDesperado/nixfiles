@@ -12,11 +12,6 @@
     home-manager = { enable = true; };
 
     vscode = { enable = true; };
-
-    texlive = {
-      enable = true;
-      extraPackages = tpkgs: { inherit (tpkgs) scheme-full; };
-    };
   };
 
   development = {
