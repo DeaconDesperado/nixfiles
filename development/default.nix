@@ -107,6 +107,7 @@ in {
         k = "kubectl";
         bazel = "bazelisk";
         top = "btop";
+        jless = "jless --mode line";
       };
       plugins = [
         {
@@ -251,6 +252,7 @@ in {
       httpie
       hugo
       imagemagick
+      jless
       jq
       k9s
       kind
