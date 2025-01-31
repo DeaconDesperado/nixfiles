@@ -37,6 +37,7 @@ in {
           pylatexenc
         ]))
       pyright
+      uv
     ];
   };
 
