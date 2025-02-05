@@ -50,13 +50,14 @@
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
+      inputs.roc.packages.${system}.cli
     ];
 
-  #home.file = {
-  #  "ghostty" = {
-  #    source = lib.cleanSource ./development/config/ghostty/config;
-  #    target = ".config/ghostty/config";
-  #  };
-  #};
+  home.file = {
+    "ghostty" = {
+      source = lib.cleanSource ./development/config/ghostty/config;
+      target = ".config/ghostty/config";
+    };
+  };
 
 }

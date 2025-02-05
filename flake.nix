@@ -13,9 +13,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     ghostty.url = "github:ghostty-org/ghostty";
+    roc.url = "github:roc-lang/roc";
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, roc, ... }@inputs:
 
     let
       inherit (darwin.lib) darwinSystem;
