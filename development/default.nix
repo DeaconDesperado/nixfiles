@@ -20,6 +20,7 @@ in {
     ./gcloud.nix
     ./qmk.nix
     ./python.nix
+    ./roc.nix
     ./graphql.nix
     ./copilot.nix
   ];

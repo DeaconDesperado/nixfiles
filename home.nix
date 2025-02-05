@@ -26,6 +26,7 @@
     python.enable = true;
     graphql.enable = true;
     copilot.enable = true;
+    roc.enable = true;
 
     jvm = {
       enable = true;
@@ -50,7 +51,6 @@
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
-      inputs.roc.packages.${system}.cli
     ];
 
   home.file = {
