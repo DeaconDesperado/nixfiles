@@ -33,9 +33,11 @@ in {
           pip
           readline
           sqlparse
+          pudb
           python-lsp-server
           pylatexenc
         ]))
+      poetry
       pyright
       uv
     ];
