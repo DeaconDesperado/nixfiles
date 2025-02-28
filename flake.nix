@@ -54,7 +54,9 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.mgthesecond = import ./home.nix;
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = { 
+                inherit inputs;
+              };
               users.users.mgthesecond.home = "/Users/mgthesecond";
             }
           ];

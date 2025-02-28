@@ -24,11 +24,6 @@ require('blink-cmp').setup({
      ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
      ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
      -- disable cmdline completions
-     cmdline = {
-        ['<Tab>'] = {},
-        ['<S-Tab>'] = {},
-        ['<CR>'] = {},
-     }
    },
   completion = {
     -- disable cmdline completions

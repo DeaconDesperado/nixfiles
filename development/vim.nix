@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, outputs, ... }:
+{ inputs, lib, config, pkgs, ... }:
 with lib;
 let
   vim-thrift = pkgs.vimUtils.buildVimPlugin {
@@ -50,7 +50,6 @@ in {
   };
 
   config = {
-    nixpkgs.overlays = [ outputs.pkgs-unstable outputs.neovim-nightly.overlay ];
 
     # Enable Lua by default for neovim plugin development
     neovim-lsps.lsp-setups = {
