@@ -172,6 +172,7 @@ in {
         ".DS_Store"
         ".envrc"
         "shell.nix"
+        ".local-dev"
       ];
 
       delta.enable = true;
