@@ -75,6 +75,7 @@ in {
         set termguicolors
         colorscheme kanagawa-wave
         set number
+        set splitbelow
         :set rtp+=~/projects/foss/mgii/nvim-dipath
       '';
       plugins = with pkgs.vimPlugins; [

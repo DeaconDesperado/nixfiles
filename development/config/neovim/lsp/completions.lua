@@ -16,6 +16,9 @@ require('blink-cmp').setup({
       },
     },
   },
+  cmdline = {
+    enabled = false,
+  },
   appearance = {
     use_nvim_cmp_as_default = true,
   },
@@ -23,11 +26,8 @@ require('blink-cmp').setup({
      preset = 'enter',
      ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
      ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
-     -- disable cmdline completions
    },
   completion = {
-    -- disable cmdline completions
-    menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
     list = {
       selection = { preselect = true, auto_insert = true}
     },

@@ -6,5 +6,9 @@ vim.api.nvim_create_user_command('LoadCopilot', function(input)
       auto_refresh = true;
     }
   });
-  require('CopilotChat').setup({});
+  require('CopilotChat').setup({
+    window = {
+      layout = 'horizontal'
+    }
+  });
 end, {})

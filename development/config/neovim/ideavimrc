@@ -1,3 +1,7 @@
 map <leader>rn <Action>(RenameElement) 
 map <leader>flr <Action>(FindUsages) 
 map gi <Action>(GotoImplementation)
+map <leader>r <Action>(Rerun)
+map <leader>rr <Action>(Rerun)
+map <leader>dbg <Action>(Debug)
+map <leader>kp <Action>(Stop)
