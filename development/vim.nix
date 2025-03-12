@@ -76,6 +76,7 @@ in {
         colorscheme kanagawa-wave
         set number
         set splitbelow
+        set updatetime=1600
         :set rtp+=~/projects/foss/mgii/nvim-dipath
       '';
       plugins = with pkgs.vimPlugins; [
@@ -112,9 +113,12 @@ in {
           plugin = nvim-lspconfig;
           type = "lua";
           config = let
+            hoverDiagnostics = builtins.readFile(./config/neovim/lsp/diagnostics.lua);
             lspSetups =
               lib.foldl' (a: b: a + b + "\n") "" (attrValues cfg.lsp-setups);
           in ''
+
+            ${hoverDiagnostics}
 
             ${lspSetups}
 
