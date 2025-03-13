@@ -12,20 +12,20 @@ vim.keymap.set("n", "<leader>aa", vim.diagnostic.setqflist)
 
 -- all workspace errors
 vim.keymap.set("n", "<leader>ae", function()
-  vim.diagnostic.setqflist({ severity = "E" })
+  vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR })
 end)
 
 -- all workspace warnings
 vim.keymap.set("n", "<leader>aw", function()
-  vim.diagnostic.setqflist({ severity = "W" })
+  vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.WARN })
 end)
 
 vim.keymap.set("n", "[c", function()
-  vim.diagnostic.goto_prev({ wrap = false })
+  vim.diagnostic.jump({ count = 1, float = true })
 end)
 
 vim.keymap.set("n", "]c", function()
-  vim.diagnostic.goto_next({ wrap = false })
+  vim.diagnostic.jump({ count = -1, float = true })
 end)
 
 -- Example mappings for usage with nvim-dap. If you don't use that, you can
@@ -77,16 +77,16 @@ local function metals_status_handler(_, status, ctx)
   -- https://github.com/scalameta/nvim-metals/blob/main/lua/metals/status.lua#L36-L50
   local val = {}
   if status.hide then
-    val = {kind = "end"}
+    val = { kind = "end" }
   elseif status.show then
-    val = {kind = "begin", message = status.text}
+    val = { kind = "begin", message = status.text }
   elseif status.text then
-    val = {kind = "report", message = status.text}
+    val = { kind = "report", message = status.text }
   else
     return
   end
-  local info = {client_id = ctx.client_id}
-  local msg = {token = "metals", value = val}
+  local info = { client_id = ctx.client_id }
+  local msg = { token = "metals", value = val }
   -- call fidget progress handler
   vim.lsp.handlers["$/progress"](nil, msg, info)
 end
@@ -131,7 +131,7 @@ vim.api.nvim_create_autocmd("FileType", {
   -- NOTE: You may or may not want java included here. You will need it if you
   -- want basic Java support but it may also conflict if you are using
   -- something like nvim-jdtls which also works on a java filetype autovim.cmd.
-  pattern = { "scala", "sbt"},
+  pattern = { "scala", "sbt" },
   callback = function()
     require("metals").initialize_or_attach(metals_config)
   end,

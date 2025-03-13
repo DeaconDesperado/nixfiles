@@ -8,11 +8,11 @@ vim.g.rustaceanvim = {
             enable = false,
           },
           typeHints = {
-            enable = false;
+            enable = false,
           }
         },
         check = {
-          targets = {"aarch64-apple-darwin"},
+          targets = { "aarch64-apple-darwin" },
         },
         cargo = {
           cfgs = {
@@ -28,12 +28,15 @@ vim.g.rustaceanvim = {
       vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
       -- Hover actions
       vim.keymap.set("n", "<C-space>", function()
-        vim.cmd.RustLsp { 'hover', 'actions' } end, {})
+        vim.cmd.RustLsp { 'hover', 'actions' }
+      end, {})
       vim.keymap.set("n", "<Leader>rr", function()
-        vim.cmd.RustLsp('runnables') end, {})
+        vim.cmd.RustLsp('runnables')
+      end, {})
       -- Code action groups
       vim.keymap.set("n", "<Leader>a", function()
-        vim.cmd.RustLsp('codeAction') end, {})
+        vim.cmd.RustLsp('codeAction')
+      end, {})
     end,
   },
 }

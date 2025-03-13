@@ -1,4 +1,4 @@
-vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
+vim.opt.completeopt = { 'menuone', 'noselect', 'noinsert' }
 
 require('blink-cmp').setup({
   sources = {
@@ -23,13 +23,13 @@ require('blink-cmp').setup({
     use_nvim_cmp_as_default = true,
   },
   keymap = {
-     preset = 'enter',
-     ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
-     ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
-   },
+    preset = 'enter',
+    ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
+    ['<Tab>'] = { 'snippet_forward', 'select_next', 'fallback' },
+  },
   completion = {
     list = {
-      selection = { preselect = true, auto_insert = true}
+      selection = { preselect = true, auto_insert = true }
     },
     documentation = {
       auto_show = true,
@@ -37,4 +37,3 @@ require('blink-cmp').setup({
     }
   }
 })
-

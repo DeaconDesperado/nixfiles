@@ -3,7 +3,7 @@ local jdtls = require('jdtls')
 
 -- File types that signify a Java project's root directory. This will be
 -- used by eclipse to determine what constitutes a workspace
-local root_markers = {'gradlew', 'mvnw', '.git'}
+local root_markers = { 'gradlew', 'mvnw', '.git' }
 local root_dir = require('jdtls.setup').find_root(root_markers)
 
 -- eclipse.jdt.ls stores project specific data within a folder. If you are working
@@ -22,7 +22,7 @@ end
 -- attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Regular Neovim LSP client keymappings
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   nnoremap('gD', vim.lsp.buf.declaration, bufopts, "Go to declaration")
   nnoremap('gd', vim.lsp.buf.definition, bufopts, "Go to definition")
   nnoremap('gi', vim.lsp.buf.implementation, bufopts, "Go to implementation")
@@ -37,7 +37,7 @@ local on_attach = function(client, bufnr)
   nnoremap('<space>rn', vim.lsp.buf.rename, bufopts, "Rename")
   nnoremap('<Leader>a', vim.lsp.buf.code_action, bufopts, "Code actions")
   vim.keymap.set('v', "<Leader>a", "<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>",
-    { noremap=true, silent=true, buffer=bufnr, desc = "Code actions" })
+    { noremap = true, silent = true, buffer = bufnr, desc = "Code actions" })
   nnoremap('<space>f', function() vim.lsp.buf.format { async = true } end, bufopts, "Format file")
 
   -- Java extensions provided by jdtls
@@ -45,15 +45,15 @@ local on_attach = function(client, bufnr)
   nnoremap("<space>ev", jdtls.extract_variable, bufopts, "Extract variable")
   nnoremap("<space>ec", jdtls.extract_constant, bufopts, "Extract constant")
   vim.keymap.set('v', "<space>em", [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
-    { noremap=true, silent=true, buffer=bufnr, desc = "Extract method" })
+    { noremap = true, silent = true, buffer = bufnr, desc = "Extract method" })
 end
 
 local config = {
   flags = {
     debounce_text_changes = 80,
   },
-  on_attach = on_attach,  -- We pass our on_attach keybindings to the configuration map
-  root_dir = root_dir, -- Set the root directory to our found root_marker
+  on_attach = on_attach, -- We pass our on_attach keybindings to the configuration map
+  root_dir = root_dir,   -- Set the root directory to our found root_marker
   -- Here you can configure eclipse.jdt.ls specific settings
   -- These are defined by the eclipse.jdt.ls project and will be passed to eclipse when starting.
   -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
@@ -70,7 +70,7 @@ local config = {
         },
       },
       signatureHelp = { enabled = true },
-      contentProvider = { preferred = 'fernflower' },  -- Use fernflower to decompile library code
+      contentProvider = { preferred = 'fernflower' }, -- Use fernflower to decompile library code
       -- Specify any completion options
       completion = {
         favoriteStaticMembers = {
@@ -93,8 +93,8 @@ local config = {
       -- Specify any options for organizing imports
       sources = {
         organizeImports = {
-          starThreshold = 9999;
-          staticStarThreshold = 9999;
+          starThreshold = 9999,
+          staticStarThreshold = 9999,
         },
       },
       -- How code generation should act

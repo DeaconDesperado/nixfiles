@@ -11,12 +11,12 @@ local open_in_new_tab = {
 
 local zellij_remap = {
   i = {
-    ["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist, 
+    ["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
     ["<M-t>"] = "select_tab_drop",
     ["<C-Q>"] = false,
   },
   n = {
-    ["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist, 
+    ["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
     ["<M-t>"] = "select_tab_drop",
     ["<C-Q>"] = false,
   }
@@ -33,22 +33,22 @@ require('telescope').setup {
   },
   pickers = {
     lsp_references = {
-			jump_type = "never",
-			show_line = false,
+      jump_type = "never",
+      show_line = false,
       mappings = open_in_new_tab,
-		},
-		lsp_implementations = {
-			jump_type = "never",
-			reuse_win = true,
-			show_line = false,
+    },
+    lsp_implementations = {
+      jump_type = "never",
+      reuse_win = true,
+      show_line = false,
       mappings = open_in_new_tab,
-		},
-		lsp_definitions = {
-			jump_type = "never",
-			reuse_win = true,
-			show_line = false,
+    },
+    lsp_definitions = {
+      jump_type = "never",
+      reuse_win = true,
+      show_line = false,
       mappings = open_in_new_tab,
-		},    
+    },
     find_files = {
       mappings = open_in_new_tab,
       hidden = true,
@@ -59,10 +59,10 @@ require('telescope').setup {
   },
   extensions = {
     fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+      fuzzy = true,                   -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
     },
     file_browser = {
       hijack_netrw = true,
@@ -91,7 +91,7 @@ vim.keymap.set('n', '<leader>ej', ':cn<CR>')
 vim.keymap.set('n', '<leader>ek', ':cp<CR>')
 
 -- TODO: this doesn't actually reassign default, figure out why
-require('telescope').extensions.vim_bookmarks.all = {    
+require('telescope').extensions.vim_bookmarks.all = {
   attach_mappings = function(_, map)
     map('n', '<CR>', function(prompt_bufnr)
       actions.select_tab_drop(prompt_bufnr)
@@ -99,4 +99,3 @@ require('telescope').extensions.vim_bookmarks.all = {
     return false;
   end
 }
-
