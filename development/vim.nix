@@ -113,7 +113,8 @@ in {
           plugin = nvim-lspconfig;
           type = "lua";
           config = let
-            hoverDiagnostics = builtins.readFile(./config/neovim/lsp/diagnostics.lua);
+            hoverDiagnostics =
+              builtins.readFile (./config/neovim/lsp/diagnostics.lua);
             lspSetups =
               lib.foldl' (a: b: a + b + "\n") "" (attrValues cfg.lsp-setups);
           in ''

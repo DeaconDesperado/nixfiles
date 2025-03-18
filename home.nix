@@ -27,6 +27,7 @@
     graphql.enable = true;
     copilot.enable = true;
     roc.enable = true;
+    ontology.enable = true;
 
     jvm = {
       enable = true;

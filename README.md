@@ -20,3 +20,4 @@ Not managed via nix
 * Obsidian
 * Discord
 * python environments via [zsh-pyenv](https://github.com/mattberther/zsh-pyenv) 
+* turtle_ls due to difficulty with npm packaging in nix

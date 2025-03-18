@@ -21,6 +21,7 @@ in {
     ./qmk.nix
     ./python.nix
     ./roc.nix
+    ./ontology.nix
     ./graphql.nix
     ./copilot.nix
   ];
@@ -122,10 +123,8 @@ in {
           file = "p10k.zsh";
         }
       ];
-      initExtra = let 
-        rg_fzf = builtins.readFile(./config/zsh/rg_fzf.sh);
-        in
-      ''
+      initExtra = let rg_fzf = builtins.readFile (./config/zsh/rg_fzf.sh);
+      in ''
         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
         export LSP_USE_PLISTS=true
         export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=bold,underline"
