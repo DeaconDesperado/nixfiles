@@ -31,7 +31,12 @@ in {
       }
     ];
 
+    programs.zsh.shellAliases = {
+      coursier = "cs";
+    };
+
     home.packages = with pkgs; [
+      bloop
       coursier
       gradle
       jdt-language-server
