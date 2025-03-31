@@ -44,7 +44,13 @@ in {
     };
 
     programs.neovim.plugins = with pkgs.vimPlugins; [
-      nvim-treesitter-parsers.turtle
+      {
+        plugin = nvim-treesitter-parsers.turtle;
+        type = "lua";
+        config = ''
+          vim.treesitter.language.register('turtle', { 'ttl', 'r2rml', 'obda' })
+        '';
+      }
       nvim-treesitter-parsers.sparql
     ];
 
