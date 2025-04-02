@@ -257,6 +257,7 @@ in {
       html-tidy
       httpie
       hugo
+      hydra-check
       imagemagick
       jless
       jq
