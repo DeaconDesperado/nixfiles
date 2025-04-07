@@ -141,6 +141,7 @@ in {
 
     programs.git = {
       enable = true;
+      package = pkgs.gitFull;
       lfs.enable = true;
       userName = cfg.userName;
       userEmail = cfg.userEmail;
@@ -250,13 +251,13 @@ in {
       fx
       gettext
       gh
-      gitAndTools.hub
       gnupg
       gnused
       graphviz-nox
       grpcurl
       html-tidy
       httpie
+      hub
       hugo
       hydra-check
       imagemagick

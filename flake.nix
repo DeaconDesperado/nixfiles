@@ -32,12 +32,7 @@
           allowUnsupportedSystem = true;
         };
 
-        overlays = attrValues self.overlays ++ singleton (
-          # Sub in x86 version of packages that don't build on Apple Silicon yet
-          final: prev:
-          (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-            inherit (final.pkgs-x86) nix-index niv purescript bazel;
-          }));
+        overlays = attrValues self.overlays;
       };
     in {
       darwinConfigurations = rec {
@@ -75,18 +70,6 @@
             inherit (nixpkgsConfig) config;
           };
         };
-
-        # Overlay useful on Macs with Apple Silicon
-        apple-silicon = final: prev:
-          optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-            # Add access to x86 packages system is running Apple Silicon
-            pkgs-x86 = import inputs.nixpkgs-unstable {
-              system = "x86_64-darwin";
-              inherit (nixpkgsConfig) config;
-            };
-          };
-
       };
-
     };
 }

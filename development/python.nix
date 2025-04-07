@@ -28,8 +28,7 @@ in {
 
     home.packages = with pkgs; [
       (python3.withPackages (ps:
-        with ps;
-        with python3Packages; [
+        with ps; [
           pip
           readline
           sqlparse
