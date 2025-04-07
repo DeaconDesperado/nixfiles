@@ -124,7 +124,9 @@ in {
           file = "p10k.zsh";
         }
       ];
-      initExtra = let rg_fzf = builtins.readFile (./config/zsh/rg_fzf.sh);
+      initExtra = let 
+        rg_fzf = builtins.readFile (./config/zsh/rg_fzf.sh);
+        zellij_aliases = builtins.readFile (./config/zellij/aliases.sh);
       in ''
         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
         export LSP_USE_PLISTS=true
@@ -136,6 +138,8 @@ in {
         --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
         ${rg_fzf}
+
+        ${zellij_aliases}
       '';
     };
 
