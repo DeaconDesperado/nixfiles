@@ -31,9 +31,7 @@ in {
       }
     ];
 
-    programs.zsh.shellAliases = {
-      coursier = "cs";
-    };
+    programs.zsh.shellAliases = { coursier = "cs"; };
 
     home.packages = with pkgs; [
       bloop

@@ -3,32 +3,31 @@ with lib;
 let
   cfg = config.development.ontology;
   # TODO: npm packaging is horribly annoying here
-  /*
-  stardog_repo = pkgs.fetchFromGitHub {
-    owner = "stardog-union";
-    repo = "stardog-language-servers";
-    rev = "ea9f630d5dca126fc1b9fa31e3ee243dd5272f27";
-    sha256 = "sha256-cj4BOu39Yyv/hJocnfcsVhmfdReU9e5dCS0HRt9/yhI=";
-  };
+  /* stardog_repo = pkgs.fetchFromGitHub {
+       owner = "stardog-union";
+       repo = "stardog-language-servers";
+       rev = "ea9f630d5dca126fc1b9fa31e3ee243dd5272f27";
+       sha256 = "sha256-cj4BOu39Yyv/hJocnfcsVhmfdReU9e5dCS0HRt9/yhI=";
+     };
 
-  turtle_ls = pkgs.buildNpmPackage {
-    pname = "turtle_ls";
-    version = "0.0.1";
-    npmDepsHash = "sha256-x8FBFkT2zdy4Tj8Zg+nnoV1Xw5WGpabjUL/3Tq06tAA=";
+     turtle_ls = pkgs.buildNpmPackage {
+       pname = "turtle_ls";
+       version = "0.0.1";
+       npmDepsHash = "sha256-x8FBFkT2zdy4Tj8Zg+nnoV1Xw5WGpabjUL/3Tq06tAA=";
 
-    src = stardog_repo;
-    buildInputs = [ 
-      pkgs.nodejs
-    ];
+       src = stardog_repo;
+       buildInputs = [
+         pkgs.nodejs
+       ];
 
-    postUnpack = ''
-      npm install --package-lock-only
-    '';
+       postUnpack = ''
+         npm install --package-lock-only
+       '';
 
-    postPatch = ''
-      cd packages/turtle-language-server
-    '';
-  };
+       postPatch = ''
+         cd packages/turtle-language-server
+       '';
+     };
   */
 
 in {
@@ -54,9 +53,10 @@ in {
       nvim-treesitter-parsers.sparql
     ];
 
-    home.packages = with pkgs; [ 
-      protege 
-      # turtle_ls 
-    ];
+    home.packages = with pkgs;
+      [
+        protege
+        # turtle_ls 
+      ];
   };
 }

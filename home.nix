@@ -53,6 +53,7 @@
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
       m-cli # useful macOS CLI commands
+      aerospace
     ];
 
   home.file = {
@@ -60,6 +61,10 @@
       source = lib.cleanSource ./development/config/ghostty/config;
       target = ".config/ghostty/config";
     };
+  } // lib.optionals pkgs.stdenv.isDarwin {
+    "aerospace.toml" = {
+      source = lib.cleanSource ./development/config/aerospace/aerospace.toml;
+      target = ".aerospace.toml";
+    };
   };
-
 }
