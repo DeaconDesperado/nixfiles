@@ -6,5 +6,5 @@ map <leader>rr <Action>(Rerun)
 map <leader>dbg <Action>(Debug)
 map <leader>kp <Action>(Stop)
 
-map <leader>ff <Action>GotoFile
-map <leader>fg <Action>SearchEverywhere
+map <leader>ff <Action>(GotoFile)
+map <leader>fg <Action>(SearchEverywhere)
