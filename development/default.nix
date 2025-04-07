@@ -16,6 +16,7 @@ in {
   imports = [
     ./vim.nix
     ./rust.nix
+    ./cpp.nix
     ./jvm.nix
     ./gcloud.nix
     ./qmk.nix

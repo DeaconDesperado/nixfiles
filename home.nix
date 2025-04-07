@@ -21,6 +21,7 @@
     hubHost = "ghe.spotify.net";
 
     rust.enable = true;
+    cpp.enable = true;
     gcloud.enable = true;
     qmk.enable = true;
     python.enable = true;
