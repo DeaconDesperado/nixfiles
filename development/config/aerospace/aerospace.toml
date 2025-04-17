@@ -24,7 +24,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
 
 # Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
+default-root-container-layout = 'accordion'
 
 # Possible values: horizontal|vertical|auto
 # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
@@ -137,6 +137,14 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
     alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
+    alt-m = "mode arrange"
+
+[mode.arrange.binding]
+    esc = ["mode main"]
+    alt-f = ["layout floating", "mode main"]
+    alt-t = ["layout tiling v_accordion", "mode main"]
+    alt-shift-r = ["reload-config", "mode main"]
+
 [workspace-to-monitor-force-assignment]
     1 = "LG UltraFine"
     2 = "^Built-in*"
@@ -153,7 +161,7 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
     if.app-id = "com.google.Chrome"
-    run = ['layout floating', 'move-node-to-workspace 2']
+    run = ['layout tiling', 'move-node-to-workspace 2']
 
 [[on-window-detected]]
     if.app-id = "com.tinyspeck.slackmacgap"
@@ -161,4 +169,12 @@ automatically-unhide-macos-hidden-apps = false
 
 [[on-window-detected]]
     if.app-id = "com.hnc.Discord"
+    run = ['move-node-to-workspace 3']
+
+[[on-window-detected]]
+    if.app-id = "com.jetbrains.intellij"
+    run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+    if.app-id = "md.obsidian"
     run = ['move-node-to-workspace 3']
