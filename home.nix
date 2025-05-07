@@ -48,7 +48,6 @@
       # https://github.com/NixOS/nixpkgs/pull/368726
       # https://github.com/ghostty-org/ghostty/discussions/2824
       #inputs.ghostty.packages.aarch64-darwin.default
-      dbt
       viu
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
