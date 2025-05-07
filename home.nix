@@ -10,7 +10,6 @@
 
   programs = {
     home-manager = { enable = true; };
-
     vscode = { enable = true; };
   };
 
@@ -53,6 +52,7 @@
       cocoapods
       m-cli # useful macOS CLI commands
       aerospace
+      sketchybar
     ];
 
   home.file = {
@@ -64,6 +64,11 @@
     "aerospace.toml" = {
       source = lib.cleanSource ./development/config/aerospace/aerospace.toml;
       target = ".aerospace.toml";
+    };
+    "sketchybar" = {
+      source = lib.cleanSource ./development/config/sketchybar;
+      target = ".config/sketchybar";
+      recursive = true;
     };
   };
 }

@@ -43,6 +43,7 @@
             ./configuration.nix
             # `home-manager` module
             home-manager.darwinModules.home-manager
+            ./osx.nix
             {
               nixpkgs = nixpkgsConfig;
               # `home-manager` config

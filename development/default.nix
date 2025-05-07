@@ -124,7 +124,7 @@ in {
           file = "p10k.zsh";
         }
       ];
-      initContent = let 
+      initContent = let
         rg_fzf = builtins.readFile (./config/zsh/rg_fzf.sh);
         zellij_aliases = builtins.readFile (./config/zellij/aliases.sh);
       in ''
