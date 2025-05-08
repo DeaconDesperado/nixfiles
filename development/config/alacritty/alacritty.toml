@@ -78,6 +78,5 @@ program = "zsh"
 decorations = "buttonless"
 opacity = 0.98
 option_as_alt = "OnlyLeft"
-startup_mode = "SimpleFullScreen"
 
 [terminal]

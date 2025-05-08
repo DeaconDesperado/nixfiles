@@ -61,14 +61,14 @@
       target = ".config/ghostty/config";
     };
   } // lib.optionals pkgs.stdenv.isDarwin {
-    "aerospace.toml" = {
-      source = lib.cleanSource ./development/config/aerospace/aerospace.toml;
-      target = ".aerospace.toml";
-    };
-    "sketchybar" = {
-      source = lib.cleanSource ./development/config/sketchybar;
-      target = ".config/sketchybar";
-      recursive = true;
-    };
+    #"aerospace.toml" = {
+    #  source = lib.cleanSource ./development/config/aerospace/aerospace.toml;
+    #  target = ".aerospace.toml";
+    #};
+    #"sketchybar" = {
+    #  source = lib.cleanSource ./development/config/sketchybar;
+    #  target = ".config/sketchybar";
+    #  recursive = true;
+    #};
   };
 }
