@@ -6,12 +6,8 @@
 
   home.stateVersion = "24.05";
 
-  home.sessionPath = [ 
-    "$HOME/scripts"
-    "$HOME/bin"
-    "$HOME/.cargo/bin"
-    "$HOME/.local/bin"
-  ];
+  home.sessionPath =
+    [ "$HOME/scripts" "$HOME/bin" "$HOME/.cargo/bin" "$HOME/.local/bin" ];
 
   programs = {
     home-manager = { enable = true; };

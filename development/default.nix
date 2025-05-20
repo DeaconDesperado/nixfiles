@@ -41,6 +41,7 @@ in {
       type = types.str;
       default = "ghe.spotify.net";
     };
+    shellFunctions = mkOption { type = types.lines; };
   };
 
   config = mkIf cfg.enable {
@@ -140,6 +141,8 @@ in {
         ${rg_fzf}
 
         ${zellij_aliases}
+
+        ${cfg.shellFunctions}
       '';
     };
 
