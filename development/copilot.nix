@@ -1,6 +1,7 @@
 { inputs, lib, config, pkgs, outputs, ... }:
 with lib;
-let cfg = config.development.copilot;
+let
+  cfg = config.development.copilot;
 in {
   options.development.copilot = {
     enable = mkEnableOption "Enable copilot and it's plugins";
@@ -10,17 +11,19 @@ in {
 
     home.packages = with pkgs.luajitPackages; [ tiktoken_core ];
 
-    programs.neovim.plugins = with pkgs.vimPlugins; [
+    programs.neovim.plugins = with pkgs; [
       {
-        plugin = copilot-lua;
+        plugin = vimPlugins.copilot-lua;
         type = "lua";
-        optional = true;
       }
       {
-        plugin = CopilotChat-nvim;
+        plugin = inputs.mcphub-nvim.packages."${system}".default; 
+        type = "lua";
+      }
+      {
+        plugin = vimPlugins.codecompanion-nvim;
         type = "lua";
         config = builtins.readFile (./config/neovim/copilot/copilot-chat.lua);
-        optional = true;
       }
     ];
   };
