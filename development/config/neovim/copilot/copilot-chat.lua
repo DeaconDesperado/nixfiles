@@ -5,6 +5,19 @@ require('copilot').setup({
 });
 require('mcphub').setup();
 require("codecompanion").setup({
+  opts = {
+    log_level = "TRACE",
+  },
+  display = {
+    chat = {
+      window = {
+        layout = "horizontal",
+        height = .45,
+        full_height = false,
+      }
+    }
+  },
+
   extensions = {
     mcphub = {
       callback = "mcphub.extensions.codecompanion",

@@ -1,7 +1,6 @@
 { inputs, lib, config, pkgs, outputs, ... }:
 with lib;
-let
-  cfg = config.development.copilot;
+let cfg = config.development.copilot;
 in {
   options.development.copilot = {
     enable = mkEnableOption "Enable copilot and it's plugins";
@@ -9,7 +8,7 @@ in {
 
   config = mkIf cfg.enable {
 
-    home.packages = with pkgs.luajitPackages; [ tiktoken_core ];
+    home.packages = with pkgs; [ luajitPackages.tiktoken_core ];
 
     programs.neovim.plugins = with pkgs; [
       {
@@ -17,7 +16,7 @@ in {
         type = "lua";
       }
       {
-        plugin = inputs.mcphub-nvim.packages."${system}".default; 
+        plugin = inputs.mcphub-nvim.packages."${pkgs.system}".default;
         type = "lua";
       }
       {
