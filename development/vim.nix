@@ -100,13 +100,17 @@ in {
               '') "" (attrNames cfg.lsp-setups);
           in ''
             local mason_lspconfig = require("mason-lspconfig")
-            mason_lspconfig.setup{ ensure_installed = { 
-                ${lspServerNames}
-              }
+            mason_lspconfig.setup { 
+              ensure_installed = { 
+                  ${lspServerNames}
+                },
+                automatic_enable = {
+                  exclude = {
+                    "rust_analyzer"
+                  }
+               }
             }
-            mason_lspconfig.setup_handlers {
-              ['rust_analyzer'] = function() end,
-            }
+
           '';
         }
         {
