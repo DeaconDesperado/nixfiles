@@ -66,6 +66,7 @@ in {
       extraConfig = ''
         filetype on
         filetype plugin on
+        set nomodeline
         set nobackup
         set noswapfile
         set nowritebackup
