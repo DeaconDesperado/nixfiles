@@ -4,7 +4,7 @@ require('spectre').setup({
   replace_engine = {
     ['sed'] = {
       cmd = "sed",
-      args = nil,
+      args = {"-i", "-e"},
       options = {
         ['ignore-case'] = {
           value = "--ignore-case",
