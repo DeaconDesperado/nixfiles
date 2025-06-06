@@ -29,3 +29,5 @@ require("codecompanion").setup({
     }
   }
 });
+
+vim.keymap.set('n', '<leader>cc', ':CodeCompanionActions<CR>', {noremap = true});
