@@ -56,6 +56,7 @@ in {
     home.packages = with pkgs;
       [
         protege
+        apache-jena
         # turtle_ls 
       ];
   };

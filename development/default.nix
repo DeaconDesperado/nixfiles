@@ -112,6 +112,7 @@ in {
         bazel = "bazelisk";
         top = "btop";
         jless = "jless --mode line";
+        yesterday = "date -d 'yesterday' +%Y%m%d";
       };
       plugins = [
         {
