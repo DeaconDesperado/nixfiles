@@ -158,6 +158,7 @@ in {
         s = "status";
         l =
           "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+        ri = "! git rebase -i $(git merge-base HEAD master)";
       };
 
       extraConfig = {

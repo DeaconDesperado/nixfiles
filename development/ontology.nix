@@ -53,11 +53,10 @@ in {
       nvim-treesitter-parsers.sparql
     ];
 
-    home.packages = with pkgs;
-      [
-        protege
-        apache-jena
-        # turtle_ls 
-      ];
+    home.packages = with pkgs; [
+      protege
+      apache-jena
+      # turtle_ls 
+    ];
   };
 }
