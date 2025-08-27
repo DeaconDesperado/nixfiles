@@ -8,7 +8,13 @@ in {
 
   config = mkIf cfg.enable {
 
-    home.packages = with pkgs; [ luajitPackages.tiktoken_core ];
+    home.packages = with pkgs; [ luajitPackages.tiktoken_core claude-code ];
+
+    programs.zsh.initContent = let
+      claude_code_source = builtins.readFile (./config/claude-code/claude.zsh);
+    in ''
+      ${claude_code_source} 
+    '';
 
     programs.neovim.plugins = with pkgs; [
       {

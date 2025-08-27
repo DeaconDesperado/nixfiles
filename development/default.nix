@@ -107,7 +107,7 @@ in {
       history.extended = true;
       shellAliases = {
         cat = "bat";
-        git = "hub";
+        #git = "hub";
         k = "kubectl";
         bazel = "bazelisk";
         top = "btop";
@@ -149,7 +149,6 @@ in {
 
     programs.git = {
       enable = true;
-      package = pkgs.gitFull;
       lfs.enable = true;
       userName = cfg.userName;
       userEmail = cfg.userEmail;
