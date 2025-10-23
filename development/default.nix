@@ -130,6 +130,7 @@ in {
         rg_fzf = builtins.readFile (./config/zsh/rg_fzf.sh);
         zellij_aliases = builtins.readFile (./config/zellij/aliases.sh);
       in ''
+        export WORDCHARS='*?[]~=&;!#$%^(){}<>'
         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
         export LSP_USE_PLISTS=true
         export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=bold,underline"
@@ -248,6 +249,7 @@ in {
     home.packages = with pkgs; [
       act
       avro-tools
+      bazel-buildtools
       bazelisk
       cmake
       colima

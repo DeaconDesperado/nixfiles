@@ -21,16 +21,6 @@ let
     };
   };
 
-  render-markdown-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "render-markdown-nvim";
-    src = pkgs.fetchFromGitHub {
-      owner = "MeanderingProgrammer";
-      repo = "render-markdown.nvim";
-      rev = "v7.4.0";
-      hash = "sha256-K2YbO4vIjVgYrWF4MVxqiaTmONF1ZvMXxZVIW/UYwRo=";
-    };
-  };
-
   colortils-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "colortils-nvim";
     src = pkgs.fetchFromGitHub {
@@ -223,12 +213,6 @@ in {
           plugin = lazydev-nvim;
           type = "lua";
           config = builtins.readFile (./config/neovim/neovim/lazydev-nvim.lua);
-        }
-        {
-          plugin = render-markdown-nvim;
-          type = "lua";
-          config =
-            builtins.readFile (./config/neovim/neovim/render-markdown.lua);
         }
       ];
     };

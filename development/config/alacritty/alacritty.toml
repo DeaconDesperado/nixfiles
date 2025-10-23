@@ -79,4 +79,8 @@ decorations = "buttonless"
 opacity = 0.98
 option_as_alt = "OnlyLeft"
 
+[selection]
+semantic_escape_chars = "./-_,│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true 
+
 [terminal]
