@@ -40,35 +40,19 @@ size = 14.0
 [font.normal]
 family = "Mononoki Nerd Font"
 
-[[keyboard.bindings]]
-chars = "\u001bb"
-key = "Left"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001bf"
-key = "Right"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u0015"
-key = "Back"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u001B\u007F"
-key = "Back"
-mods = "Alt"
-
-[[keyboard.bindings]]
-action = "ToggleSimpleFullscreen"
-key = "F"
-mods = "Command|Alt"
-
-[[keyboard.bindings]]
-chars = "alacritty msg create-window -e zsh \r"
-key = "N"
-mods = "Command" 
+[keyboard]
+bindings = [
+  { key = "Left", mods = "Alt", chars = "\u001bb" },
+  { key = "Right", mods = "Alt", chars = "\u001bf" },
+  { key = "Back", mods = "Command", chars = "\u0015" },
+  { key = "Back", mods = "Alt", chars = "\u001B\u007F" },
+  { key = "F", mods = "Command|Alt", action = "ToggleSimpleFullscreen" },
+  { key = "N", mods = "Command", chars = "alacritty msg create-window -e zsh \r" },
+  # Yank and exit vi
+  { key = "Y", mode="Vi|~Search", action = "Copy" },
+  { key = "Y", mode="Vi|~Search", action = "ClearSelection" },
+  { key = "Y", mode="Vi|~Search", action = "ToggleViMode" },
+] 
 
 [terminal.shell]
 args = ["-l", "-c", "zellij attach --index 0 || zellij"]
