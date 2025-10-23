@@ -89,6 +89,10 @@ in {
               a + b + ''
                 ,
               '') "" (attrNames cfg.lsp-setups);
+            hoverDiagnostics =
+              builtins.readFile (./config/neovim/lsp/diagnostics.lua);
+            lspSetups =
+              lib.foldl' (a: b: a + b + "\n") "" (attrValues cfg.lsp-setups);
           in ''
             local mason_lspconfig = require("mason-lspconfig")
             mason_lspconfig.setup { 
@@ -101,18 +105,6 @@ in {
                   }
                }
             }
-
-          '';
-        }
-        {
-          plugin = nvim-lspconfig;
-          type = "lua";
-          config = let
-            hoverDiagnostics =
-              builtins.readFile (./config/neovim/lsp/diagnostics.lua);
-            lspSetups =
-              lib.foldl' (a: b: a + b + "\n") "" (attrValues cfg.lsp-setups);
-          in ''
 
             ${hoverDiagnostics}
 

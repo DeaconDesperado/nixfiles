@@ -294,7 +294,7 @@ in {
       moreutils
       nixfmt-classic
       nixpkgs-fmt
-      nodejs_20
+      nodejs_22
       nurl
       operator-sdk
       pandoc

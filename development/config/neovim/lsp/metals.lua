@@ -96,7 +96,7 @@ metals_config.init_options.statusBarProvider = "on"
 require("metals.handlers")["metals/status"] = metals_status_handler
 
 -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
-metals_config.capabilities = require("blink-cmp").get_lsp_capabilities()
+metals_config.capabilities = require("blink.cmp").get_lsp_capabilities()
 
 -- Debug settings if you're using nvim-dap
 local dap = require("dap")
