@@ -151,18 +151,18 @@ in {
     programs.git = {
       enable = true;
       lfs.enable = true;
-      userName = cfg.userName;
-      userEmail = cfg.userEmail;
+      settings = {
+        user.name = cfg.userName;
+        user.email = cfg.userEmail;
 
-      aliases = {
-        s = "status";
-        l =
-          "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-        ri = "! git rebase -i $(git merge-base HEAD master)";
-        revise = "commit -a --amend --no-edit";
-      };
+        aliases = {
+          s = "status";
+          l =
+            "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
+          ri = "! git rebase -i $(git merge-base HEAD master)";
+          revise = "commit -a --amend --no-edit";
+        };
 
-      extraConfig = {
         core.editor = "vim";
         color.ui = true;
         branch.autosetuprebase = "always";
@@ -191,8 +191,12 @@ in {
         ".local-dev"
       ];
 
-      delta.enable = true;
-      delta.options = {
+    };
+
+    programs.delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
         kanagawa = {
           file-style = "cyan ul";
           file-decoration-style = "blue ul";
