@@ -161,7 +161,7 @@ in {
         user.name = cfg.userName;
         user.email = cfg.userEmail;
 
-        aliases = {
+        alias = {
           s = "status";
           l =
             "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
