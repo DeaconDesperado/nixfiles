@@ -22,12 +22,37 @@ fi
 
 RESOURCE_CONTENTS=$(cat "$RESOURCE_FILE" | grep -v '\$kpt-set')
 
-echo -e "\\U0001F4C4 Applying resource..."
+echo -e "\\U0001F4C4 Applying resource...\n"
 echo "$RESOURCE_CONTENTS"
+echo "\n"
 
 if echo "$RESOURCE_CONTENTS" | kubectl --namespace="$NAMESPACE" --as=system:serviceaccount:$NAMESPACE:break-glass apply -f -; then
-    echo -e "\\U00002705 Resource applied successfully"
+    echo -e "\n\\U00002705 Resource applied successfully"
+
+    # Extract resource kind and name using yq
+    RESOURCE_KIND=$(echo "$RESOURCE_CONTENTS" | yq e '.kind' -)
+    RESOURCE_NAME=$(echo "$RESOURCE_CONTENTS" | yq e '.metadata.name' -)
+
+    if [ -n "$RESOURCE_KIND" ] && [ -n "$RESOURCE_NAME" ] && [ "$RESOURCE_KIND" != "null" ] && [ "$RESOURCE_NAME" != "null" ]; then
+        echo -e "\n\\U0001F50D Describing resource...\n"
+        DESCRIBE_OUTPUT=$(kubectl --namespace="$NAMESPACE" describe "$RESOURCE_KIND" "$RESOURCE_NAME")
+        echo "$DESCRIBE_OUTPUT"
+
+        # Check if the resource is ready/healthy
+        if echo "$DESCRIBE_OUTPUT" | grep -qi "Reason.*UpToDate"; then
+            echo -e "\n\\U00002728 Resource is up to date and ready!"
+        else
+            echo -e "\n\\U000026A0 Resource applied but may not be ready yet"
+            # Try to extract and highlight recent events or error conditions
+            if echo "$DESCRIBE_OUTPUT" | grep -A 20 "Events:" | grep -qi "error\|failed\|warning"; then
+                echo -e "\\U0001F6A8 Issues detected in events:\n"
+                echo "$DESCRIBE_OUTPUT" | grep -A 20 "Events:" | grep -i "error\|failed\|warning"
+            fi
+        fi
+    else
+        echo -e "\n\\U000026A0 Warning: Could not extract resource kind or name for describe operation"
+    fi
 else
-    echo -e "\\U0000274C Failed to apply resource"
+    echo -e "\n\\U0000274C Failed to apply resource"
     exit 1
 fi
