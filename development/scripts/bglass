@@ -1,0 +1,33 @@
+#!/bin/zsh
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <k8s-resource-file>" >&2
+    exit 1
+fi
+
+RESOURCE_FILE="$1"
+
+if [ ! -f "$RESOURCE_FILE" ]; then
+    echo "\\U0000274C Error: File '$RESOURCE_FILE' not found" >&2
+    exit 1
+fi
+
+# Get the current namespace from kubectl config
+NAMESPACE=$(kubectl config view --minify --output 'jsonpath={..namespace}')
+
+if [ -z "$NAMESPACE" ]; then
+    echo "\\U0000274C Error: Could not determine namespace from kubectl config" >&2
+    exit 1
+fi
+
+RESOURCE_CONTENTS=$(cat "$RESOURCE_FILE" | grep -v '\$kpt-set')
+
+echo -e "\\U0001F4C4 Applying resource..."
+echo "$RESOURCE_CONTENTS"
+
+if echo "$RESOURCE_CONTENTS" | kubectl --namespace="$NAMESPACE" --as=system:serviceaccount:$NAMESPACE:break-glass apply -f -; then
+    echo -e "\\U00002705 Resource applied successfully"
+else
+    echo -e "\\U0000274C Failed to apply resource"
+    exit 1
+fi

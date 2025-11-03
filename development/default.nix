@@ -64,6 +64,12 @@ in {
         target = "./scripts/bqj";
       };
 
+      bglass = {
+        executable = true;
+        source = lib.cleanSource ./scripts/bglass;
+        target = "./scripts/bglass";
+      };
+
       "bytes.jq" = {
         executable = true;
         source = lib.cleanSource ./scripts/bytes.jq;
