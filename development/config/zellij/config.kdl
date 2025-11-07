@@ -23,6 +23,8 @@ keybinds {
   shared_except "locked" {
     unbind "Alt f"
     unbind "Alt l"
+    unbind "Ctrl g"
+    bind "Ctrl Shift g" { SwitchToMode "Locked"; }
     bind "Alt w" { ToggleFloatingPanes; }
   }
   normal {
@@ -43,5 +45,9 @@ keybinds {
     bind "l" "Right" "Down" "j" "]" { GoToNextTab; SwitchToMode "normal"; }
     bind "Home" { "MoveTab" "Right"; }
     bind "End" { "MoveTab" "Left"; }
+  }
+  locked {
+    unbind "Ctrl g"
+    bind "Ctrl Shift g" { SwitchToMode "Normal"; }
   }
 }

@@ -135,6 +135,8 @@ in {
       initContent = let
         rg_fzf = builtins.readFile (./config/zsh/rg_fzf.sh);
         zellij_aliases = builtins.readFile (./config/zellij/aliases.sh);
+        zellij_tab_name_update =
+          builtins.readFile (./config/zsh/zellij_tab_name_update.zsh);
       in ''
         export WORDCHARS='*?[]~=&;!#$%^(){}<>'
         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
@@ -151,6 +153,8 @@ in {
         ${zellij_aliases}
 
         ${cfg.shellFunctions}
+
+        ${zellij_tab_name_update}
       '';
     };
 
@@ -243,6 +247,7 @@ in {
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
+      config = { warn_timeout = "120s"; };
     };
 
     programs.eza = {
