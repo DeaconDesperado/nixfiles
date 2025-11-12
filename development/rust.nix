@@ -21,6 +21,6 @@ in {
     ];
 
     #config contents
-    home.packages = with pkgs; [ cargo-generate rustup ];
+    home.packages = with pkgs; [ cargo-generate rustup wasm-pack ];
   };
 }
