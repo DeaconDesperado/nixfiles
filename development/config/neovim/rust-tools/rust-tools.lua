@@ -1,8 +1,16 @@
+local capabilities = require('blink.cmp').get_lsp_capabilities();
+capabilities.workspace = { didChangeWatchedFiles = { dynamicRegistration = true } }
 vim.g.rustaceanvim = {
   server = {
-    capabilities = require('blink.cmp').get_lsp_capabilities(),
+    capabilities = capabilities, 
     default_settings = {
       ["rust-analyzer"] = {
+        files = {
+          excludeDirs = {
+            ".direnv",
+            "node_modules/**"
+          }
+        },
         inlayHints = {
           parameterHints = {
             enable = false,
@@ -16,7 +24,7 @@ vim.g.rustaceanvim = {
         },
         cargo = {
           cfgs = {
-            ci = "",
+            "ci", 
           },
         },
         procMacro = {
