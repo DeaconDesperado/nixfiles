@@ -15,10 +15,6 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     ghostty.url = "github:ghostty-org/ghostty";
     roc.url = "github:roc-lang/roc";
-    qlue_ls = {
-      url = "git+file:///Users/mgthesecond/projects/foss/Qlue-ls";
-      flake = false;
-    };
   };
 
   outputs = { self, darwin, nixpkgs, home-manager, roc, ... }@inputs:

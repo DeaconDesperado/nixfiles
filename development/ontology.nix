@@ -7,11 +7,17 @@ let
     pname = "qlue-ls";
     version = "0.19.2";
 
-    src = inputs.qlue_ls;
+    src = pkgs.fetchFromGitHub {
+      owner = "DeaconDesperado";
+      repo = "Qlue-ls";
+      rev = "main";
+      hash = "sha256-PUMRIUBXxg1v2Xo1VS3X5tHQWhFghhNNvOZ8VCvxznU=";
+    };
+
     # Build only the binary, not the WASM library
     cargoBuildFlags = [ "--bin" "qlue-ls" ];
+    cargoHash = "sha256-khM+yHMhdWoqkqg+yTghPPzIQXlNGG0flBlls0NXbfA=";
     builtType = "debug";
-    cargoLock.lockFile = "${inputs.qlue_ls}/Cargo.lock";
   };
 in {
 
