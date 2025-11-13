@@ -337,11 +337,11 @@
     "qlue_ls": {
       "flake": false,
       "locked": {
-        "lastModified": 1762979035,
-        "narHash": "sha256-3v0znZIgLwgLUL2MzSL/fBIT+XJ0a5a9PTBWYAlJeiU=",
-        "ref": "refs/heads/conform-configurations",
-        "rev": "86d960bfd4a82fa467cdba1658eae2c65a6c2c0f",
-        "revCount": 806,
+        "lastModified": 1763051461,
+        "narHash": "sha256-pT2YwjM339kiE0gatas89CLVHPxpAM4oLcvpjeOlMJ8=",
+        "ref": "refs/heads/main",
+        "rev": "19f90fb6e3d3ddd5b8d1d728fec1ee5378831083",
+        "revCount": 810,
         "type": "git",
         "url": "file:///Users/mgthesecond/projects/foss/Qlue-ls"
       },

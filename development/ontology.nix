@@ -46,7 +46,7 @@ in {
     home.packages = with pkgs; [
       protege
       apache-jena
-      qlue-ls
+      #qlue-ls
       # turtle_ls
     ];
   };
