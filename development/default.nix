@@ -148,6 +148,20 @@ in {
         --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
         --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
+        git_ri() {
+          if git rev-parse --verify --quiet main >/dev/null && git rev-parse --verify --quiet master >/dev/null; then
+            echo "Fatal: Both \'main\' and \'master\' branches exist. Please rebase manually." >&2
+            exit 1
+          elif git rev-parse --verify --quiet main >/dev/null; then
+            git rebase -i $(git merge-base HEAD main)
+          elif git rev-parse --verify --quiet master >/dev/null; then
+            git rebase -i $(git merge-base HEAD master)
+          else
+            echo "Fatal: Neither \'main\' nor \'master\' branches exist." >&2
+            exit 1
+          fi
+        }
+
         ${rg_fzf}
 
         ${zellij_aliases}
@@ -169,7 +183,7 @@ in {
           s = "status";
           l =
             "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-          ri = "! git rebase -i $(git merge-base HEAD master)";
+          ri = "!zsh -i -c 'git_ri'";
           revise = "commit -a --amend --no-edit";
         };
 
