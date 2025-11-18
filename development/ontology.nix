@@ -13,6 +13,11 @@ let
     builtType = "debug";
     cargoLock.lockFile = "${inputs.qlue_ls}/Cargo.lock";
   };
+
+  qlue-ls-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "qlue-ls-nvim";
+    src = inputs.qlue_ls_nvim;
+  };
 in {
 
   options.development.ontology = {
@@ -20,10 +25,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-
-    neovim-lsps.lsp-setups = {
-      qlue_ls = builtins.readFile (./config/neovim/lsp/qlue_ls.lua);
-    };
 
     home.file = {
       "qlue-ls.toml" = {
@@ -39,6 +40,11 @@ in {
         config = ''
           vim.treesitter.language.register('turtle', { 'ttl', 'r2rml', 'obda' })
         '';
+      }
+      {
+        plugin = qlue-ls-nvim;
+        type = "lua";
+        config = builtins.readFile (./config/neovim/lsp/qlue_ls.lua);
       }
       nvim-treesitter-parsers.sparql
     ];

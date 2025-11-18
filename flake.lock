@@ -337,17 +337,33 @@
     "qlue_ls": {
       "flake": false,
       "locked": {
-        "lastModified": 1763388627,
-        "narHash": "sha256-EXDtOLk2DHtj7QWZ18h28uW4YmuY+CzLCwBMYv55hrE=",
-        "ref": "refs/heads/local-dev",
-        "rev": "f72824e343069d09e47487a3b41034942ba07cb2",
-        "revCount": 813,
+        "lastModified": 1763497043,
+        "narHash": "sha256-B8vb8g37ar6vOa52h0WDN5hE7YEQILtCLGKk8WrWVuQ=",
+        "ref": "refs/heads/edit-out-of-range",
+        "rev": "00d93b99b6672eb8de8fc99a557b8d136f5a4eae",
+        "revCount": 815,
         "type": "git",
         "url": "file:///Users/mgthesecond/projects/foss/Qlue-ls"
       },
       "original": {
         "type": "git",
         "url": "file:///Users/mgthesecond/projects/foss/Qlue-ls"
+      }
+    },
+    "qlue_ls_nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763498817,
+        "narHash": "sha256-MBA+n2RctLYAiW08THBjBZPKebaOotizefidVCYIDAk=",
+        "ref": "refs/heads/main",
+        "rev": "c5bae278c5a7e1dcdbffe2c8e2fbf0880bcf41eb",
+        "revCount": 9,
+        "type": "git",
+        "url": "file:///Users/mgthesecond/projects/foss/mgii/qluels-nvim/"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///Users/mgthesecond/projects/foss/mgii/qluels-nvim/"
       }
     },
     "roc": {
@@ -381,6 +397,7 @@
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "qlue_ls": "qlue_ls",
+        "qlue_ls_nvim": "qlue_ls_nvim",
         "roc": "roc"
       }
     },

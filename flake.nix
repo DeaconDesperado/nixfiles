@@ -19,6 +19,10 @@
       url = "git+file:///Users/mgthesecond/projects/foss/Qlue-ls";
       flake = false;
     };
+    qlue_ls_nvim = {
+      url = "git+file:///Users/mgthesecond/projects/foss/mgii/qluels-nvim/";
+      flake = false;
+    };
   };
 
   outputs = { self, darwin, nixpkgs, home-manager, roc, ... }@inputs:
