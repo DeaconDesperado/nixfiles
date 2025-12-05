@@ -337,11 +337,11 @@
     "qlue_ls": {
       "flake": false,
       "locked": {
-        "lastModified": 1763497043,
-        "narHash": "sha256-B8vb8g37ar6vOa52h0WDN5hE7YEQILtCLGKk8WrWVuQ=",
-        "ref": "refs/heads/edit-out-of-range",
-        "rev": "00d93b99b6672eb8de8fc99a557b8d136f5a4eae",
-        "revCount": 815,
+        "lastModified": 1764191616,
+        "narHash": "sha256-HJKvgtwkxY9OPS1Ls0gTAs8n+xNcIXb6j+DDYDyFCyM=",
+        "ref": "refs/heads/main",
+        "rev": "acacbcbdc0bebbcab936e35b1b084a5b8bf10dad",
+        "revCount": 838,
         "type": "git",
         "url": "file:///Users/mgthesecond/projects/foss/Qlue-ls"
       },
@@ -353,11 +353,11 @@
     "qlue_ls_nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1763498817,
-        "narHash": "sha256-MBA+n2RctLYAiW08THBjBZPKebaOotizefidVCYIDAk=",
+        "lastModified": 1764788429,
+        "narHash": "sha256-XysjMS2GhcJqvdHOp/0fS7e50sZYKITCe5VgsOyCkZE=",
         "ref": "refs/heads/main",
-        "rev": "c5bae278c5a7e1dcdbffe2c8e2fbf0880bcf41eb",
-        "revCount": 9,
+        "rev": "1a9f8456b566a24392dd8f363b3060071d4f55de",
+        "revCount": 11,
         "type": "git",
         "url": "file:///Users/mgthesecond/projects/foss/mgii/qluels-nvim/"
       },
