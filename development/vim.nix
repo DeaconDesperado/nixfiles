@@ -191,11 +191,11 @@ in {
           type = "lua";
           config = builtins.readFile (./config/neovim/neovim/colorizer.lua);
         }
-        {
-          plugin = nvim-spectre;
-          type = "lua";
-          config = builtins.readFile (./config/neovim/neovim/spectre.lua);
-        }
+        #{
+        #  plugin = nvim-spectre;
+        #  type = "lua";
+        #  config = builtins.readFile (./config/neovim/neovim/spectre.lua);
+        #}
         {
           plugin = todo-comments-nvim;
           type = "lua";

@@ -3,7 +3,7 @@
 
   inputs = {
     # Package sets
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
 
@@ -16,7 +16,7 @@
     ghostty.url = "github:ghostty-org/ghostty";
     roc.url = "github:roc-lang/roc";
     qlue_ls = {
-      url = "git+file:///Users/mgthesecond/projects/foss/Qlue-ls";
+      url = "github:IoannisNezis/Qlue-ls/1.1.0";
       flake = false;
     };
     qlue_ls_nvim = {

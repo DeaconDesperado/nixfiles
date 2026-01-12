@@ -25,11 +25,11 @@ in {
         plugin = inputs.mcphub-nvim.packages."${pkgs.system}".default;
         type = "lua";
       }
-      {
-        plugin = vimPlugins.codecompanion-nvim;
-        type = "lua";
-        config = builtins.readFile (./config/neovim/copilot/copilot-chat.lua);
-      }
+      #{
+      #  plugin = vimPlugins.codecompanion-nvim;
+      #  type = "lua";
+      #  config = builtins.readFile (./config/neovim/copilot/copilot-chat.lua);
+      #}
     ];
   };
 }

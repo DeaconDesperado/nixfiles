@@ -23,3 +23,13 @@ backend = {
   health_check_url = "http://codex.services.guc3.spotify.net:3330/ontology" 
 }
 prefixMap = { sp = "http://spotify.com/ontology#" }
+
+
+[backends.codex-kg-local]
+backend = { 
+  name = "codex-kg-local",
+  url = "http://localhost:3330/spotify/query" 
+  health_check_url = "http://localhost:3330/ontology" 
+}
+default = true
+prefixMap = { sp = "http://spotify.com/ontology#" }

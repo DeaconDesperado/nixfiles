@@ -5,7 +5,7 @@ let
 
   qlue-ls = pkgs.rustPlatform.buildRustPackage rec {
     pname = "qlue-ls";
-    version = "0.19.2";
+    version = "1.1.0";
 
     src = inputs.qlue_ls;
     # Build only the binary, not the WASM library
