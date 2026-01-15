@@ -337,16 +337,16 @@
     "qlue_ls": {
       "flake": false,
       "locked": {
-        "lastModified": 1767576282,
-        "narHash": "sha256-xJ4256XW04RTx5dgbd+/EPsS5fbPFMwsJGqU7dF21Ck=",
-        "owner": "IoannisNezis",
+        "lastModified": 1768443110,
+        "narHash": "sha256-n9/5Lkqxhg1LrQCq6ooJtUM+vVXkLEUEXM3HqwxsWG0=",
+        "owner": "DeaconDesperado",
         "repo": "Qlue-ls",
-        "rev": "faabdb2f19e804b60083d106ae9eac2826abc785",
+        "rev": "c29629150d16b0a6be9512397129316f6b6dd520",
         "type": "github"
       },
       "original": {
-        "owner": "IoannisNezis",
-        "ref": "1.1.0",
+        "owner": "DeaconDesperado",
+        "ref": "dev",
         "repo": "Qlue-ls",
         "type": "github"
       }
@@ -354,17 +354,18 @@
     "qlue_ls_nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1768255691,
-        "narHash": "sha256-niet3GOftIe4JD41sitSnHI8GjyoMFnVbZk5xkFT9pM=",
-        "ref": "refs/heads/main",
-        "rev": "b9059b25303d9876a11261364a65c23dda29438e",
-        "revCount": 14,
-        "type": "git",
-        "url": "file:///Users/mgthesecond/projects/foss/mgii/qluels-nvim/"
+        "lastModified": 1768483740,
+        "narHash": "sha256-SwETUeGpXRR9rPoCC9e/zPoHlEDf7pZ6SamrKt4CvyA=",
+        "owner": "DeaconDesperado",
+        "repo": "qluels-nvim",
+        "rev": "3514a9db05ad4085c45aeb78787d40a2bde123ee",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///Users/mgthesecond/projects/foss/mgii/qluels-nvim/"
+        "owner": "DeaconDesperado",
+        "ref": "dev",
+        "repo": "qluels-nvim",
+        "type": "github"
       }
     },
     "roc": {

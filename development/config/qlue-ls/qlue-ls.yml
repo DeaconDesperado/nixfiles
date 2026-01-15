@@ -1,0 +1,113 @@
+format:
+    alignPrefixes: true 
+    alignPredicates: true
+    separate_prologue: false
+    capitalizeKeywords: true
+    filterSameLine: true
+    insertSpaces: true
+    tabSize: 2
+    whereNewLine: false
+completion:
+    resultSizeLimit: 20
+    timeoutMs: 5000
+prefixes:
+    addMissing: true
+    removeUnused: false
+replacements:
+    objectVariable:
+        - pattern: ^has (\w+)
+          replacement: '$1'
+        - pattern: \s
+          replacement: '_'
+        - pattern: ^has([A-Z]\w*)
+          replacement: '$1'
+        - pattern: ^(\w+)edBy
+          replacement: '$1'
+        - pattern: ^asWKT
+          replacement: 'geometry'
+        - pattern: '[^a-zA-Z0-9_]'
+          replacement: ''
+backends:
+  backends:
+    codex-kg: 
+      service:
+        name: codex-kg 
+        slug: sp 
+        url: http://codex.services.guc3.spotify.net:3330/spotify/query
+        health_check_url: http://codex.services.guc3.spotify.net:3330/ontology
+      prefixMap:
+          rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+          rdfs: http://www.w3.org/2000/01/rdf-schema#
+          owl: http://www.w3.org/2002/07/owl#
+          xsd: http://www.w3.org/2001/XMLSchema#
+          sp: http://metamodel.spotify.net/ontology#
+          bstage: https://backstage.io/ns#
+          rml: http://w3id.org/rml/
+          skos: http://www.w3.org/2004/02/skos/core#
+          foaf: http://xmlns.com/foaf/0.1/
+          dcat: http://www.w3.org/ns/dcat#
+          dcterms: http://purl.org/dc/terms/
+          schema: https://schema.org/
+          vedder: https://backstage.spotify.net/vedder#
+          cdxrml: http://codex.spotify.net/rml/
+          vcard: http://www.w3.org/2006/vcard/ns#
+          media: https://w3id.org/spar/mediatype/
+          disco: http://rdf-vocabulary.ddialliance.org/discovery#
+          dcmitype: http://purl.org/dc/dcmitype/
+          ql: http://semweb.mmlab.be/ns/ql#
+          rr: http://www.w3.org/ns/r2rml#
+          fuseki: http://jena.apache.org/fuseki#
+          ja: http://jena.hpl.hp.com/2005/11/Assembler#
+          tdb2: http://jena.apache.org/2016/tdb#
+          codex: http://metamodel.spotify.net/codex#
+      queries:
+          subjectCompletion: &sub |-
+            {% include "prefix_declarations" %}
+            PREFIX sp: <http://metamodel.spotify.net/ontology#> 
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+            SELECT ?qlue_ls_entity ?qlue_ls_label WHERE {
+              ?qlue_ls_entity rdfs:isDefinedBy sp: ;
+                              rdfs:label ?qlue_ls_label .
+            } LIMIT 100
+          predicateCompletionContextSensitive: *sub
+          predicateCompletionContextInsensitive: *sub
+          objectCompletionContextSensitive: *sub 
+          objectCompletionContextInsensitive: *sub 
+    codex-kg-eu: 
+      service:
+        name: codex-kg-eu 
+        slug: sp 
+        url: http://codex.services.gew1.spotify.net:3330/spotify/query
+        health_check_url: http://codex.services.gew1.spotify.net:3330/ontology
+      prefixMap:
+          rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+          rdfs: http://www.w3.org/2000/01/rdf-schema#
+          owl: http://www.w3.org/2002/07/owl#
+          xsd: http://www.w3.org/2001/XMLSchema#
+          sp: http://metamodel.spotify.net/ontology#
+          bstage: https://backstage.io/ns#
+          rml: http://w3id.org/rml/
+          skos: http://www.w3.org/2004/02/skos/core#
+          foaf: http://xmlns.com/foaf/0.1/
+          dcat: http://www.w3.org/ns/dcat#
+          dcterms: http://purl.org/dc/terms/
+          schema: https://schema.org/
+          vedder: https://backstage.spotify.net/vedder#
+          cdxrml: http://codex.spotify.net/rml/
+          vcard: http://www.w3.org/2006/vcard/ns#
+          media: https://w3id.org/spar/mediatype/
+          disco: http://rdf-vocabulary.ddialliance.org/discovery#
+          dcmitype: http://purl.org/dc/dcmitype/
+          ql: http://semweb.mmlab.be/ns/ql#
+          rr: http://www.w3.org/ns/r2rml#
+          fuseki: http://jena.apache.org/fuseki#
+          ja: http://jena.hpl.hp.com/2005/11/Assembler#
+          tdb2: http://jena.apache.org/2016/tdb#
+          codex: http://metamodel.spotify.net/codex#
+      queries:
+          subjectCompletion: *sub 
+          predicateCompletionContextSensitive: *sub
+          predicateCompletionContextInsensitive: *sub
+          objectCompletionContextSensitive: *sub 
+          objectCompletionContextInsensitive: *sub 

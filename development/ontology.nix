@@ -28,8 +28,8 @@ in {
 
     home.file = {
       "qlue-ls.toml" = {
-        source = cleanSource ./config/qlue-ls/qlue-ls.toml;
-        target = ".config/qlue-ls/qlus-ls.toml";
+        source = cleanSource ./config/qlue-ls/qlue-ls.yml;
+        target = ".config/qlue-ls/qlus-ls.yml";
       };
     };
 

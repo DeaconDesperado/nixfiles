@@ -16,11 +16,11 @@
     ghostty.url = "github:ghostty-org/ghostty";
     roc.url = "github:roc-lang/roc";
     qlue_ls = {
-      url = "github:IoannisNezis/Qlue-ls/1.1.0";
+      url = "github:DeaconDesperado/Qlue-ls/dev";
       flake = false;
     };
     qlue_ls_nvim = {
-      url = "git+file:///Users/mgthesecond/projects/foss/mgii/qluels-nvim/";
+      url = "github:DeaconDesperado/qluels-nvim/dev";
       flake = false;
     };
   };
