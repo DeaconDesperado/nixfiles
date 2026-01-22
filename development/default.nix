@@ -328,6 +328,7 @@ in {
       pqrs
       protobuf
       ripgrep
+      semver-tool
       shellcheck
       silver-searcher
       texlab
