@@ -13,8 +13,7 @@ in {
       clangd = builtins.readFile (./config/neovim/lsp/clangd.lua);
     };
 
-    programs.neovim.plugins = with pkgs.vimPlugins;
-      [ nvim-treesitter-parsers.cpp ];
+    neovim-treesitter.grammars = [ "cpp" ];
 
   };
 

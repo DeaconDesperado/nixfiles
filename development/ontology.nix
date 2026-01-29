@@ -33,20 +33,16 @@ in {
       };
     };
 
+    neovim-treesitter.grammars = [ "turtle" "sparql" ];
+
     programs.neovim.plugins = with pkgs.vimPlugins; [
-      {
-        plugin = nvim-treesitter-parsers.turtle;
-        type = "lua";
-        config = ''
-          vim.treesitter.language.register('turtle', { 'ttl', 'r2rml', 'obda' })
-        '';
-      }
       {
         plugin = qlue-ls-nvim;
         type = "lua";
-        config = builtins.readFile (./config/neovim/lsp/qlue_ls.lua);
+        config = ''
+          vim.treesitter.language.register('turtle', { 'ttl', 'r2rml', 'obda' })
+        '' + builtins.readFile (./config/neovim/lsp/qlue_ls.lua);
       }
-      nvim-treesitter-parsers.sparql
     ];
 
     home.packages = with pkgs; [

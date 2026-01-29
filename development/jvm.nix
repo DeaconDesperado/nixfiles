@@ -19,10 +19,9 @@ in {
       repositories = cfg.mavenRepositories;
     };
 
+    neovim-treesitter.grammars = [ "java" "kotlin" "scala" ];
+
     programs.neovim.plugins = with pkgs.vimPlugins; [
-      nvim-treesitter-parsers.java
-      nvim-treesitter-parsers.kotlin
-      nvim-treesitter-parsers.scala
       nvim-jdtls
       {
         plugin = nvim-metals;

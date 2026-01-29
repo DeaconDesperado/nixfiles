@@ -17,10 +17,6 @@ in {
     '';
 
     home.file = {
-      claude-settings = {
-        source = lib.cleanSource ./config/claude-code/settings.json;
-        target = "./.claude/settings.json";
-      };
       claude-keybinds = {
         source = lib.cleanSource ./config/claude-code/keybindings.json;
         target = "./.claude/keybindings.json";

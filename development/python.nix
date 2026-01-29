@@ -13,8 +13,7 @@ in {
       pyright = builtins.readFile (./config/neovim/lsp/pyright.lua);
     };
 
-    programs.neovim.plugins = with pkgs.vimPlugins;
-      [ nvim-treesitter-parsers.python ];
+    neovim-treesitter.grammars = [ "python" ];
 
     programs.zsh.plugins = [{
       name = "zsh-pyenv";

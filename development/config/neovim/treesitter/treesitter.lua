@@ -1,30 +1,20 @@
--- Treesitter Plugin Setup
-require('nvim-treesitter.config').setup {
-  auto_install = false,
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  ident = { enable = true },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
-  },
-  autotag = {
-    enable = true,
-    enable_rename = true,
-    enable_close = true,
-    enable_close_on_slash = true,
-    filetypes = { "html", "xml" },
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    }
-  }
-}
+-- Treesitter Plugin Setup (nvim-treesitter 1.0+)
+-- Parsers are pre-installed via Nix using withPlugins
+
+-- Start treesitter highlighting for buffers with available parsers
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(args)
+    local ft = vim.bo[args.buf].filetype
+    local lang = vim.treesitter.language.get_lang(ft) or ft
+    local ok = pcall(vim.treesitter.start, args.buf, lang)
+    if not ok then
+      -- Parser not available for this filetype, fall back to syntax
+      vim.bo[args.buf].syntax = 'ON'
+    end
+  end,
+})
+
+-- Treesitter-based folding (disabled by default)
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldenable = false

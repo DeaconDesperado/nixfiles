@@ -32,11 +32,20 @@ let
   };
 
   cfg = config.neovim-lsps;
+  tsCfg = config.neovim-treesitter;
 
 in {
 
   options.neovim-lsps = {
     lsp-setups = mkOption { type = types.attrsOf types.lines; };
+  };
+
+  options.neovim-treesitter = {
+    grammars = mkOption {
+      type = types.listOf types.str;
+      default = [];
+      description = "List of treesitter grammar names to install";
+    };
   };
 
   config = {
@@ -45,6 +54,19 @@ in {
     neovim-lsps.lsp-setups = {
       lua_ls = builtins.readFile (./config/neovim/lsp/lua_ls.lua);
     };
+
+    # Base grammars always installed
+    neovim-treesitter.grammars = [
+      "javascript"
+      "lua"
+      "yaml"
+      "json"
+      "markdown"
+      "typescript"
+      "tsx"
+      "html"
+      "css"
+    ];
 
     programs.neovim = {
       defaultEditor = true;
@@ -133,7 +155,9 @@ in {
         nvim-dap
         vim-thrift
         {
-          plugin = nvim-treesitter;
+          plugin = nvim-treesitter.withPlugins (p:
+            map (name: p.${name}) tsCfg.grammars
+          );
           type = "lua";
           config =
             builtins.readFile (./config/neovim/treesitter/treesitter.lua);
@@ -143,12 +167,23 @@ in {
           type = "lua";
           config = builtins.readFile (./config/neovim/lsp/typescript.lua);
         }
-        nvim-treesitter-parsers.javascript
-        nvim-treesitter-parsers.lua
-        nvim-treesitter-parsers.yaml
-        nvim-treesitter-parsers.json
-        nvim-treesitter-parsers.markdown
-        nvim-ts-autotag
+        {
+          plugin = nvim-ts-autotag;
+          type = "lua";
+          config = ''
+            require('nvim-ts-autotag').setup {
+              opts = {
+                enable_close = true,
+                enable_rename = true,
+                enable_close_on_slash = true,
+              },
+              per_filetype = {
+                ["html"] = { enable_close = true },
+                ["xml"] = { enable_close = true },
+              }
+            }
+          '';
+        }
         nvim-web-devicons
         {
           plugin = trouble-nvim;

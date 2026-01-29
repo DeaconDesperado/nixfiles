@@ -13,8 +13,7 @@ in {
       roc_ls = builtins.readFile (./config/neovim/lsp/roc_ls.lua);
     };
 
-    programs.neovim.plugins = with pkgs.vimPlugins;
-      [ nvim-treesitter-parsers.roc ];
+    neovim-treesitter.grammars = [ "roc" ];
 
     home.packages = with pkgs; [
       inputs.roc.packages.${pkgs.stdenv.hostPlatform.system}.cli
