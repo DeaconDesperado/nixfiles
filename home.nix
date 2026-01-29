@@ -26,7 +26,7 @@
     qmk.enable = true;
     python.enable = true;
     graphql.enable = true;
-    copilot.enable = true;
+    ai.enable = true;
     roc.enable = true;
     ontology.enable = true;
 

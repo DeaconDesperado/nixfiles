@@ -1,9 +1,9 @@
 { inputs, lib, config, pkgs, outputs, ... }:
 with lib;
-let cfg = config.development.copilot;
+let cfg = config.development.ai;
 in {
-  options.development.copilot = {
-    enable = mkEnableOption "Enable copilot and it's plugins";
+  options.development.ai = {
+    enable = mkEnableOption "Enable ai-assist and plugins";
   };
 
   config = mkIf cfg.enable {
@@ -16,13 +16,24 @@ in {
       ${claude_code_source} 
     '';
 
+    home.file = {
+      claude-settings = {
+        source = lib.cleanSource ./config/claude-code/settings.json;
+        target = "./.claude/settings.json";
+      };
+      claude-keybinds = {
+        source = lib.cleanSource ./config/claude-code/keybindings.json;
+        target = "./.claude/keybindings.json";
+      };
+    };
+
     programs.neovim.plugins = with pkgs; [
       {
         plugin = vimPlugins.copilot-lua;
         type = "lua";
       }
       {
-        plugin = inputs.mcphub-nvim.packages."${pkgs.system}".default;
+        plugin = inputs.mcphub-nvim.packages."${pkgs.stdenv.hostPlatform.system}".default;
         type = "lua";
       }
       #{

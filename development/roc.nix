@@ -17,8 +17,8 @@ in {
       [ nvim-treesitter-parsers.roc ];
 
     home.packages = with pkgs; [
-      inputs.roc.packages.${system}.cli
-      inputs.roc.packages.${system}.lang-server
+      inputs.roc.packages.${pkgs.stdenv.hostPlatform.system}.cli
+      inputs.roc.packages.${pkgs.stdenv.hostPlatform.system}.lang-server
     ];
   };
 

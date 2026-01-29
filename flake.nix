@@ -4,7 +4,8 @@
   inputs = {
     # Package sets
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url =
+      "github:NixOS/nixpkgs/70801e06d9730c4f1704fbd3bbf5b8e11c03a2a7";
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
 
     # Environment/system management
@@ -15,6 +16,8 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     ghostty.url = "github:ghostty-org/ghostty";
     roc.url = "github:roc-lang/roc";
+    # Always latest
+    claude-code.url = "github:sadjow/claude-code-nix";
     qlue_ls = {
       url = "github:DeaconDesperado/Qlue-ls/dev";
       flake = false;
@@ -73,10 +76,12 @@
 
         neovim-nightly = inputs.neovim-nightly-overlay.overlays.default;
 
+        claude-code = inputs.claude-code.overlays.default;
+
         # Overlays to add various packages into package set
         pkgs-unstable = final: prev: {
           unstable = import inputs.nixpkgs-unstable {
-            inherit (prev.stdenv) system;
+            inherit (prev.stdenv.hostPlatform) system;
             inherit (nixpkgsConfig) config;
           };
         };

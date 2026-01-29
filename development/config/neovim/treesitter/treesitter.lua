@@ -1,5 +1,5 @@
 -- Treesitter Plugin Setup
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.config').setup {
   auto_install = false,
   highlight = {
     enable = true,

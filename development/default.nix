@@ -24,7 +24,7 @@ in {
     ./roc.nix
     ./ontology.nix
     ./graphql.nix
-    ./copilot.nix
+    ./ai.nix
   ];
 
   options.development = {
@@ -317,7 +317,7 @@ in {
       marksman
       minikube
       moreutils
-      nixfmt-classic
+      nixfmt
       nixpkgs-fmt
       nodejs_22
       nurl
