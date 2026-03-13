@@ -16,13 +16,6 @@ in {
       ${claude_code_source} 
     '';
 
-    home.file = {
-      claude-keybinds = {
-        source = lib.cleanSource ./config/claude-code/keybindings.json;
-        target = "./.claude/keybindings.json";
-      };
-    };
-
     programs.neovim.plugins = with pkgs; [
       {
         plugin = vimPlugins.copilot-lua;
