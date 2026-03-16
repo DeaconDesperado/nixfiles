@@ -145,6 +145,8 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
     alt-m = "mode arrange"
+    # aerospace.toml
+    alt-shift-v = '''exec-and-forget /bin/bash -c "killall 'GlobalProtect'; sleep 2; launchctl kickstart -kp gui/$(id -u)/com.paloaltonetworks.gp.pangpa"'''
 
 [mode.arrange.binding]
     esc = ["mode main"]

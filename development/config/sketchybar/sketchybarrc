@@ -81,5 +81,15 @@ for sid in $(aerospace list-workspaces --all); do
         script="$CONFIG_DIR/plugins/aerospace.sh $sid"
 done
 
+# Add an event so we can trigger updates manually
+sketchybar --add event vpn_update
+
+# Add the VPN item
+sketchybar --add item vpn right \
+           --set vpn update_obj=30 \
+                 script="$PLUGIN_DIR/vpn_status.sh" \
+                 icon.font="Mononoki Nerd Font:Bold:17.0" \
+           --subscribe vpn mouse.clicked vpn_update
+
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update

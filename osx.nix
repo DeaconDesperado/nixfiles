@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 let
-  configFile =
+  aerospaceConfigFile =
     builtins.readFile (./development/config/aerospace/aerospace.toml);
 
 in {
@@ -11,7 +11,7 @@ in {
   launchd.user.agents.aerospace = {
     command =
       "${pkgs.aerospace}/Applications/AeroSpace.app/Contents/MacOS/AeroSpace"
-      + " --config-path ${configFile}";
+      + " --config-path ${aerospaceConfigFile}";
     serviceConfig = {
       KeepAlive = true;
       RunAtLoad = true;
