@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, userName, ... }:
 
 let
   aerospaceConfigFile =
@@ -26,7 +26,9 @@ in {
     };
   };
 
-  system.primaryUser = "mgthesecond";
+  home-manager.users.${userName}.imports = [ ./home-darwin.nix ];
+
+  system.primaryUser = userName;
 
   system.defaults = {
     # Hide the menu bar to instead use sketchybar

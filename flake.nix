@@ -48,7 +48,7 @@
       };
     in {
       darwinConfigurations = rec {
-        XW6K07YF0K = darwinSystem {
+        XW6K07YF0K = let userName = "mgthesecond"; in darwinSystem {
           system = "aarch64-darwin";
           modules = [
             # Main `nix-darwin` config
@@ -61,12 +61,12 @@
               # `home-manager` config
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.mgthesecond = import ./home.nix;
+              home-manager.users.${userName} = import ./home.nix;
               home-manager.extraSpecialArgs = { inherit inputs; };
-              users.users.mgthesecond.home = "/Users/mgthesecond";
+              users.users.${userName}.home = "/Users/${userName}";
             }
           ];
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs userName; };
         };
       };
 
