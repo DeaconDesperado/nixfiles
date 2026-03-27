@@ -4,8 +4,7 @@
   inputs = {
     # Package sets
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.11-darwin";
-    nixpkgs-unstable.url =
-      "github:NixOS/nixpkgs/70801e06d9730c4f1704fbd3bbf5b8e11c03a2a7";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs";
     mcphub-nvim.url = "github:ravitemer/mcphub.nvim";
 
     # Environment/system management
