@@ -18,11 +18,11 @@
     # Always latest
     claude-code.url = "github:sadjow/claude-code-nix";
     qlue_ls = {
-      url = "github:DeaconDesperado/Qlue-ls/dev";
+      url = "github:DeaconDesperado/Qlue-ls/main";
       flake = false;
     };
     qlue_ls_nvim = {
-      url = "github:DeaconDesperado/qluels-nvim/dev";
+      url = "github:DeaconDesperado/qluels-nvim/main";
       flake = false;
     };
   };
