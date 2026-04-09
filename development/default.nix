@@ -224,14 +224,14 @@ in {
         kanagawa = {
           file-style = "cyan ul";
           file-decoration-style = "blue ul";
-          minus-style = "black red";
-          minus-emph-style = "ul black brightred";
-          minus-empty-line-marker-style = "black red";
-          line-numbers-minus-style = "brightred black";
-          zero-style = "blue";
-          plus-style = "black green";
-          plus-emph-style = "ul black brightgreen";
-          line-numbers-plus-style = "brightgreen black";
+          minus-style = "syntax \"#3f2d3d\"";
+          minus-emph-style = "syntax \"#6b3a3a\"";
+          minus-empty-line-marker-style = "syntax \"#3f2d3d\"";
+          line-numbers-minus-style = "brightred";
+          zero-style = "syntax";
+          plus-style = "syntax \"#2d3f2d\"";
+          plus-emph-style = "syntax \"#3a6b3a\"";
+          line-numbers-plus-style = "brightgreen";
           whitespace-error-style = "auto auto";
           blame-code-style = "auto auto";
           true-color = "auto";
@@ -240,6 +240,8 @@ in {
           keep-plus-minus-markers = "true";
           diff-stat-align-width = "10";
           syntax-theme = "Nord";
+          line-numbers = true;
+          navigate = true;
         };
         features = "kanagawa";
         side-by-side = true;
