@@ -6,7 +6,9 @@ require('qluels').setup({
        vim.keymap.set('n', '<leader>ex', ':QluelsExecute<cr>', { buffer = bufnr, desc = 'Execute SPARQL buffer' })
        vim.keymap.set('n', '<leader>ev', ':<,\'>QluelsExecuteSelection<cr>', { buffer = bufnr, desc = 'Execute SPARQL selection' })
        vim.keymap.set('n', '<leader>qb', ':QluelsSetBackend<cr>', { buffer = bufnr, desc = 'Set QlueLs backend' })
+       vim.keymap.set('n', '<leader>fq', ':QluelsLibraryLoad<cr>', { buffer = bufnr, desc = 'Search project query repository' })
     end,
   },
-  auto_attach = true
+  auto_attach = true,
+  on_type_formatting = true
 })

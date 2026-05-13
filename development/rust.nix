@@ -17,6 +17,7 @@ in {
       }
       {
         plugin = rust-vim;
+        type = "viml";
         config = builtins.readFile (./config/neovim/rust/rust-lang.viml);
       }
     ];

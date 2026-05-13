@@ -48,6 +48,7 @@ bindings = [
   { key = "Back", mods = "Alt", chars = "\u001B\u007F" },
   { key = "F", mods = "Command|Alt", action = "ToggleSimpleFullscreen" },
   { key = "N", mods = "Command", chars = "alacritty msg create-window -e zsh \r" },
+  { key = "Space", mods = "Alt|Shift", action = "ToggleViMode" },
   # Yank and exit vi
   { key = "Y", mode="Vi|~Search", action = "Copy" },
   { key = "Y", mode="Vi|~Search", action = "ClearSelection" },

@@ -264,6 +264,7 @@ in {
       enable = true;
       nix-direnv.enable = true;
       config = { warn_timeout = "120s"; };
+      package = pkgs.direnv.overrideAttrs { doCheck = false; };
     };
 
     programs.eza = {
@@ -286,7 +287,6 @@ in {
       colima
       coreutils
       curl
-      d2
       delta
       duf
       fd

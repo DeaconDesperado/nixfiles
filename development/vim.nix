@@ -2,7 +2,8 @@
 with lib;
 let
   vim-thrift = pkgs.vimUtils.buildVimPlugin {
-    name = "vim-thrift";
+    pname = "vim-thrift";
+    version = "unstable";
     src = pkgs.fetchFromGitHub {
       owner = "solarnz";
       repo = "thrift.vim";
@@ -12,7 +13,8 @@ let
   };
 
   eldritch-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "eldritch-nvim";
+    pname = "eldritch-nvim";
+    version = "unstable";
     src = pkgs.fetchFromGitHub {
       owner = "eldritch-theme";
       repo = "eldritch.nvim";
@@ -22,7 +24,8 @@ let
   };
 
   colortils-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "colortils-nvim";
+    pname = "colortils-nvim";
+    version = "unstable";
     src = pkgs.fetchFromGitHub {
       owner = "DeaconDesperado";
       repo = "colortils.nvim";

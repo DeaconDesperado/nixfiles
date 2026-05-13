@@ -15,8 +15,14 @@ let
   };
 
   qlue-ls-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "qlue-ls-nvim";
+    pname = "qlue-ls-nvim";
+    version = "unstable";
     src = inputs.qlue_ls_nvim;
+    nvimSkipModules = [
+      "qluels.picker._telescope"
+      "qluels.picker._snacks"
+      "qluels.picker._fzf"
+    ];
   };
 in {
 
