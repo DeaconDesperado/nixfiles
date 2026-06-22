@@ -14,7 +14,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     ghostty.url = "github:ghostty-org/ghostty";
-    roc.url = "github:roc-lang/roc";
     # Always latest
     claude-code.url = "github:sadjow/claude-code-nix";
     qlue_ls = {
@@ -27,7 +26,7 @@
     };
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, roc, ... }@inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
 
     let
       inherit (darwin.lib) darwinSystem;

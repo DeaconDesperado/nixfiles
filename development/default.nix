@@ -111,6 +111,15 @@ in {
       syntaxHighlighting = { enable = true; };
       autosuggestion = { enable = false; };
       history.extended = true;
+      profileExtra = ''
+        export PATH="$PATH:/Users/mgthesecond/Library/Application Support/JetBrains/Toolbox/scripts"
+
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+
+        source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
+        export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+      '';
       shellAliases = {
         cat = "bat";
         #git = "hub";
@@ -142,7 +151,7 @@ in {
         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
         export LSP_USE_PLISTS=true
         export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=bold,underline"
-        export PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin:/opt/spotify-cli/bin"
+        export PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin:/opt/spotify-cli/bin
         export FZF_DEFAULT_OPTS=" \
         --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
         --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
@@ -332,7 +341,6 @@ in {
       ripgrep
       semver-tool
       shellcheck
-      silver-searcher
       texlab
       tldr
       trino-cli
