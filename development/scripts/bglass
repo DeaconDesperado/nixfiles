@@ -1,11 +1,39 @@
 #!/bin/zsh
 
-if [ $# -eq 0 ]; then
-    echo "Usage: $0 <k8s-resource-file>" >&2
+ACTION="apply"
+FORCE=false
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --delete)
+            ACTION="delete"
+            shift
+            ;;
+        --force)
+            FORCE=true
+            shift
+            ;;
+        -*)
+            echo "Unknown option: $1" >&2
+            echo "Usage: $0 [--delete [--force]] <k8s-resource-file>" >&2
+            exit 1
+            ;;
+        *)
+            RESOURCE_FILE="$1"
+            shift
+            ;;
+    esac
+done
+
+if [ -z "$RESOURCE_FILE" ]; then
+    echo "Usage: $0 [--delete [--force]] <k8s-resource-file>" >&2
     exit 1
 fi
 
-RESOURCE_FILE="$1"
+if [ "$FORCE" = true ] && [ "$ACTION" != "delete" ]; then
+    echo "\\U0000274C Error: --force can only be used with --delete" >&2
+    exit 1
+fi
 
 if [ ! -f "$RESOURCE_FILE" ]; then
     echo "\\U0000274C Error: File '$RESOURCE_FILE' not found" >&2
@@ -22,37 +50,52 @@ fi
 
 RESOURCE_CONTENTS=$(cat "$RESOURCE_FILE" | grep -v '\$kpt-set')
 
-echo -e "\\U0001F4C4 Applying resource...\n"
-echo "$RESOURCE_CONTENTS"
-echo "\n"
+if [ "$ACTION" = "delete" ]; then
+    echo -e "\\U0001F5D1 Deleting resource...\n"
+    echo "$RESOURCE_CONTENTS"
+    echo "\n"
 
-if echo "$RESOURCE_CONTENTS" | kubectl --namespace="$NAMESPACE" --as=system:serviceaccount:$NAMESPACE:break-glass apply -f -; then
-    echo -e "\n\\U00002705 Resource applied successfully"
+    FORCE_FLAG=""
+    if [ "$FORCE" = true ]; then
+        FORCE_FLAG="--force"
+    fi
 
-    # Extract resource kind and name using yq
-    RESOURCE_KIND=$(echo "$RESOURCE_CONTENTS" | yq e '.kind' -)
-    RESOURCE_NAME=$(echo "$RESOURCE_CONTENTS" | yq e '.metadata.name' -)
-
-    if [ -n "$RESOURCE_KIND" ] && [ -n "$RESOURCE_NAME" ] && [ "$RESOURCE_KIND" != "null" ] && [ "$RESOURCE_NAME" != "null" ]; then
-        echo -e "\n\\U0001F50D Describing resource...\n"
-        DESCRIBE_OUTPUT=$(kubectl --namespace="$NAMESPACE" describe "$RESOURCE_KIND" "$RESOURCE_NAME")
-        echo "$DESCRIBE_OUTPUT"
-
-        # Check if the resource is ready/healthy
-        if echo "$DESCRIBE_OUTPUT" | grep -qi "Reason.*UpToDate"; then
-            echo -e "\n\\U00002728 Resource is up to date and ready!"
-        else
-            echo -e "\n\\U000026A0 Resource applied but may not be ready yet"
-            # Try to extract and highlight recent events or error conditions
-            if echo "$DESCRIBE_OUTPUT" | grep -A 20 "Events:" | grep -qi "error\|failed\|warning"; then
-                echo -e "\\U0001F6A8 Issues detected in events:\n"
-                echo "$DESCRIBE_OUTPUT" | grep -A 20 "Events:" | grep -i "error\|failed\|warning"
-            fi
-        fi
+    if echo "$RESOURCE_CONTENTS" | kubectl --namespace="$NAMESPACE" --as=system:serviceaccount:$NAMESPACE:break-glass delete $FORCE_FLAG -f -; then
+        echo -e "\n\\U00002705 Resource deleted successfully"
     else
-        echo -e "\n\\U000026A0 Warning: Could not extract resource kind or name for describe operation"
+        echo -e "\n\\U0000274C Failed to delete resource"
+        exit 1
     fi
 else
-    echo -e "\n\\U0000274C Failed to apply resource"
-    exit 1
+    echo -e "\\U0001F4C4 Applying resource...\n"
+    echo "$RESOURCE_CONTENTS"
+    echo "\n"
+
+    if echo "$RESOURCE_CONTENTS" | kubectl --namespace="$NAMESPACE" --as=system:serviceaccount:$NAMESPACE:break-glass apply -f -; then
+        echo -e "\n\\U00002705 Resource applied successfully"
+
+        RESOURCE_KIND=$(echo "$RESOURCE_CONTENTS" | yq e '.kind' -)
+        RESOURCE_NAME=$(echo "$RESOURCE_CONTENTS" | yq e '.metadata.name' -)
+
+        if [ -n "$RESOURCE_KIND" ] && [ -n "$RESOURCE_NAME" ] && [ "$RESOURCE_KIND" != "null" ] && [ "$RESOURCE_NAME" != "null" ]; then
+            echo -e "\n\\U0001F50D Describing resource...\n"
+            DESCRIBE_OUTPUT=$(kubectl --namespace="$NAMESPACE" describe "$RESOURCE_KIND" "$RESOURCE_NAME")
+            echo "$DESCRIBE_OUTPUT"
+
+            if echo "$DESCRIBE_OUTPUT" | grep -qi "Reason.*UpToDate"; then
+                echo -e "\n\\U00002728 Resource is up to date and ready!"
+            else
+                echo -e "\n\\U000026A0 Resource applied but may not be ready yet"
+                if echo "$DESCRIBE_OUTPUT" | grep -A 20 "Events:" | grep -qi "error\|failed\|warning"; then
+                    echo -e "\\U0001F6A8 Issues detected in events:\n"
+                    echo "$DESCRIBE_OUTPUT" | grep -A 20 "Events:" | grep -i "error\|failed\|warning"
+                fi
+            fi
+        else
+            echo -e "\n\\U000026A0 Warning: Could not extract resource kind or name for describe operation"
+        fi
+    else
+        echo -e "\n\\U0000274C Failed to apply resource"
+        exit 1
+    fi
 fi
