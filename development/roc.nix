@@ -15,9 +15,10 @@ in {
 
     neovim-treesitter.grammars = [ "roc" ];
 
-    home.packages = with pkgs; [
-      inputs.roc.packages.${pkgs.stdenv.hostPlatform.system}.cli
-      inputs.roc.packages.${pkgs.stdenv.hostPlatform.system}.lang-server
+    home.packages = let
+      roc = inputs.roc.packages.${pkgs.stdenv.hostPlatform.system}.roc;
+    in [
+      (roc.overrideAttrs (old: { meta = old.meta // { broken = false; }; }))
     ];
   };
 

@@ -1,4 +1,19 @@
 local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
+
+local function open_selected_in_tabs(prompt_bufnr)
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local selections = picker:get_multi_selection()
+  actions.close(prompt_bufnr)
+  for _, entry in ipairs(selections) do
+    if entry.filename or entry.path then
+      vim.cmd("tabedit " .. vim.fn.fnameescape(entry.filename or entry.path))
+      if entry.lnum then
+        vim.api.nvim_win_set_cursor(0, { entry.lnum, entry.col or 0 })
+      end
+    end
+  end
+end
 
 local open_in_new_tab = {
   i = {
@@ -13,11 +28,13 @@ local zellij_remap = {
   i = {
     ["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
     ["<M-t>"] = "select_tab_drop",
+    ["<M-CR>"] = open_selected_in_tabs,
     ["<C-Q>"] = false,
   },
   n = {
     ["<M-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
     ["<M-t>"] = "select_tab_drop",
+    ["<M-CR>"] = open_selected_in_tabs,
     ["<C-Q>"] = false,
   }
 }

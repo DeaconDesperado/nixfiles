@@ -151,7 +151,7 @@ in {
         export USE_GKE_GCLOUD_AUTH_PLUGIN=True
         export LSP_USE_PLISTS=true
         export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=bold,underline"
-        export PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin:/opt/spotify-cli/bin
+        export PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin:/opt/spotify-cli/bin:$HOME/.npm-global:$HOME/.npm-global/bin
         export FZF_DEFAULT_OPTS=" \
         --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
         --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
@@ -231,26 +231,57 @@ in {
       enableGitIntegration = true;
       options = {
         kanagawa = {
-          file-style = "cyan ul";
-          file-decoration-style = "blue ul";
-          minus-style = "syntax \"#3f2d3d\"";
-          minus-emph-style = "syntax \"#6b3a3a\"";
-          minus-empty-line-marker-style = "syntax \"#3f2d3d\"";
-          line-numbers-minus-style = "brightred";
+          # File headers — crystalBlue with sumiInk6 decoration
+          file-style = "#7E9CD8 bold ul";
+          file-decoration-style = "#54546D ul";
+          file-added-label = "[+]";
+          file-modified-label = "[~]";
+          file-removed-label = "[-]";
+          file-renamed-label = "[>]";
+
+          # Hunk headers — oniViolet file, autumnYellow line numbers
+          hunk-header-style = "file line-number syntax";
+          hunk-header-decoration-style = "#54546D box";
+          hunk-header-file-style = "#957FB8";
+          hunk-header-line-number-style = "#DCA561";
+
+          # Removed lines — winterRed backgrounds
+          minus-style = "syntax \"#43242B\"";
+          minus-emph-style = "syntax \"#5D2D3A\"";
+          minus-empty-line-marker-style = "syntax \"#43242B\"";
+          minus-non-emph-style = "syntax \"#43242B\"";
+
+          # Added lines — winterGreen backgrounds
+          plus-style = "syntax \"#2B3328\"";
+          plus-emph-style = "syntax \"#365040\"";
+          plus-empty-line-marker-style = "syntax \"#2B3328\"";
+          plus-non-emph-style = "syntax \"#2B3328\"";
+
+          # Context lines
           zero-style = "syntax";
-          plus-style = "syntax \"#2d3f2d\"";
-          plus-emph-style = "syntax \"#3a6b3a\"";
-          line-numbers-plus-style = "brightgreen";
-          whitespace-error-style = "auto auto";
-          blame-code-style = "auto auto";
-          true-color = "auto";
-          file-modified-label = "changed";
-          hyperlinks = "true";
-          keep-plus-minus-markers = "true";
-          diff-stat-align-width = "10";
-          syntax-theme = "Nord";
+
+          # Line numbers — autumnRed / autumnGreen / sumiInk6
           line-numbers = true;
+          line-numbers-minus-style = "#C34043";
+          line-numbers-plus-style = "#76946A";
+          line-numbers-zero-style = "#54546D";
+
+          # Blame — alternating sumiInk backgrounds
+          blame-code-style = "syntax";
+          blame-palette = "#1F1F28 #2A2A37 #363646";
+
+          # General
+          true-color = "always";
+          syntax-theme = "Nord";
           navigate = true;
+          hyperlinks = true;
+          whitespace-error-style = "#C34043 reverse";
+          keep-plus-minus-markers = true;
+          diff-stat-align-width = 10;
+
+          # Merge conflicts
+          merge-conflict-begin-symbol = "▼";
+          merge-conflict-end-symbol = "▲";
         };
         features = "kanagawa";
         side-by-side = true;
