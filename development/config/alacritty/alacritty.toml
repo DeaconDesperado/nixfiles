@@ -44,6 +44,8 @@ family = "Mononoki Nerd Font"
 bindings = [
   { key = "Left", mods = "Alt", chars = "\u001bb" },
   { key = "Right", mods = "Alt", chars = "\u001bf" },
+  { key = "Left", mods = "Shift", chars = "\u001bb" },
+  { key = "Right", mods = "Shift", chars = "\u001bf" },
   { key = "Back", mods = "Command", chars = "\u0015" },
   { key = "Back", mods = "Alt", chars = "\u001B\u007F" },
   { key = "F", mods = "Command|Alt", action = "ToggleSimpleFullscreen" },

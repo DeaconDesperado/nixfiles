@@ -152,6 +152,12 @@ in {
         export LSP_USE_PLISTS=true
         export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=bold,underline"
         export PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin:/opt/spotify-cli/bin:$HOME/.npm-global:$HOME/.npm-global/bin
+
+        # Alacritty encodes Shift+Arrow as CSI 1;2D/C. Bind these explicitly so
+        # they remain word-navigation keys when passed through Zellij.
+        bindkey $'\e[1;2D' backward-word
+        bindkey $'\e[1;2C' forward-word
+
         export FZF_DEFAULT_OPTS=" \
         --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
         --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
