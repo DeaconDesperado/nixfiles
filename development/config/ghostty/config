@@ -11,3 +11,6 @@ macos-non-native-fullscreen = true
 fullscreen = true
 
 keybind = cmd+alt+f=toggle_fullscreen
+
+cursor-style-blink = false
+confirm-close-surface = false

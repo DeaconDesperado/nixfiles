@@ -158,17 +158,7 @@ in {
         --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
         git_ri() {
-          if git rev-parse --verify --quiet main >/dev/null && git rev-parse --verify --quiet master >/dev/null; then
-            echo "Fatal: Both \'main\' and \'master\' branches exist. Please rebase manually." >&2
-            exit 1
-          elif git rev-parse --verify --quiet main >/dev/null; then
-            git rebase -i $(git merge-base HEAD main)
-          elif git rev-parse --verify --quiet master >/dev/null; then
-            git rebase -i $(git merge-base HEAD master)
-          else
-            echo "Fatal: Neither \'main\' nor \'master\' branches exist." >&2
-            exit 1
-          fi
+          git ri "$@"
         }
 
         ${rg_fzf}
@@ -192,7 +182,112 @@ in {
           s = "status";
           l =
             "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-          ri = "!zsh -i -c 'git_ri'";
+          changes = ''
+            !f() {
+              color=0
+              test -t 1 && color=1
+
+              branch=$(git symbolic-ref --quiet --short HEAD || :)
+              remote=$(git config --get "branch.$branch.remote" || :)
+              base=""
+
+              if test -n "$remote" && test "$remote" != "."; then
+                base=$(git symbolic-ref --quiet --short "refs/remotes/$remote/HEAD" || :)
+              fi
+              if test -z "$base"; then
+                base=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD || :)
+              fi
+              if test -z "$base"; then
+                base=$(git for-each-ref --format='%(symref:short)' 'refs/remotes/*/HEAD' |
+                  awk 'NF { print; exit }')
+              fi
+              if test -z "$base"; then
+                echo "Unable to determine the default branch from a remote HEAD." >&2
+                echo "Run 'git remote set-head <remote> --auto' to record it." >&2
+                return 1
+              fi
+
+              git log --reverse --format='COMMIT%x09%h%x09%ad%x09%s' --date=short --numstat "$base"..HEAD |
+                awk -F '\t' -v color="$color" '
+                  BEGIN {
+                    if (color) {
+                      reset = "\033[0m"
+                      hash_color = "\033[1;38;2;126;156;216m"
+                      date_color = "\033[38;2;220;165;97m"
+                      add_color = "\033[38;2;118;148;106m"
+                      del_color = "\033[38;2;195;64;67m"
+                      files_color = "\033[38;2;106;149;137m"
+                      subject_color = "\033[38;2;200;192;147m"
+                    }
+                  }
+                  /^COMMIT/ {
+                    if (seen) print_commit()
+                    hash=$2; date=$3; subject=$4; adds=dels=files=0; seen=1; next
+                  }
+                  NF >= 3 {
+                    files++
+                    if ($1 ~ /^[0-9]+$/) {
+                      adds += $1
+                      total_adds += $1
+                    }
+                    if ($2 ~ /^[0-9]+$/) {
+                      dels += $2
+                      total_dels += $2
+                    }
+                    if (!($3 in changed_files)) {
+                      changed_files[$3] = 1
+                      total_files++
+                    }
+                  }
+                  END {
+                    if (seen) {
+                      print_commit()
+                      print_summary()
+                    }
+                  }
+                  function print_commit() {
+                    printf "%s%-9s%s  %s%s%s  %s+%-6d%s %s-%-6d%s %s%3d files%s  %s%s%s\n", \
+                      hash_color, hash, reset, date_color, date, reset, \
+                      add_color, adds, reset, del_color, dels, reset, \
+                      files_color, files, reset, subject_color, subject, reset
+                  }
+                  function print_summary() {
+                    net = total_adds - total_dels
+                    net_color = net >= 0 ? add_color : del_color
+                    printf "%s%-21s%s  %s+%-6d%s %s-%-6d%s %snet %+-6d%s %s%3d files%s\n", \
+                      hash_color, "TOTAL", reset, add_color, total_adds, reset, \
+                      del_color, total_dels, reset, net_color, net, reset, \
+                      files_color, total_files, reset
+                  }
+                '
+            }; f
+          '';
+          ri = ''
+            !f() {
+              branch=$(git symbolic-ref --quiet --short HEAD || :)
+              remote=$(git config --get "branch.$branch.remote" || :)
+              base=""
+
+              if test -n "$remote" && test "$remote" != "."; then
+                base=$(git symbolic-ref --quiet --short "refs/remotes/$remote/HEAD" || :)
+              fi
+              if test -z "$base"; then
+                base=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD || :)
+              fi
+              if test -z "$base"; then
+                base=$(git for-each-ref --format='%(symref:short)' 'refs/remotes/*/HEAD' |
+                  awk 'NF { print; exit }')
+              fi
+              if test -z "$base"; then
+                echo "Unable to determine the default branch from a remote HEAD." >&2
+                echo "Run 'git remote set-head <remote> --auto' to record it." >&2
+                return 1
+              fi
+
+              merge_base=$(git merge-base HEAD "$base") || return
+              git rebase -i "$merge_base"
+            }; f
+          '';
           revise = "commit -a --amend --no-edit";
         };
 
@@ -297,7 +392,7 @@ in {
 
     programs.fzf = {
       enable = true;
-      historyWidgetOptions = [ "--reverse" ];
+      historyWidget.options = [ "--reverse" ];
     };
 
     programs.direnv = {
@@ -345,19 +440,12 @@ in {
       imagemagick
       jless
       jq
-      k9s
-      kind
-      krew
-      kubebuilder
+      kubectl
       kubectx
-      kubernetes
-      kubernetes-helm
-      kustomize
       languagetool
       ltex-ls
       lua
       marksman
-      minikube
       moreutils
       nixfmt
       nixpkgs-fmt
@@ -366,6 +454,7 @@ in {
       operator-sdk
       pandoc
       pluto
+      pnpm
       postgresql_16
       pqrs
       protobuf

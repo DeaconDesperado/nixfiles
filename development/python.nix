@@ -35,7 +35,6 @@ in {
           python-lsp-server
           pylatexenc
         ]))
-      poetry
       pyright
       uv
     ];

@@ -28,9 +28,18 @@ in {
 
   options.development.ontology = {
     enable = mkEnableOption "Enable development of ontologies";
+    atlasNotesDir = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "Path to set as ATLAS_NOTES_DIR in the shell environment.";
+    };
   };
 
   config = mkIf cfg.enable {
+
+    home.sessionVariables = mkIf (cfg.atlasNotesDir != null) {
+      ATLAS_NOTES_DIR = cfg.atlasNotesDir;
+    };
 
     home.file = {
       "qlue-ls.toml" = {
