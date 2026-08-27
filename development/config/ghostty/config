@@ -1,16 +1,62 @@
+# Colors
+background = #181820
+foreground = #dcd7ba
+selection-background = #2d4f67
+selection-foreground = #c8c093
 background-opacity = 0.98
-theme = kanagawa wave
-font-family = "Mononoki Nerd Font" 
+
+palette = 0=#090618
+palette = 1=#c34043
+palette = 2=#76946a
+palette = 3=#c0a36e
+palette = 4=#7e9cd8
+palette = 5=#957fb8
+palette = 6=#6a9589
+palette = 7=#c8c093
+palette = 8=#727169
+palette = 9=#e82424
+palette = 10=#98bb6c
+palette = 11=#e6c384
+palette = 12=#7fb4ca
+palette = 13=#938aa9
+palette = 14=#7aa89f
+palette = 15=#dcd7ba
+palette = 16=#ffa066
+palette = 17=#ff5d62
+
+# Font
+font-family = "Mononoki Nerd Font"
 font-style = "Regular"
 font-style-bold = "Bold"
 font-size = 14.0
 font-synthetic-style = false
-initial-command = "zsh -l -c zellij attach --index 0 || zellij"
-window-decoration = false
+font-thicken = true 
+font-thicken-strength = 200 
+
+# Shell
+command = "zsh -l -c 'zellij attach --index 0 || exec zellij'"
+
+# Window
+window-decoration = auto
+macos-titlebar-style = hidden
+macos-window-buttons = hidden
 macos-non-native-fullscreen = true
-fullscreen = true
+macos-option-as-alt = left
 
+# Selection
+selection-word-chars = "./-_,│`|:\"' ()[]{}<>\t"
+copy-on-select = clipboard
+
+# Keyboard
+keybind = alt+left=esc:b
+keybind = alt+right=esc:f
+keybind = shift+left=esc:b
+keybind = shift+right=esc:f
+keybind = cmd+backspace=text:\x15
+keybind = alt+backspace=text:\x1b\x7f
 keybind = cmd+alt+f=toggle_fullscreen
+keybind = cmd+n=new_window
 
+# Behavior
 cursor-style-blink = false
 confirm-close-surface = false

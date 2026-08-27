@@ -163,6 +163,10 @@ automatically-unhide-macos-hidden-apps = false
     run = ['move-node-to-workspace 1']
 
 [[on-window-detected]]
+    if.app-id = "com.mitchellh.ghostty"
+    run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
     if.app-id = "com.google.Chrome"
     if.workspace = "5"
     run = ['layout tiling']
@@ -186,4 +190,3 @@ automatically-unhide-macos-hidden-apps = false
 [[on-window-detected]]
     if.app-id = "md.obsidian"
     run = ['move-node-to-workspace 3']
-

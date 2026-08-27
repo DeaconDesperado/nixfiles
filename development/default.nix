@@ -52,6 +52,11 @@ in {
         target = "./.config/btop/themes/eldritch.theme";
       };
 
+      "ghostty" = {
+        source = lib.cleanSource ./config/ghostty/config;
+        target = ".config/ghostty/config";
+      };
+
       print_colors = {
         executable = true;
         source = lib.cleanSource ./scripts/print_colors;
@@ -108,6 +113,25 @@ in {
       enable = true;
       autocd = true;
       enableCompletion = true;
+      completionInit = ''
+        autoload -Uz compinit
+
+        _zcompdump="''${ZDOTDIR:-$HOME}/.zcompdump"
+        _stale_compdumps=("''${_zcompdump}"(N.mh+24))
+
+        if [[ ! -s "$_zcompdump" ]] || (( $#_stale_compdumps )); then
+          compinit -d "$_zcompdump"
+        else
+          compinit -C -d "$_zcompdump"
+        fi
+
+        if [[ -s "$_zcompdump" &&
+              ( ! -s "$_zcompdump.zwc" || "$_zcompdump" -nt "$_zcompdump.zwc" ) ]]; then
+          zcompile "$_zcompdump"
+        fi
+
+        unset _zcompdump _stale_compdumps
+      '';
       syntaxHighlighting = { enable = true; };
       autosuggestion = { enable = false; };
       history.extended = true;
@@ -141,40 +165,50 @@ in {
           file = "p10k.zsh";
         }
       ];
-      initContent = let
-        rg_fzf = builtins.readFile (./config/zsh/rg_fzf.sh);
-        zellij_aliases = builtins.readFile (./config/zellij/aliases.sh);
-        zellij_tab_name_update =
-          builtins.readFile (./config/zsh/zellij_tab_name_update.zsh);
-      in ''
-        export WORDCHARS='*?[]~=&;!#$%^(){}<>'
-        export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-        export LSP_USE_PLISTS=true
-        export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=bold,underline"
-        export PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin:/opt/spotify-cli/bin:$HOME/.npm-global:$HOME/.npm-global/bin
+      initContent =
+        let
+          rg_fzf = builtins.readFile (./config/zsh/rg_fzf.sh);
+          zellij_aliases = builtins.readFile (./config/zellij/aliases.sh);
+          zellij_tab_name_update = builtins.readFile (./config/zsh/zellij_tab_name_update.zsh);
+          instantPrompt = lib.mkOrder 500 ''
+            if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+              source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+            fi
+          '';
+          generalConfig = lib.mkOrder 1000 ''
+            export WORDCHARS='*?[]~=&;!#$%^(){}<>'
+            export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+            export LSP_USE_PLISTS=true
+            export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=bold,underline"
+            export PATH=$PATH:/opt/homebrew/bin:$HOME/go/bin:/opt/spotify-cli/bin:$HOME/.npm-global:$HOME/.npm-global/bin
 
-        # Alacritty encodes Shift+Arrow as CSI 1;2D/C. Bind these explicitly so
-        # they remain word-navigation keys when passed through Zellij.
-        bindkey $'\e[1;2D' backward-word
-        bindkey $'\e[1;2C' forward-word
+            # Alacritty encodes Shift+Arrow as CSI 1;2D/C. Bind these explicitly so
+            # they remain word-navigation keys when passed through Zellij.
+            bindkey $'\e[1;2D' backward-word
+            bindkey $'\e[1;2C' forward-word
 
-        export FZF_DEFAULT_OPTS=" \
-        --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-        --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-        --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+            export FZF_DEFAULT_OPTS=" \
+            --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+            --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+            --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
-        git_ri() {
-          git ri "$@"
-        }
+            git_ri() {
+              git ri "$@"
+            }
 
-        ${rg_fzf}
+            ${rg_fzf}
 
-        ${zellij_aliases}
+            ${zellij_aliases}
 
-        ${cfg.shellFunctions}
+            ${cfg.shellFunctions}
 
-        ${zellij_tab_name_update}
-      '';
+            ${zellij_tab_name_update}
+          '';
+        in
+        lib.mkMerge [
+          instantPrompt
+          generalConfig
+        ];
     };
 
     programs.git = {
@@ -425,6 +459,7 @@ in {
       bazel-buildtools
       bazelisk
       cmake
+      chafa
       colima
       coreutils
       curl
@@ -434,6 +469,7 @@ in {
       fx
       gettext
       gh
+      #ghostty
       gnupg
       gnused
       graphviz-nox

@@ -51,10 +51,6 @@
     [
       # AWS
       unstable.awscli2
-      # Blocked on: 
-      # https://github.com/NixOS/nixpkgs/pull/368726
-      # https://github.com/ghostty-org/ghostty/discussions/2824
-      #inputs.ghostty.packages.aarch64-darwin.default
       viu
     ] ++ lib.optionals stdenv.isDarwin [
       cocoapods
@@ -62,11 +58,4 @@
       aerospace
       sketchybar
     ];
-
-  home.file = {
-    "ghostty" = {
-      source = lib.cleanSource ./development/config/ghostty/config;
-      target = ".config/ghostty/config";
-    };
-  };
 }

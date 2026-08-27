@@ -13,7 +13,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    ghostty.url = "github:ghostty-org/ghostty";
     # Always latest
     claude-code.url = "github:sadjow/claude-code-nix";
     qlue_ls = {
