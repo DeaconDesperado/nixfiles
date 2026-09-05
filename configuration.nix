@@ -21,8 +21,13 @@
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
 
-  # Create /etc/bashrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;
+  # Let Home Manager initialize completion. Enabling it here as well makes
+  # nix-darwin run an uncached compinit before the cached user configuration.
+  programs.zsh = {
+    enable = true;
+    enableCompletion = false;
+    enableBashCompletion = false;
+  };
 
   # Apps
   # `home-manager` currently has issues adding them to `~/Applications`

@@ -348,6 +348,8 @@ in {
       };
 
       ignores = [
+        ".qluels"
+        "qlue-ls.yml"
         ".java_version"
         ".metals"
         "metals.sbt"
