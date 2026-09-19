@@ -4,12 +4,7 @@ let
 
   cfg = config.development;
 
-  eldritch_repo = pkgs.fetchFromGitHub {
-    owner = "eldritch-theme";
-    repo = "btop";
-    rev = "8d1546e8ff629e993dea56f626990b672f3ddf65";
-    hash = "sha256-9cN85fmK2wjRrEpQn5tHw3h+q5ur/eBgtDBgYoY2Tgk=";
-  };
+  eldritch_repo = inputs.eldritch-btop;
 
 in {
 
@@ -507,6 +502,7 @@ in {
       shellcheck
       texlab
       tldr
+      tmux
       trino-cli
       watch
       watchexec

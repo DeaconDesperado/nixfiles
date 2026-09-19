@@ -23,6 +23,26 @@
       url = "github:DeaconDesperado/qluels-nvim/main";
       flake = false;
     };
+    pyenv-virtualenv = {
+      url = "github:pyenv/pyenv-virtualenv";
+      flake = false;
+    };
+    eldritch-btop = {
+      url = "github:eldritch-theme/btop";
+      flake = false;
+    };
+    vim-thrift = {
+      url = "github:solarnz/thrift.vim";
+      flake = false;
+    };
+    eldritch-nvim = {
+      url = "github:eldritch-theme/eldritch.nvim";
+      flake = false;
+    };
+    colortils-nvim = {
+      url = "github:DeaconDesperado/colortils.nvim";
+      flake = false;
+    };
   };
 
   outputs = { self, darwin, nixpkgs, home-manager, ... }@inputs:
@@ -58,7 +78,10 @@
               # `home-manager` config
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${userName} = import ./home.nix;
+              home-manager.users.${userName}.imports = [
+                ./home.nix
+                ./personal/programs.nix
+              ];
               home-manager.extraSpecialArgs = { inherit inputs; };
               users.users.${userName}.home = "/Users/${userName}";
             }

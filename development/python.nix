@@ -2,13 +2,7 @@
 with lib;
 let
   cfg = config.development.python;
-  pyenvVirtualenvRev = "3057e1549bb3998eb54ba0810f3e0effce00ff70";
-  pyenvVirtualenv = pkgs.fetchFromGitHub {
-    owner = "pyenv";
-    repo = "pyenv-virtualenv";
-    rev = pyenvVirtualenvRev;
-    hash = "sha256-b2mmO7jqn9lusdWmhO0nPDCik12b5XCTPGbatoEd8iE=";
-  };
+  pyenvVirtualenv = inputs.pyenv-virtualenv;
 in {
 
   options.development.python = {
@@ -38,7 +32,7 @@ in {
     home.file.".pyenv/plugins/pyenv-virtualenv".source = pyenvVirtualenv;
 
     # Generating these snippets launches pyenv several times. Cache their
-    # output until either pyenv or the mutable virtualenv plugin changes.
+    # output until either pyenv or the locked virtualenv plugin revision changes.
     # virtualenv-init itself is left intact, including its precmd hook, so
     # automatic activation semantics remain unchanged.
     programs.zsh.initContent = lib.mkOrder 550 ''
@@ -46,7 +40,7 @@ in {
       path=("${lib.getBin pkgs.pyenv}/bin" "$PYENV_ROOT/shims" $path)
 
       _pyenv_cache_dir="''${XDG_CACHE_HOME:-$HOME/.cache}/pyenv"
-      _pyenv_init_cache="$_pyenv_cache_dir/init-${pkgs.pyenv.version}-${builtins.substring 0 8 pyenvVirtualenvRev}.zsh"
+      _pyenv_init_cache="$_pyenv_cache_dir/init-${pkgs.pyenv.version}-${inputs.pyenv-virtualenv.shortRev}.zsh"
       _pyenv_virtualenv_init="$PYENV_ROOT/plugins/pyenv-virtualenv/bin/pyenv-virtualenv-init"
 
       if [[ ! -s "$_pyenv_init_cache" ||

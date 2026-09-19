@@ -4,34 +4,19 @@ let
   vim-thrift = pkgs.vimUtils.buildVimPlugin {
     pname = "vim-thrift";
     version = "unstable";
-    src = pkgs.fetchFromGitHub {
-      owner = "solarnz";
-      repo = "thrift.vim";
-      rev = "f627aace1e583aed42f12d2a48b40fc18449a145";
-      sha256 = "JccjaGkxZyuWBs7rVzGUxNQ6tTpHUhg7vNtSK2o3EwI=";
-    };
+    src = inputs.vim-thrift;
   };
 
   eldritch-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "eldritch-nvim";
     version = "unstable";
-    src = pkgs.fetchFromGitHub {
-      owner = "eldritch-theme";
-      repo = "eldritch.nvim";
-      rev = "48788ef2f7be7e86b0a57ef87f1a96bc18e24b8b";
-      hash = "sha256-ShjgOkzE4h5zLsM9kSXePXgZossgwV2HW4Axq5y9cP4=";
-    };
+    src = inputs.eldritch-nvim;
   };
 
   colortils-nvim = pkgs.vimUtils.buildVimPlugin {
     pname = "colortils-nvim";
     version = "unstable";
-    src = pkgs.fetchFromGitHub {
-      owner = "DeaconDesperado";
-      repo = "colortils.nvim";
-      rev = "fb106df442a44854f8c15832256b750108bf7089";
-      hash = "sha256-OBUcfIjT2PS5YRmNLr5kTT8yOoD/pCXL9NZFhkdRx+I=";
-    };
+    src = inputs.colortils-nvim;
   };
 
   cfg = config.neovim-lsps;
