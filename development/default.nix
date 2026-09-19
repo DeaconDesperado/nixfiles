@@ -337,7 +337,7 @@ in {
           keepBackup = false;
           diffview = { cmd = "nvim -n -c DiffviewOpen"; };
         };
-        push.default = "tracking";
+        push.default = "current";
         hub.host = cfg.hubHost;
         lfs.lockverify = false;
       };
