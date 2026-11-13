@@ -20,6 +20,7 @@ in {
     ./ontology.nix
     ./graphql.nix
     ./ai.nix
+    ./doc.nix
   ];
 
   options.development = {
@@ -482,7 +483,6 @@ in {
       kubectl
       kubectx
       languagetool
-      ltex-ls
       lua
       marksman
       moreutils
@@ -500,7 +500,6 @@ in {
       ripgrep
       semver-tool
       shellcheck
-      texlab
       tldr
       tmux
       trino-cli

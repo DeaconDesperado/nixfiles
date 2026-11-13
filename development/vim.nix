@@ -132,6 +132,8 @@ in {
             vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
             vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+
+            vim.o.exrc = true
           '';
         }
         plenary-nvim

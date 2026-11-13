@@ -32,6 +32,7 @@
     python.enable = true;
     graphql.enable = true;
     ai.enable = true;
+    doc.enable = true;
     ontology = {
       enable = true;
       atlasNotesDir = "~/Desktop/mgii-work";

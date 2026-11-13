@@ -1,5 +1,5 @@
 { lib, config, pkgs, ... }:
-let cfg = config.development.qmk;
+let cfg = config.development.rust;
 in {
   options = {
     development.rust.enable = lib.mkEnableOption "Enable Rust development";
