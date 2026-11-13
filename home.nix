@@ -16,7 +16,6 @@
 
   programs = {
     home-manager = { enable = true; };
-    vscode = { enable = true; };
   };
 
   development = {

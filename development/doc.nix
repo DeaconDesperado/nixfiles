@@ -43,7 +43,7 @@ in {
   config = mkIf cfg.enable {
 
     home.packages = with pkgs; [
-      ltex-ls
+      ltex-ls-plus
       sioyek-fixed
       texlab
       texlive-latexmk
